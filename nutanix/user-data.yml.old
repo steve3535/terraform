@@ -1,0 +1,46 @@
+#cloud-config
+cloud_config_modules: 
+  - resolv_conf
+  - runcmd
+
+hostname: ${vm_name}
+fqdn: ${vm_name}.${vm_domain}
+
+users:
+  - name: ${vm_user}
+    ssh-authorized-keys:
+      - ${vm_public_key}
+network:
+  version: 1
+  config:
+    - type: physical
+      name: ens3
+      subnets:
+        - type: static
+          address: 200.1.1.89
+          gateway: 200.1.1.240
+          dns_nameservers:
+            - 200.1.1.163
+            - 200.1.1.218
+          dns_search:
+            - lalux.local
+
+write_files:
+  - path: /etc/sysconfig/network-scripts/ifcfg-ens3
+    content: |
+      IPADDR="${vm_ip}"
+      NETMASK="255.255.255.0"
+      GATEWAY="${vm_gateway}"
+      BOOTPROTO=static
+      ONBOOT=yes
+      DEVICE=ens3
+runcmd:
+  - [ifdown, ens3]
+  - [ifup, ens3]
+
+manage_resolv_conf: true
+resolv_conf:
+  nameservers: ['${vm_dns1}', '${vm_dns2}']
+  searchdomains:
+    - ${vm_domain}
+  domain: ${vm_domain}
