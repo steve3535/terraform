@@ -1,6 +1,6 @@
 ---
-- src: http://lu687:8090/infrastructure/satellite_enroll.git
-  name: satellite_enroll
+- src: http://lu687:8090/infrastructure/linux/satellite_enrollement.git
+  name: satellite_enrollement
   scm: git
-  version: beta
+  version: main
 
