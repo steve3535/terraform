@@ -41,6 +41,9 @@ data "template_file" "cloud-init" {
     }
 }
 
+resource "random_string" "random" {
+length= 18
+}
 resource "nutanix_virtual_machine" "packer_vm" {
  name = "LU783 - LNX - IBM TASK MINING POC"
  description = "Created with Terraform"
