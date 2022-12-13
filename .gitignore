@@ -1,2 +1,3 @@
 nutanix/*.tfvars
+esx/*.tfvars
 
