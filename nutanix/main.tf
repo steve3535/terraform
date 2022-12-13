@@ -52,8 +52,8 @@ resource "nutanix_virtual_machine" "packer_vm" {
   memory_size_mib = var.vm_ram
   
   nic_list {
-     #subnet_uuid = "1f9df7d0-c227-49ea-8ac7-40073dd46e0e"
-     subnet_uuid = "e261a1ee-cc02-48ff-9292-92287a9c95ec"   #192.168.25
+     subnet_uuid = "1f9df7d0-c227-49ea-8ac7-40073dd46e0e"  #200.1.1.
+     #subnet_uuid = "e261a1ee-cc02-48ff-9292-92287a9c95ec"   #192.168.25
    }
 
   disk_list {

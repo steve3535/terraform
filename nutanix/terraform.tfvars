@@ -1,13 +1,13 @@
 nutanix_username = "mk417@lalux.local"
 nutanix_password = "ShineAboef@2013#"
 
-vm_name = "lu783"
-vm_cpu = 8
-vm_ram = 16384
-vm_disk_size_gb = 300
-vm_ip = "192.168.25.7"
+vm_name = "lu717"
+vm_cpu = 1
+vm_ram = 2048
+vm_disk_size_gb = 100
+vm_ip = "200.1.1.106"
 vm_ipv4_net_prefix = "24"
-vm_gateway = "192.168.25.1"
+vm_gateway = "200.1.1.240"
 vm_domain = "lalux.local"
 vm_dns1 = "200.1.1.163"
 vm_dns2 = "200.1.1.218"

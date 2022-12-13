@@ -4,7 +4,7 @@
   gather_facts: no
   become: true
   vars_files:
-  - "{{ lookup('env','HOME') }}/infrastructure-linux/ansible_vault/satellite_creds.yml"
+  - "{{ lookup('env','HOME') }}/infrastructure-linux/vault/satellite_creds.yml"
   roles:
   - role: satellite_enroll
     release_version: "8"
