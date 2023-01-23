@@ -1,0 +1,14 @@
+#cloud-config
+runcmd:
+  - nmcli con mod "System ens192" ipv4.method manual ipv4.addresses ${vsphere_vm_ip}/24 ipv4.gateway ${vsphere_vm_gateway} ipv4.dns "${vm_dns1} ${vm_dns2}"
+  - nmcli con mod "System ens192" con-name ens192
+  - nmcli con up ens192
+
+hostname: ${vsphere_vm_name}
+fqdn: ${vsphere_vm_name}.${vm_domain}
+
+users:
+  - name: ${vm_user}
+    ssh-authorized-keys:
+      - ${vm_public_key}
+

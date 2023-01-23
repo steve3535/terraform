@@ -1,6 +1,0 @@
----
-- src: http://lu687:8090/infrastructure/linux/ansible_roles/satellite_enrollement.git
-  name: satellite_enrollement
-  scm: git
-  version: main
-
