@@ -6,8 +6,8 @@ variable "vsphere_password" {}
 variable "vsphere_server" {}
 variable "vsphere_datacenter" { default = "LALUX" }
 variable "vsphere_cluster" { default = "Cluster NUTANIX DMZ" }
-variable "vsphere_datastore" { default = "NUT_DMZ_INT_DC1_01" }
-variable "vsphere_host" { default = "nut-dmz-01.lalux.local" }
+variable "vsphere_datastore" { default = "NUT_DMZ_INT_DC2_01" }
+variable "vsphere_host" { default = "nut-dmz-02.lalux.local" }
 variable "vsphere_content_library" {}
 variable "vsphere_content_library_item" {}
 variable "vsphere_network" {}
