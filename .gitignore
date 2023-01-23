@@ -1,3 +1,2 @@
-nutanix/*.tfvars
-esx/*.tfvars
+*.tfvars
 
