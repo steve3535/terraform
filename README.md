@@ -53,3 +53,18 @@ Ces données sont regroupées dans le fichier terraform.tfvars quine fait pas pa
 * section pour la definition des machines AHV sous forme dun tableau de dictionnaires    
 
 3. **main.tf**    
+* providers:  
+  * utilisation dalias pour creer a la fois DC1 et DC3 avec le meme plugin nutanix  
+  * pour vsphere, il ya un seul DC  
+* definition de chaque PE avec la directive nutanix_cluster  
+* definition des datastores ESX (les plus frequemment requis)  
+* definition des networks ESX (les plus frequemment requis)  
+* definition des 8 hosts ESX de la DMZ  
+* pour ce qui est networks et storage_containers AHV, ils ne sont pas definis en data sources mais dans variables.tf  
+* VMs:  
+  * pour permettre le meilleur parametrage possible, nous avons , autant que faire se peut, gardé dans la definition des resources uniquement ce qui est propre a la machine, y compris meme sa config cloud-init  
+  * pas de cloud-init avec vsphere <7, donc lutilisation de deux provisionners supplementaires: local et remote pour injecter  
+
+## POST INSTALLATION  
+    
+
