@@ -37,7 +37,7 @@ la provision bout en bout des VMs tant en DMZ qu'en LAN est organisée autour de
 * datastores/storage_containers  
 * networks  
 
-1. Secrets  
+1. Secrets (*terraform.tfvars*)   
 les données sensibles sont:  
 - les credentials aux prismes Nutanix  
 - les credentials au vsphere Vcenter LU309  
@@ -45,3 +45,11 @@ les données sensibles sont:
 - la clef publique de l'admin system en train de proceder au deploiement  
 Ces données sont regroupées dans le fichier terraform.tfvars quine fait pas partie du repository git.  
 
+2. Variables (*variables.tf*)    
+* nous redeclarons les secrets (mais sans leurs valeurs) afin de rendre portable le programme - lors dune distribution par ex -  
+* une section pour tout ce qui est common aux VMs sur linfra ESX     
+* une section pour tout ce qui est common aux VMs sur linfra AHV  
+* section pour la definition des machines ESX sous forme dun tableau de dictionnaires    
+* section pour la definition des machines AHV sous forme dun tableau de dictionnaires    
+
+3. **main.tf**    
