@@ -1,0 +1,6 @@
+---
+- hosts: 200.1.1.53
+  tasks:
+  - debug:
+          msg: "test"
+
