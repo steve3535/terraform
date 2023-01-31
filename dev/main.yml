@@ -1,0 +1,67 @@
+---
+- hosts: localhost
+  vars_files: params.yml
+  tasks:
+  - name: insert a new VM block
+    blockinfile:
+        block: |
+           resource "nutanix_virtual_machine" "{{ item.key }}" {
+                   name                 = "{{ item.value.name }}"
+                   description          = "{{ item.value.descr }}" 
+                   provider             = {{ item.value.datacenter }}
+                   cluster_uuid         = data.nutanix_cluster.{{ item.value.cluster }}.metadata.uuid
+                   num_vcpus_per_socket = "{{ item.value.cpu_socket }}"
+                   num_sockets          = "{{ item.value.cpu }}"
+                   memory_size_mib      = "{{ item.value.mem }}"
+                   boot_type            = "UEFI"
+                   nic_list {
+                     subnet_uuid = {{ item.value.subnet }}
+                   }
+
+                   disk_list {
+                     data_source_reference = {
+                        kind = "image"
+                        uuid = data.nutanix_image.{{ item.value.image }}.metadata.uuid
+                     }
+
+                     device_properties {
+                       disk_address = {
+                         device_index = 0
+                         adapter_type = "SCSI"
+                       }
+                       device_type = "DISK"
+                     }
+                   }
+
+                   disk_list {
+                     disk_size_mib = ({{ item.value.disk2_size_gb }} * 1024)
+                     storage_config {
+                       storage_container_reference {
+                         kind = "storage_container"
+                         uuid = {{ item.value.storage }}
+                       }
+                     }
+                   }
+
+                   #guest_customization_cloud_init_user_data = base64encode(data.template_file.cloud-init.rendered)
+                   guest_customization_cloud_init_user_data = base64encode(templatefile("user-data.tpl", {
+                     vm_domain         =  "{{ item.value.domain }}"
+                     vm_name       =  "{{ item.value.hostname }}"
+                     vm_ip   = "{{ item.value.ip }}"
+                     vm_prefix = "{{ item.value.net_prefix }}"
+                     vm_gateway   =  "{{ item.value.gw }}"
+                     vm_dns1    = "{{ item.value.dns1 }}"
+                     vm_dns2    = "{{ item.value.dns2 }}"
+                     vm_user = "{{ item.value.user }}"
+                     vm_public_key = {{ item.value.pubkey }}
+                   }))
+
+                   provisioner "local-exec" {
+                   command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i '{{ item.value.hostname }},' -e env={{ item.value.satellite_env }} config.yml -u {{ item.value.user }} -b --vault-password-file {{ lookup('env','ANSIBLE_VAULT') }}/.vault_password_file" 
+                   }
+            }
+        path: main.tf
+        marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.key|upper }}"
+    loop: "{{ lookup('dict',lan_vms) }}"
+
+

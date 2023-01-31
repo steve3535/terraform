@@ -3,15 +3,18 @@
 ################################
 
 variable "nutanix_username" {}
-variable "nutanix_password" {}
+variable "nutanix_password" { 
+    type=string 
+    sensitive = true 
+    }
 variable "vsphere_user" {}
-variable "vsphere_password" {}
+variable "vsphere_password" { sensitive = true }
 
 ################################
 # ESX COMMON INFRASTRUCTURE
 ################################
 
-variable "vsphere_server" {}
+variable "vsphere_server" { default = "lu309.lalux.local" }
 variable "vsphere_datacenter" { default = "LALUX" }
 variable "vsphere_cluster" { default = "Cluster NUTANIX DMZ" }
 variable "vsphere_resource_pool" { default = "Cluster NUTANIX DMZ/Resources" }
@@ -62,7 +65,7 @@ variable ahv_481_storage {
     default = {"NUT_AHV_LU480_DC01_01":"c5bff564-4508-4f14-9a6d-d3dfbd1462e5","NUT_AHV_LU481_DC03_01":"c0b024d1-13a9-4cfd-bc71-503fb57cbd93","NUT_AHV_DC1_01":"d79bddc6-0a64-499c-b979-10dd4eb256af"}
 }
 
-variable "vm_user" {}
+variable "vm_user" { default = "localadmin" }
 variable "vm_public_key" {}
 variable "vm_password" {}
 variable "vm_domain" { default = "lalux.local" }
@@ -87,8 +90,8 @@ variable dmz_vm {
 
 variable lan_vm {
     type = list(map(string))
-    default = [ {"name": "lu625","cpu_socket":"1","cpu":1,"mem":2048,"ip":"200.1.1.53","gw":"200.1.1.240","net_prefix":"24","disk2_size_gb":"100","satellite_env":"DEV_TEST"},
-                {"name": "mk417-ahv-test2","cpu_socket":"1","cpu":2,"mem":4096,"ip":"200.1.1.107","gw":"200.1.1.240","net_prefix":"24","disk2_size_gb":"100","satellite_env":"DEV_TEST"}
+    default = [ {"name":"LU717 - LNX - KWAKOU VM TEST 01","description":"VM DE TEST","datacenter":"nutanix.dc1","hostname": "lu717","cpu_socket":"1","cpu":1,"mem":2048,"ip":"200.1.1.106","gw":"200.1.1.240","net_prefix":"24","disk2_size_gb":"100","satellite_env":"DEV_TEST"},
+                {"name":"LU718 - LNX - KWAKOU VM TEST 02","description":"VM DE TEST","datacenter":"nutanix.dc3","hostname": "lu718","cpu_socket":"1","cpu":2,"mem":4096,"ip":"200.1.1.105","gw":"200.1.1.240","net_prefix":"24","disk2_size_gb":"100","satellite_env":"DEV_TEST"}
        ]
 }
 

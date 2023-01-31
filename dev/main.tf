@@ -198,147 +198,6 @@ data "vsphere_content_library_item" "esx_lib_item" {
   library_id = data.vsphere_content_library.esx_lib.id 
 }
 
-
-# data "template_file" "cloud-init" {
-#   template = file("user-data.yml")
-#   vars = {
-#     vm_user          = var.vm_user
-#     vm_domain        = var.vm_domain
-#     vm_dns1          = var.vm_dns1
-#     vm_dns2          = var.vm_dns2
-#     vm_public_key    = var.vm_public_key
-#     vm_name          = var.lan_vm[0].name 
-#     vm_ip            = var.lan_vm[0].ip
-#     vm_netmask       = var.lan_vm[0].net_prefix
-#     vm_gateway       = var.lan_vm[0].gw
-#     vm_satellite_env = var.lan_vm[0].satellite_env
-#   }
-# }
-
-resource "nutanix_virtual_machine" "MK417-AHV-TEST1" {
-  name                 = "MK417 - LNX - KWAKOU VM TEST 01"
-  description          = "VM de TEST"
-  provider             = nutanix.dc1
-  boot_type            = "UEFI"
-  cluster_uuid         = data.nutanix_cluster.cluster480.metadata.uuid
-  num_vcpus_per_socket = var.lan_vm[0].cpu_socket
-  num_sockets          = var.lan_vm[0].cpu
-  memory_size_mib      = var.lan_vm[0].mem
-
-  nic_list {
-    subnet_uuid = var.ahv_480_network["Production"]
-    
-  }
-
-  disk_list {
-    data_source_reference = {
-      kind = "image"
-      uuid = data.nutanix_image.rhel8-dc1.metadata.uuid
-    }
-
-    device_properties {
-      disk_address = {
-        device_index = 0
-        adapter_type = "SCSI"
-      }
-
-      device_type = "DISK"
-    }
-  }
-
-  disk_list {
-    disk_size_mib = (var.lan_vm[0].disk2_size_gb * 1024)
-
-    storage_config {
-      storage_container_reference {
-        kind = "storage_container"
-        uuid = var.ahv_480_storage["NUT_AHV_LU480_DC01_01"]
-      }
-    }
-  }
-  
-  #guest_customization_cloud_init_user_data = base64encode(data.template_file.cloud-init.rendered)
-   guest_customization_cloud_init_user_data = base64encode(templatefile("user-data.tpl", {
-    vm_domain         =  var.vm_domain
-    vm_name       =  var.lan_vm[0].name
-    vm_ip   = var.lan_vm[0].ip
-    vm_prefix = var.lan_vm[0].net_prefix
-    vm_gateway   =  var.lan_vm[0].gw
-    vm_dns1    = var.vm_dns1
-    vm_dns2    = var.vm_dns2
-    vm_user = var.vm_user
-    vm_public_key = var.vm_public_key
-  })) 
-
-  provisioner "local-exec" {
-    command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i '${var.lan_vm[0].name},' -e env=${var.lan_vm[0].satellite_env} deploy.yml -u ${var.vm_user} -b --vault-password-file /home/lalux.local/mk417/infrastructure-linux/vault/.vault_password_file"
-
-  }
-
-}
-
-resource "nutanix_virtual_machine" "MK417-AHV-TEST2" {
-  name                 = "MK417 - LNX - KWAKOU VM TEST 02"
-  description          = "VM de TEST"
-  provider             = nutanix.dc3
-  boot_type            = "UEFI"
-  cluster_uuid         = data.nutanix_cluster.cluster480.metadata.uuid
-  num_vcpus_per_socket = var.lan_vm[1].cpu_socket
-  num_sockets          = var.lan_vm[1].cpu
-  memory_size_mib      = var.lan_vm[1].mem
-
-  nic_list {
-    subnet_uuid = var.ahv_481_network["Production"]
-    
-  }
-
-  disk_list {
-    data_source_reference = {
-      kind = "image"
-      uuid = data.nutanix_image.rhel8-dc3.metadata.uuid
-    }
-
-    device_properties {
-      disk_address = {
-        device_index = 0
-        adapter_type = "SCSI"
-      }
-
-      device_type = "DISK"
-    }
-  }
-
-  disk_list {
-    disk_size_mib = (var.lan_vm[1].disk2_size_gb * 1024)
-
-    storage_config {
-      storage_container_reference {
-        kind = "storage_container"
-        uuid = var.ahv_481_storage["NUT_AHV_DC1_01"]
-      }
-    }
-  }
-  
-  #guest_customization_cloud_init_user_data = base64encode(data.template_file.cloud-init.rendered)
-   guest_customization_cloud_init_user_data = base64encode(templatefile("user-data.tpl", {
-    vm_domain         =  var.vm_domain
-    vm_name       =  var.lan_vm[1].name
-    vm_ip   = var.lan_vm[1].ip
-    vm_prefix = var.lan_vm[1].net_prefix
-    vm_gateway   =  var.lan_vm[1].gw
-    vm_dns1    = var.vm_dns1
-    vm_dns2    = var.vm_dns2
-    vm_user = var.vm_user
-    vm_public_key = var.vm_public_key
-  })) 
-
-  provisioner "local-exec" {
-    command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i '${var.lan_vm[1].name},' -e env=${var.lan_vm[1].satellite_env} deploy.yml -u ${var.vm_user} -b --vault-password-file /home/lalux.local/mk417/infrastructure-linux/vault/.vault_password_file"
-
-  }
-
-}
-
 # Deploy a VM from OVF in Content Library in VMWARE
 # resource "vsphere_virtual_machine" "MK417-ESX-TEST1" {
 #   resource_pool_id     = data.vsphere_resource_pool.esx_pool.id
@@ -423,3 +282,177 @@ resource "nutanix_virtual_machine" "MK417-AHV-TEST2" {
 #   }
 
 # }
+# BEGIN ANSIBLE MANAGED BLOCK LU717
+resource "nutanix_virtual_machine" "lu717" {
+        name                 = "LU717 - LNX - VM TEST KWAKOU"
+        description          = "VM DE TEST" 
+        provider             = nutanix.dc1
+        cluster_uuid         = data.nutanix_cluster.cluster480.metadata.uuid
+        num_vcpus_per_socket = "1"
+        num_sockets          = "1"
+        memory_size_mib      = "2048"
+        boot_type            = "UEFI"
+        nic_list {
+          subnet_uuid = var.ahv_480_network["Production"]
+        }
+
+        disk_list {
+          data_source_reference = {
+             kind = "image"
+             uuid = data.nutanix_image.rhel8-dc1.metadata.uuid
+          }
+
+          device_properties {
+            disk_address = {
+              device_index = 0
+              adapter_type = "SCSI"
+            }
+            device_type = "DISK"
+          }
+        }
+
+        disk_list {
+          disk_size_mib = (100 * 1024)
+          storage_config {
+            storage_container_reference {
+              kind = "storage_container"
+              uuid = var.ahv_480_storage["NUT_AHV_LU480_DC01_01"]
+            }
+          }
+        }
+
+        #guest_customization_cloud_init_user_data = base64encode(data.template_file.cloud-init.rendered)
+        guest_customization_cloud_init_user_data = base64encode(templatefile("user-data.tpl", {
+          vm_domain         =  "lalux.local"
+          vm_name       =  "lu717"
+          vm_ip   = "200.1.1.106"
+          vm_prefix = "24"
+          vm_gateway   =  "200.1.1.240"
+          vm_dns1    = "200.1.1.163"
+          vm_dns2    = "200.1.1.218"
+          vm_user = "localadmin"
+          vm_public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDUxJXxD/SFkaQ2FcFtEH3aOFlSO1De0+PEnOUj9lIIYSMY0nimo6epyEfv7NtJwQBPHWJYOzoUAe49b4rB/y8ZXR3C+xEKspD7ebqbQC9hV6gFN7My+gnTuSVsYtUXwMSuyRuKne/xu2TfTQYpImJt4UnByy5UBbs+ifQDWB+goZSMPkgP45oiTCLnioGwVQbXks5O7kI3IInvEc31iPA4RVusxmk6QEHze5J10AcCEy03RVPXuYB3KNsI2UXeevZdMV612doty1IE36qgRZW5xNYUeS25XNrOVNMyRWoQWJYLvx5rryBp69BtNg1hUjx3b+OxlNEhnfIqzSK6uXAeEij2/DHcjwOqSCjY6JmkCh7dAbWVIEq96faHF9C3IlT6gbF3RtkFaZ5hvtcWiybmJKZMeDw0YNW2/HqXRxwaW8q+Qjue/Su9AmILIUb3xzZwdUMLpG0sCV/R+NA1EVl0PMkUECRI5ZtNgfU83TmLCDOqY2MI3lw8xcjWh1eC/NU= mk417@lalux.local@rh-subman.lalux.local"
+
+        }))
+
+        provisioner "local-exec" {
+        command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'lu717,' -e env=DEV_TEST config.yml -u localadmin -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file" 
+        }
+ }
+# END ANSIBLE MANAGED BLOCK LU717
+# BEGIN ANSIBLE MANAGED BLOCK LU718
+resource "nutanix_virtual_machine" "lu718" {
+        name                 = "LU718 - LNX - VM TEST KWAKOU"
+        description          = "VM DE TEST" 
+        provider             = nutanix.dc3
+        cluster_uuid         = data.nutanix_cluster.cluster651.metadata.uuid
+        num_vcpus_per_socket = "1"
+        num_sockets          = "2"
+        memory_size_mib      = "4096"
+        boot_type            = "UEFI"
+        nic_list {
+          subnet_uuid = var.ahv_651_network["Production"]
+        }
+
+        disk_list {
+          data_source_reference = {
+             kind = "image"
+             uuid = data.nutanix_image.rhel8-dc3.metadata.uuid
+          }
+
+          device_properties {
+            disk_address = {
+              device_index = 0
+              adapter_type = "SCSI"
+            }
+            device_type = "DISK"
+          }
+        }
+
+        disk_list {
+          disk_size_mib = (100 * 1024)
+          storage_config {
+            storage_container_reference {
+              kind = "storage_container"
+              uuid = var.ahv_651_storage["NUT_AHV_DC3_01"]
+            }
+          }
+        }
+
+        #guest_customization_cloud_init_user_data = base64encode(data.template_file.cloud-init.rendered)
+        guest_customization_cloud_init_user_data = base64encode(templatefile("user-data.tpl", {
+          vm_domain         =  "lalux.local"
+          vm_name       =  "lu718"
+          vm_ip   = "200.1.1.105"
+          vm_prefix = "24"
+          vm_gateway   =  "200.1.1.240"
+          vm_dns1    = "200.1.1.163"
+          vm_dns2    = "200.1.1.218"
+          vm_user = "localadmin"
+          vm_public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDUxJXxD/SFkaQ2FcFtEH3aOFlSO1De0+PEnOUj9lIIYSMY0nimo6epyEfv7NtJwQBPHWJYOzoUAe49b4rB/y8ZXR3C+xEKspD7ebqbQC9hV6gFN7My+gnTuSVsYtUXwMSuyRuKne/xu2TfTQYpImJt4UnByy5UBbs+ifQDWB+goZSMPkgP45oiTCLnioGwVQbXks5O7kI3IInvEc31iPA4RVusxmk6QEHze5J10AcCEy03RVPXuYB3KNsI2UXeevZdMV612doty1IE36qgRZW5xNYUeS25XNrOVNMyRWoQWJYLvx5rryBp69BtNg1hUjx3b+OxlNEhnfIqzSK6uXAeEij2/DHcjwOqSCjY6JmkCh7dAbWVIEq96faHF9C3IlT6gbF3RtkFaZ5hvtcWiybmJKZMeDw0YNW2/HqXRxwaW8q+Qjue/Su9AmILIUb3xzZwdUMLpG0sCV/R+NA1EVl0PMkUECRI5ZtNgfU83TmLCDOqY2MI3lw8xcjWh1eC/NU= mk417@lalux.local@rh-subman.lalux.local"
+
+        }))
+
+        provisioner "local-exec" {
+        command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'lu718,' -e env=DEV_TEST config.yml -u localadmin -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file" 
+        }
+ }
+# END ANSIBLE MANAGED BLOCK LU718
+# BEGIN ANSIBLE MANAGED BLOCK LU625
+resource "nutanix_virtual_machine" "lu625" {
+        name                 = "LU625 - LNX - VM TEST KWAKOU"
+        description          = "VM DE TEST" 
+        provider             = nutanix.dc3
+        cluster_uuid         = data.nutanix_cluster.cluster650.metadata.uuid
+        num_vcpus_per_socket = "1"
+        num_sockets          = "1"
+        memory_size_mib      = "2048"
+        boot_type            = "UEFI"
+        nic_list {
+          subnet_uuid = var.ahv_650_network["Production"]
+        }
+
+        disk_list {
+          data_source_reference = {
+             kind = "image"
+             uuid = data.nutanix_image.rhel8-dc3.metadata.uuid
+          }
+
+          device_properties {
+            disk_address = {
+              device_index = 0
+              adapter_type = "SCSI"
+            }
+            device_type = "DISK"
+          }
+        }
+
+        disk_list {
+          disk_size_mib = (100 * 1024)
+          storage_config {
+            storage_container_reference {
+              kind = "storage_container"
+              uuid = var.ahv_650_storage["NUT_AHV_DC3_01"]
+            }
+          }
+        }
+
+        #guest_customization_cloud_init_user_data = base64encode(data.template_file.cloud-init.rendered)
+        guest_customization_cloud_init_user_data = base64encode(templatefile("user-data.tpl", {
+          vm_domain         =  "lalux.local"
+          vm_name       =  "lu625"
+          vm_ip   = "200.1.1.53"
+          vm_prefix = "24"
+          vm_gateway   =  "200.1.1.240"
+          vm_dns1    = "200.1.1.163"
+          vm_dns2    = "200.1.1.218"
+          vm_user = "localadmin"
+          vm_public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDUxJXxD/SFkaQ2FcFtEH3aOFlSO1De0+PEnOUj9lIIYSMY0nimo6epyEfv7NtJwQBPHWJYOzoUAe49b4rB/y8ZXR3C+xEKspD7ebqbQC9hV6gFN7My+gnTuSVsYtUXwMSuyRuKne/xu2TfTQYpImJt4UnByy5UBbs+ifQDWB+goZSMPkgP45oiTCLnioGwVQbXks5O7kI3IInvEc31iPA4RVusxmk6QEHze5J10AcCEy03RVPXuYB3KNsI2UXeevZdMV612doty1IE36qgRZW5xNYUeS25XNrOVNMyRWoQWJYLvx5rryBp69BtNg1hUjx3b+OxlNEhnfIqzSK6uXAeEij2/DHcjwOqSCjY6JmkCh7dAbWVIEq96faHF9C3IlT6gbF3RtkFaZ5hvtcWiybmJKZMeDw0YNW2/HqXRxwaW8q+Qjue/Su9AmILIUb3xzZwdUMLpG0sCV/R+NA1EVl0PMkUECRI5ZtNgfU83TmLCDOqY2MI3lw8xcjWh1eC/NU= mk417@lalux.local@rh-subman.lalux.local"
+
+        }))
+
+        provisioner "local-exec" {
+        command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'lu625,' -e env=DEV_TEST config.yml -u localadmin -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file" 
+        }
+ }
+# END ANSIBLE MANAGED BLOCK LU625

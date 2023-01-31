@@ -4,7 +4,7 @@
   gather_facts: no
   become: true
   vars_files:
-  - "{{ lookup('env','HOME') }}/infrastructure-linux/vault/satellite_creds.yml"
+  - "{{ lookup('env','ANSIBLE_VAULT') }}/satellite_creds.yml"
   pre_tasks:
   - name: wait some time for the host to be ready before staring anything else
     pause:
@@ -92,12 +92,12 @@
 
 - hosts: all
   become: true
-  vars_files:  "{{ lookup('env','HOME') }}/infrastructure-linux/vault/idm_creds.yml"
+  vars_files:  "{{ lookup('env','ANSIBLE_VAULT') }}/idm_creds.yml"
   vars:
         HOME_DIR: "{{ lookup('env','HOME') }}"
         USER: "{{ lookup('env','USER') }}"
-        nd_exp_pkg: "{{ lookup('env','HOME') }}/infrastructure-linux/files/node_exporter-1.3.1.linux-amd64.tar.gz"
-        nd_svc_file: "{{ lookup('env','HOME') }}/infrastructure-linux/files/node-exporter.service"
+        nd_exp_pkg: "/opt/infrastructure-linux/files/node_exporter-1.3.1.linux-amd64.tar.gz"
+        nd_svc_file: "/opt/infrastructure-linux/files/node-exporter.service"
 
   gather_facts: yes
 
