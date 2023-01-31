@@ -183,105 +183,37 @@ data "vsphere_network" "DMZ_MGMT_EXT" {
   datacenter_id = data.vsphere_datacenter.esx_dc.id
 }
 
+data "vsphere_network" "DMZ_PRO_BITB_GW" {
+  name = "DMZ_PRO_BITB_GW"
+  datacenter_id = data.vsphere_datacenter.esx_dc.id
+}
 
 ###############################
 # CONTENT LIBRARY
 ###############################
 
-data "vsphere_content_library" "esx_lib" {
+data "vsphere_content_library" "esx_lib1" {
+  name = "Linux_Templates_DC1"
+}
+
+data "vsphere_content_library" "esx_lib2" {
   name = "Linux_Templates_DC2"
 }
 
-data "vsphere_content_library_item" "esx_lib_item" {
+
+data "vsphere_content_library_item" "esx_lib1_item" {
   name = "RHEL8STD"
   type = "ovf"
-  library_id = data.vsphere_content_library.esx_lib.id 
+  library_id = data.vsphere_content_library.esx_lib1.id 
 }
 
-# Deploy a VM from OVF in Content Library in VMWARE
-# resource "vsphere_virtual_machine" "MK417-ESX-TEST1" {
-#   resource_pool_id     = data.vsphere_resource_pool.esx_pool.id
-#   host_system_id       = data.vsphere_host.nut-dmz-08.id
-#   datastore_id         = data.vsphere_datastore.NUT_DMZ_INT_DC2_to_DC1.id 
-#   firmware             = "efi"
-#   name                 = var.dmz_vm[0].name 
-#   folder               = var.dmz_vm[0].folder
-#   num_cpus             = var.dmz_vm[0].cpu
-#   memory               = var.dmz_vm[0].mem 
-#   wait_for_guest_net_timeout = 5
+data "vsphere_content_library_item" "esx_lib2_item" {
+  name = "RHEL8STD"
+  type = "ovf"
+  library_id = data.vsphere_content_library.esx_lib2.id 
+}
 
-#   disk {
-#     label            = "disk0"
-#     size             = 50
-#     controller_type  = "scsi"
-#   }
-#   disk {
-#     label            = "disk1"
-#     size             = 100
-#     controller_type  = "scsi"
-#     unit_number      = 1
-#   }
-#   cdrom {
-#   }
 
-#   clone {
-#     template_uuid = data.vsphere_content_library_item.esx_lib_item.id
-#     customize {
-#       linux_options {
-#         host_name = var.dmz_vm[0].name
-#         domain    = "lalux.local"
-#       }
-#       # Nécessaire malgré la config nmcli via le prov remote-exec car justement remote-exec a besoin d'une IP pour se connecter  
-#       network_interface {
-#         ipv4_address = cidrhost(var.dmz_vm[0].subnet,53) #fixed IP address .20
-#         ipv4_netmask = 24
-        
-#       }
-#       ipv4_gateway = cidrhost(var.dmz_vm[0].subnet,240)
-#       dns_server_list = ["200.1.1.163","200.1.1.218"]
-#     }
-#   }
-
-#   network_interface {
-#     network_id = data.vsphere_network.DMZ_MGMT_VLAN20.id
-#   }
-
-#   provisioner "file" {
-#     source = "/home/lalux.local/mk417/.ssh/id_rsa.pub"
-#     destination = "/tmp/authorized_keys"
-#     connection {
-#       type = "ssh"
-#       user = "localadmin"
-#       password = var.vm_password
-#       host = var.dmz_vm[0].name
-#     }
-#   }
-
-#   provisioner "remote-exec" {
-#     inline = [
-#       "mkdir /home/localadmin/.ssh",
-#       "chmod 0700 /home/localadmin/.ssh",
-#       "mv /tmp/authorized_keys /home/localadmin/.ssh/",
-#       "chmod 0600 /home/localadmin/.ssh/authorized_keys",      
-#       "sudo nmcli con mod 'System ${var.vsphere_interface_name}' ipv4.method manual ipv4.addresses ${var.dmz_vm[0].ip}/24 ipv4.gateway ${var.dmz_vm[0].gateway} connection.autoconnect yes",
-#       "sudo nmcli con mod 'System ${var.vsphere_interface_name}' con-name ${var.vsphere_interface_name}",
-#       "sudo nmcli con up ${var.vsphere_interface_name}",
-#       "sudo dnf -y remove cloud-init"      
-#     ]
-#     connection {
-#       type = "ssh"
-#       user = "localadmin"
-#       password = var.vm_password
-#       host = var.dmz_vm[0].name
-#     }
-    
-#   }
-  
-#   provisioner "local-exec" {
-#     command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i '${var.dmz_vm[0].name},' -e env=${var.dmz_vm[0].satellite_env} deploy.yml -u localadmin -b --vault-password-file /home/lalux.local/mk417/infrastructure-linux/vault/.vault_password_file"
-#   }
-
-# }
 # BEGIN ANSIBLE MANAGED BLOCK LU717
 resource "nutanix_virtual_machine" "lu717" {
         name                 = "LU717 - LNX - VM TEST KWAKOU"
@@ -323,20 +255,19 @@ resource "nutanix_virtual_machine" "lu717" {
 
         #guest_customization_cloud_init_user_data = base64encode(data.template_file.cloud-init.rendered)
         guest_customization_cloud_init_user_data = base64encode(templatefile("user-data.tpl", {
-          vm_domain         =  "lalux.local"
+          vm_domain         =  var.vm_domain 
           vm_name       =  "lu717"
           vm_ip   = "200.1.1.106"
           vm_prefix = "24"
           vm_gateway   =  "200.1.1.240"
-          vm_dns1    = "200.1.1.163"
-          vm_dns2    = "200.1.1.218"
-          vm_user = "localadmin"
-          vm_public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDUxJXxD/SFkaQ2FcFtEH3aOFlSO1De0+PEnOUj9lIIYSMY0nimo6epyEfv7NtJwQBPHWJYOzoUAe49b4rB/y8ZXR3C+xEKspD7ebqbQC9hV6gFN7My+gnTuSVsYtUXwMSuyRuKne/xu2TfTQYpImJt4UnByy5UBbs+ifQDWB+goZSMPkgP45oiTCLnioGwVQbXks5O7kI3IInvEc31iPA4RVusxmk6QEHze5J10AcCEy03RVPXuYB3KNsI2UXeevZdMV612doty1IE36qgRZW5xNYUeS25XNrOVNMyRWoQWJYLvx5rryBp69BtNg1hUjx3b+OxlNEhnfIqzSK6uXAeEij2/DHcjwOqSCjY6JmkCh7dAbWVIEq96faHF9C3IlT6gbF3RtkFaZ5hvtcWiybmJKZMeDw0YNW2/HqXRxwaW8q+Qjue/Su9AmILIUb3xzZwdUMLpG0sCV/R+NA1EVl0PMkUECRI5ZtNgfU83TmLCDOqY2MI3lw8xcjWh1eC/NU= mk417@lalux.local@rh-subman.lalux.local"
-
+          vm_dns1    = var.vm_dns1
+          vm_dns2    = var.vm_dns2
+          vm_user = var.vm_user
+          vm_public_key = var.public_key
         }))
 
         provisioner "local-exec" {
-        command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'lu717,' -e env=DEV_TEST config.yml -u localadmin -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file" 
+        command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'lu717,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file" 
         }
  }
 # END ANSIBLE MANAGED BLOCK LU717
@@ -381,20 +312,19 @@ resource "nutanix_virtual_machine" "lu718" {
 
         #guest_customization_cloud_init_user_data = base64encode(data.template_file.cloud-init.rendered)
         guest_customization_cloud_init_user_data = base64encode(templatefile("user-data.tpl", {
-          vm_domain         =  "lalux.local"
+          vm_domain         =  var.vm_domain 
           vm_name       =  "lu718"
           vm_ip   = "200.1.1.105"
           vm_prefix = "24"
           vm_gateway   =  "200.1.1.240"
-          vm_dns1    = "200.1.1.163"
-          vm_dns2    = "200.1.1.218"
-          vm_user = "localadmin"
-          vm_public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDUxJXxD/SFkaQ2FcFtEH3aOFlSO1De0+PEnOUj9lIIYSMY0nimo6epyEfv7NtJwQBPHWJYOzoUAe49b4rB/y8ZXR3C+xEKspD7ebqbQC9hV6gFN7My+gnTuSVsYtUXwMSuyRuKne/xu2TfTQYpImJt4UnByy5UBbs+ifQDWB+goZSMPkgP45oiTCLnioGwVQbXks5O7kI3IInvEc31iPA4RVusxmk6QEHze5J10AcCEy03RVPXuYB3KNsI2UXeevZdMV612doty1IE36qgRZW5xNYUeS25XNrOVNMyRWoQWJYLvx5rryBp69BtNg1hUjx3b+OxlNEhnfIqzSK6uXAeEij2/DHcjwOqSCjY6JmkCh7dAbWVIEq96faHF9C3IlT6gbF3RtkFaZ5hvtcWiybmJKZMeDw0YNW2/HqXRxwaW8q+Qjue/Su9AmILIUb3xzZwdUMLpG0sCV/R+NA1EVl0PMkUECRI5ZtNgfU83TmLCDOqY2MI3lw8xcjWh1eC/NU= mk417@lalux.local@rh-subman.lalux.local"
-
+          vm_dns1    = var.vm_dns1
+          vm_dns2    = var.vm_dns2
+          vm_user = var.vm_user
+          vm_public_key = var.public_key
         }))
 
         provisioner "local-exec" {
-        command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'lu718,' -e env=DEV_TEST config.yml -u localadmin -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file" 
+        command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'lu718,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file" 
         }
  }
 # END ANSIBLE MANAGED BLOCK LU718
@@ -403,13 +333,13 @@ resource "nutanix_virtual_machine" "lu625" {
         name                 = "LU625 - LNX - VM TEST KWAKOU"
         description          = "VM DE TEST" 
         provider             = nutanix.dc3
-        cluster_uuid         = data.nutanix_cluster.cluster650.metadata.uuid
+        cluster_uuid         = data.nutanix_cluster.cluster651.metadata.uuid
         num_vcpus_per_socket = "1"
         num_sockets          = "1"
         memory_size_mib      = "2048"
         boot_type            = "UEFI"
         nic_list {
-          subnet_uuid = var.ahv_650_network["Production"]
+          subnet_uuid = var.ahv_651_network["Production"]
         }
 
         disk_list {
@@ -432,27 +362,109 @@ resource "nutanix_virtual_machine" "lu625" {
           storage_config {
             storage_container_reference {
               kind = "storage_container"
-              uuid = var.ahv_650_storage["NUT_AHV_DC3_01"]
+              uuid = var.ahv_651_storage["NUT_AHV_DC3_01"]
             }
           }
         }
 
         #guest_customization_cloud_init_user_data = base64encode(data.template_file.cloud-init.rendered)
         guest_customization_cloud_init_user_data = base64encode(templatefile("user-data.tpl", {
-          vm_domain         =  "lalux.local"
+          vm_domain         =  var.vm_domain 
           vm_name       =  "lu625"
           vm_ip   = "200.1.1.53"
           vm_prefix = "24"
           vm_gateway   =  "200.1.1.240"
-          vm_dns1    = "200.1.1.163"
-          vm_dns2    = "200.1.1.218"
-          vm_user = "localadmin"
-          vm_public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDUxJXxD/SFkaQ2FcFtEH3aOFlSO1De0+PEnOUj9lIIYSMY0nimo6epyEfv7NtJwQBPHWJYOzoUAe49b4rB/y8ZXR3C+xEKspD7ebqbQC9hV6gFN7My+gnTuSVsYtUXwMSuyRuKne/xu2TfTQYpImJt4UnByy5UBbs+ifQDWB+goZSMPkgP45oiTCLnioGwVQbXks5O7kI3IInvEc31iPA4RVusxmk6QEHze5J10AcCEy03RVPXuYB3KNsI2UXeevZdMV612doty1IE36qgRZW5xNYUeS25XNrOVNMyRWoQWJYLvx5rryBp69BtNg1hUjx3b+OxlNEhnfIqzSK6uXAeEij2/DHcjwOqSCjY6JmkCh7dAbWVIEq96faHF9C3IlT6gbF3RtkFaZ5hvtcWiybmJKZMeDw0YNW2/HqXRxwaW8q+Qjue/Su9AmILIUb3xzZwdUMLpG0sCV/R+NA1EVl0PMkUECRI5ZtNgfU83TmLCDOqY2MI3lw8xcjWh1eC/NU= mk417@lalux.local@rh-subman.lalux.local"
-
+          vm_dns1    = var.vm_dns1
+          vm_dns2    = var.vm_dns2
+          vm_user = var.vm_user
+          vm_public_key = var.public_key
         }))
 
         provisioner "local-exec" {
-        command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'lu625,' -e env=DEV_TEST config.yml -u localadmin -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file" 
+        command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'lu625,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file" 
         }
  }
 # END ANSIBLE MANAGED BLOCK LU625
+
+# BEGIN ANSIBLE MANAGED BLOCK LU726BIS (DMZ)
+resource "vsphere_virtual_machine" "LU726BIS" {
+  resource_pool_id     = data.vsphere_resource_pool.esx_pool.id
+  host_system_id       = data.vsphere_host.nut-dmz-08.id 
+  datastore_id         = data.vsphere_datastore.NUT_DMZ_INT_DC2_to_DC1.id 
+  firmware             = "efi"
+  name                 = "LU726 - NEW PROXY SQUID" 
+  folder               = "/DMZ/DEV"
+  num_cpus             = "1"
+  memory               = "2048"
+  wait_for_guest_net_timeout = 5
+  disk {
+    label            = "disk0"
+    size             = 50
+    controller_type  = "scsi"
+  }
+  disk {
+    label            = "disk1"
+    size             = 100
+    controller_type  = "scsi"
+    unit_number      = 1
+  }
+  cdrom {
+  }
+
+  clone {
+    template_uuid = data.vsphere_content_library_item.esx_lib2_item.id
+    customize {
+      linux_options {
+      host_name = "lu726bis"
+      domain    = var.vm_domain
+      }
+    
+    # Nécessaire malgré la config nmcli via le prov remote-exec car justement remote-exec a besoin d'une IP pour se connecter  
+      network_interface {
+        ipv4_address = cidrhost("172.22.108.0/24","70") 
+        ipv4_netmask = "24"
+      }
+      ipv4_gateway = cidrhost("172.22.108.0/24","1")
+      dns_server_list = [var.vm_dns1,var.vm_dns2]
+    }
+  }        
+  network_interface {
+    network_id = data.vsphere_network.DMZ_PRO_BITB_GW.id
+  }
+
+  provisioner "file" {
+    source = var.public_key_path
+    destination = "/tmp/authorized_keys"
+    connection {
+      type = "ssh"
+      user = var.vm_user
+      password = var.vm_password
+      host = "lu726bis"
+    }
+  }  
+
+  provisioner "remote-exec" {
+    inline = [
+      "mkdir /home/localadmin/.ssh",
+       "chmod 0700 /home/localadmin/.ssh",
+       "mv /tmp/authorized_keys /home/localadmin/.ssh/",
+       "chmod 0600 /home/localadmin/.ssh/authorized_keys",      
+       "sudo nmcli con mod 'System ${var.vsphere_interface_name}' ipv4.method manual ipv4.addresses 172.22.108.70/24 ipv4.gateway 172.22.108.1 connection.autoconnect yes",
+       "sudo nmcli con mod 'System ${var.vsphere_interface_name}' con-name ${var.vsphere_interface_name}",
+       "sudo nmcli con up ${var.vsphere_interface_name}",
+       "sudo dnf -y remove cloud-init"      
+    ]
+    connection {
+       type = "ssh"
+       user = "localadmin"
+       password = var.vm_password
+       host = "lu726bis"
+    }
+  }
+
+  provisioner "local-exec" {
+    command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'lu726bis,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file"
+  }
+
+}
+# END ANSIBLE MANAGED BLOCK LU726BIS (DMZ)

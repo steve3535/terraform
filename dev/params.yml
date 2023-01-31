@@ -15,12 +15,6 @@ lan_vms:
     ip: "200.1.1.106"
     net_prefix: "24"
     gw: "200.1.1.240"
-    domain: "lalux.local"     
-    dns1: "200.1.1.163"
-    dns2: "200.1.1.218"
-    user: "localadmin"
-    pubkey: |
-      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDUxJXxD/SFkaQ2FcFtEH3aOFlSO1De0+PEnOUj9lIIYSMY0nimo6epyEfv7NtJwQBPHWJYOzoUAe49b4rB/y8ZXR3C+xEKspD7ebqbQC9hV6gFN7My+gnTuSVsYtUXwMSuyRuKne/xu2TfTQYpImJt4UnByy5UBbs+ifQDWB+goZSMPkgP45oiTCLnioGwVQbXks5O7kI3IInvEc31iPA4RVusxmk6QEHze5J10AcCEy03RVPXuYB3KNsI2UXeevZdMV612doty1IE36qgRZW5xNYUeS25XNrOVNMyRWoQWJYLvx5rryBp69BtNg1hUjx3b+OxlNEhnfIqzSK6uXAeEij2/DHcjwOqSCjY6JmkCh7dAbWVIEq96faHF9C3IlT6gbF3RtkFaZ5hvtcWiybmJKZMeDw0YNW2/HqXRxwaW8q+Qjue/Su9AmILIUb3xzZwdUMLpG0sCV/R+NA1EVl0PMkUECRI5ZtNgfU83TmLCDOqY2MI3lw8xcjWh1eC/NU= mk417@lalux.local@rh-subman.lalux.local"
     satellite_env: "DEV_TEST"
     
   lu718:
@@ -39,12 +33,6 @@ lan_vms:
     ip: "200.1.1.105"
     net_prefix: "24"
     gw: "200.1.1.240"
-    domain: "lalux.local"     
-    dns1: "200.1.1.163"
-    dns2: "200.1.1.218"
-    user: "localadmin"
-    pubkey: |
-      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDUxJXxD/SFkaQ2FcFtEH3aOFlSO1De0+PEnOUj9lIIYSMY0nimo6epyEfv7NtJwQBPHWJYOzoUAe49b4rB/y8ZXR3C+xEKspD7ebqbQC9hV6gFN7My+gnTuSVsYtUXwMSuyRuKne/xu2TfTQYpImJt4UnByy5UBbs+ifQDWB+goZSMPkgP45oiTCLnioGwVQbXks5O7kI3IInvEc31iPA4RVusxmk6QEHze5J10AcCEy03RVPXuYB3KNsI2UXeevZdMV612doty1IE36qgRZW5xNYUeS25XNrOVNMyRWoQWJYLvx5rryBp69BtNg1hUjx3b+OxlNEhnfIqzSK6uXAeEij2/DHcjwOqSCjY6JmkCh7dAbWVIEq96faHF9C3IlT6gbF3RtkFaZ5hvtcWiybmJKZMeDw0YNW2/HqXRxwaW8q+Qjue/Su9AmILIUb3xzZwdUMLpG0sCV/R+NA1EVl0PMkUECRI5ZtNgfU83TmLCDOqY2MI3lw8xcjWh1eC/NU= mk417@lalux.local@rh-subman.lalux.local"
     satellite_env: "DEV_TEST"
 
 
@@ -54,9 +42,9 @@ lan_vms:
     hostname: "lu625"
     datacenter: nutanix.dc3
     image: rhel8-dc3
-    cluster: cluster650
-    subnet: var.ahv_650_network["Production"]
-    storage: var.ahv_650_storage["NUT_AHV_DC3_01"]
+    cluster: cluster651
+    subnet: var.ahv_651_network["Production"]
+    storage: var.ahv_651_storage["NUT_AHV_DC3_01"]
     mem: 2048
     cpu: 1
     cpu_socket: 1
@@ -64,11 +52,26 @@ lan_vms:
     ip: "200.1.1.53"
     net_prefix: "24"
     gw: "200.1.1.240"
-    domain: "lalux.local"     
-    dns1: "200.1.1.163"
-    dns2: "200.1.1.218"
-    user: "localadmin"
-    pubkey: |
-      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDUxJXxD/SFkaQ2FcFtEH3aOFlSO1De0+PEnOUj9lIIYSMY0nimo6epyEfv7NtJwQBPHWJYOzoUAe49b4rB/y8ZXR3C+xEKspD7ebqbQC9hV6gFN7My+gnTuSVsYtUXwMSuyRuKne/xu2TfTQYpImJt4UnByy5UBbs+ifQDWB+goZSMPkgP45oiTCLnioGwVQbXks5O7kI3IInvEc31iPA4RVusxmk6QEHze5J10AcCEy03RVPXuYB3KNsI2UXeevZdMV612doty1IE36qgRZW5xNYUeS25XNrOVNMyRWoQWJYLvx5rryBp69BtNg1hUjx3b+OxlNEhnfIqzSK6uXAeEij2/DHcjwOqSCjY6JmkCh7dAbWVIEq96faHF9C3IlT6gbF3RtkFaZ5hvtcWiybmJKZMeDw0YNW2/HqXRxwaW8q+Qjue/Su9AmILIUb3xzZwdUMLpG0sCV/R+NA1EVl0PMkUECRI5ZtNgfU83TmLCDOqY2MI3lw8xcjWh1eC/NU= mk417@lalux.local@rh-subman.lalux.local"
     satellite_env: "DEV_TEST"
 
+dmz_vms:
+  lu726bis:
+    name: "LU726 - NEW PROXY SQUID"
+    mem: 2048
+    cpu: 1
+    subnet: "172.22.108.0/24"
+    ip: "172.22.108.70"
+    gw: "172.22.108.1"
+    host: nut-dmz-08
+    folder: "/DMZ/DEV"
+    satellite_env: "DEV_TEST"
+    resource_pool: esx_pool
+    datastore: NUT_DMZ_INT_DC2_to_DC1
+    disk2_size_gb: "100"
+    hostname: "lu726bis"
+    user: "localadmin" 
+    net_prefix: "24"
+    ip_last_octet: "70"
+    gw_last_octet: "1"
+    content_library_item: esx_lib2_item 
+    network: DMZ_PRO_BITB_GW

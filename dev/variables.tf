@@ -66,7 +66,8 @@ variable ahv_481_storage {
 }
 
 variable "vm_user" { default = "localadmin" }
-variable "vm_public_key" {}
+variable "public_key" {}
+variable "public_key_path" {}
 variable "vm_password" {}
 variable "vm_domain" { default = "lalux.local" }
 variable "vm_dns1" { default = "200.1.1.163" }
