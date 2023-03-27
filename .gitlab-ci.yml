@@ -21,17 +21,18 @@ parse_job_1:
       #- pwd
       #- ls
       - cd dev
-      - https_proxy=172.22.108.7:80 pip3 install pandas openpyxl --user
-      - pip3 install -r requirements.txt 
+      - https_proxy=172.22.108.7:80 pip3 install -r requirements.txt 
     stage: convert_to_csv 
     script:
       #- echo $CI_PROJECT_DIR
       #- pip3 install -r requirements.txt
-      - python3 /opt/infrastructure-linux/terraform/dev/convert_to_csv.py
+      - python3 dev/convert_to_csv.py
     tags:
       - shell
 
-#parse_job_2:
-#    stage: convert_to_yaml
-#    script:
-#      - python3 convert_to_yaml.py
+parse_job_2:
+    stage: convert_to_yaml
+    script:
+      - python3 dev/convert_to_yaml.py
+    tags:
+      - shell
