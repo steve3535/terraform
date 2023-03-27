@@ -14,7 +14,7 @@ first_job:
     rules:
     - changes:
         - "vmdefs.xlsx"
-
+      
 parse_job_1:
     #image: python:3.9
     before_script:
@@ -29,6 +29,8 @@ parse_job_1:
       - python3 convert_to_csv.py
     tags:
       - shell
+    needs:
+      - first_job
 
 parse_job_2:
     stage: convert_to_yml
@@ -39,4 +41,6 @@ parse_job_2:
       - python3 convert_to_yml.py
     tags:
       - shell
+    needs:
+      - parse_job_1
       
