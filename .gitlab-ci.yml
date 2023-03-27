@@ -32,7 +32,9 @@ parse_job_1:
 
 parse_job_2:
     stage: convert_to_yaml
+    before_script:
+      - cd dev
     script:
-      - python3 dev/convert_to_yaml.py
+      - python3 convert_to_yaml.py
     tags:
       - shell
