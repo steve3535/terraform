@@ -31,11 +31,11 @@ parse_job_1:
       - shell
 
 parse_job_2:
-    stage: convert_to_yaml
+    stage: convert_to_yml
     before_script:
       - pwd
       - cd dev
     script:
-      - python3 convert_to_yaml.py
+      - python3 convert_to_yml.py
     tags:
       - shell
