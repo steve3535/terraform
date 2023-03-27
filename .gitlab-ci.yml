@@ -1,7 +1,7 @@
 stages:
   - trigger_on_excel
   - convert_to_csv
-  - convert_to_yaml
+  - convert_to_yml
 
 first_job:
     stage: trigger_on_excel
