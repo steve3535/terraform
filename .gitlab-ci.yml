@@ -26,7 +26,7 @@ parse_job_1:
     script:
       #- echo $CI_PROJECT_DIR
       #- pip3 install -r requirements.txt
-      - python3 dev/convert_to_csv.py
+      - python3 convert_to_csv.py
     tags:
       - shell
 
