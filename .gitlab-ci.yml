@@ -1,9 +1,15 @@
-trigger_on_excel:
-  script:
-    - git diff --name-only HEAD^ HEAD -- '*.xlsx' | grep -q 'vmdefs.xlsx' && echo "Ajout ou modif du fichier de def. VM." || exit 0
-    # Pipeline steps
-    - echo "Démarrer le pipeline."
-    - echo ""
-  rules:
+stages:
+  - trigger_on_excel
+  - parsing 1
+  - parsing 2
+
+first_job:
+    stage: trigger_on_excel:
+    script:
+      - git diff --name-only HEAD^ HEAD -- '*.xlsx' | grep -q 'vmdefs.xlsx' && echo "Ajout ou modif du fichier de def. VM." || exit 0
+      # Pipeline steps
+      - echo "Démarrer le pipeline."
+      - echo ""
+    rules:
     - changes:
         - "vmdefs.xlsx"
