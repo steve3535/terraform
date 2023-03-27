@@ -1,77 +1,19 @@
-lan_vms:
-  lu717:
-    name: "LU717 - LNX - VM TEST KWAKOU"
-    descr: "VM DE TEST"
-    hostname: "lu717"
-    datacenter: nutanix.dc1
-    image: rhel8-dc1
-    cluster: cluster480
-    subnet: var.ahv_480_network["Production"]
-    storage: var.ahv_480_storage["NUT_AHV_LU480_DC01_01"]
-    mem: 2048
-    cpu: 1
-    cpu_socket: 1
-    disk2_size_gb: "100"
-    ip: "200.1.1.106"
-    net_prefix: "24"
-    gw: "200.1.1.240"
-    satellite_env: "DEV_TEST"
-    
-  lu718:
-    name: "LU718 - LNX - VM TEST KWAKOU"
-    descr: "VM DE TEST"
-    hostname: "lu718"
-    datacenter: nutanix.dc3
-    image: rhel8-dc3
-    cluster: cluster651
-    subnet: var.ahv_651_network["Production"]
-    storage: var.ahv_651_storage["NUT_AHV_DC3_01"]
-    mem: 4096
-    cpu: 2
-    cpu_socket: 1
-    disk2_size_gb: "100"
-    ip: "200.1.1.105"
-    net_prefix: "24"
-    gw: "200.1.1.240"
-    satellite_env: "DEV_TEST"
-
-
-  lu625:
-    name: "LU625 - LNX - VM TEST KWAKOU"
-    descr: "VM DE TEST"
-    hostname: "lu625"
-    datacenter: nutanix.dc3
-    image: rhel8-dc3
-    cluster: cluster651
-    subnet: var.ahv_651_network["Production"]
-    storage: var.ahv_651_storage["NUT_AHV_DC3_01"]
-    mem: 2048
-    cpu: 1
-    cpu_socket: 1
-    disk2_size_gb: "100"
-    ip: "200.1.1.53"
-    net_prefix: "24"
-    gw: "200.1.1.240"
-    satellite_env: "DEV_TEST"
-
-dmz_vms:
-  lu726bis:
-    name: "LU726 - NEW PROXY SQUID"
-    mem: 2048
-    cpu: 1
-    subnet: "172.22.108.0/24"
-    ip: "172.22.108.70"
-    gw: "172.22.108.1"
-    host: nut-dmz-08
-    folder: "/DMZ/DEV"
-    satellite_env: "DEV_TEST"
-    resource_pool: esx_pool
-    datastore: NUT_DMZ_INT_DC2_to_DC1
-    disk2_size_gb: "100"
-    hostname: "lu726bis"
-    user: "localadmin" 
-    net_prefix: "24"
-    ip_last_octet: "70"
-    gw_last_octet: "1"
-    content_library_item: esx_lib2_item 
-    network: DMZ_PRO_BITB_GW
+lan_vms:  
+  LU718:  
+    name: "LU718 - LNX - VM DE TEST"  
+    descr: "VM DE TEST"  
+    hostname: "lu718"  
+    datacenter: nutanix.dc1  
+    image: rhel8-dc1  
+    cluster: cluster650  
+    subnet: var.ahv_650_network['Production']  
+    storage: var.ahv_650_storage['NUT_AHV_DC1_01']  
+    mem: 2048  
+    cpu: 1  
+    cpu_socket: 1  
+    disk2_size_gb: "100"  
+    ip: "200.1.1.1055"  
+    net_prefix: "24"  
+    gw: "200.1.1.240"  
+    satellite_env: DEV_TEST
+  

@@ -62,7 +62,7 @@
             }
         path: main.tf
         marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.key|upper }}"
-    loop: "{{ lookup('dict',lan_vms) }}"
+    loop: "{{ q('dict',lan_vms) }}"
   - name: insert a new DMZ VM   
     blockinfile:
       block: | 
@@ -149,5 +149,6 @@
       path: main.tf  
       marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.key|upper }} (DMZ)"
     loop: "{{ q('dict',dmz_vms) }}"
+    when: dmz_vms is defined 
 
 

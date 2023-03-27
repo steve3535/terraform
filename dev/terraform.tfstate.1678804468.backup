@@ -1,7 +1,7 @@
 {
   "version": 4,
   "terraform_version": "1.3.3",
-  "serial": 68,
+  "serial": 46,
   "lineage": "87e4a7b9-cba7-61d3-2b05-803d42fc7d99",
   "outputs": {},
   "resources": [
@@ -16,20 +16,20 @@
           "attributes": {
             "analysis_vm_efficiency_map": {
               "bully_vm_num": "0",
-              "constrained_vm_num": "0",
-              "dead_vm_num": "0",
-              "inefficient_vm_num": "0",
-              "overprovisioned_vm_num": "0"
+              "constrained_vm_num": "4",
+              "dead_vm_num": "8",
+              "inefficient_vm_num": "95",
+              "overprovisioned_vm_num": "86"
             },
             "api_version": "",
             "authorized_public_key_list": [],
             "build": {
               "build_type": "release",
               "commit_date": "",
-              "commit_id": "f2ce4db7d67f495ebfd6208bef9ab0afec9c74af",
-              "full_version": "el7.3-release-fraser-6.5.2-stable-f2ce4db7d67f495ebfd6208bef9ab0afec9c74af",
-              "short_commit_id": "f2ce4d",
-              "version": "6.5.2"
+              "commit_id": "a47cd2126368a00d280a2c78b3fbff5afd196057",
+              "full_version": "el7.3-release-fraser-6.5.1-stable-a47cd2126368a00d280a2c78b3fbff5afd196057",
+              "short_commit_id": "a47cd2",
+              "version": "6.5.1"
             },
             "ca_certificate_list": [],
             "categories": [
@@ -50,7 +50,7 @@
               "SHADOW_CLONES_ENABLED"
             ],
             "encryption_status": "NOT_SUPPORTED",
-            "external_data_services_ip": "192.168.3.155",
+            "external_data_services_ip": "192.168.3.151",
             "external_ip": "192.168.3.51",
             "external_subnet": "192.168.3.0/255.255.255.0",
             "gpu_driver_version": "",
@@ -89,7 +89,7 @@
               "last_update_time": "2022-05-04 07:00:47 +0000 UTC",
               "name": "",
               "spec_hash": "00000000000000000000000000000000000000000000000000",
-              "spec_version": "62",
+              "spec_version": "59",
               "uuid": "000573dc-b47b-b6bf-0000-00000001c0f6"
             },
             "name": "LU480",
@@ -121,32 +121,32 @@
               {
                 "ip": "192.168.3.61",
                 "type": "AHV",
-                "version": "el7.nutanix.20220304.342"
+                "version": "el7.nutanix.20220304.242"
               },
               {
                 "ip": "192.168.3.63",
                 "type": "AHV",
-                "version": "el7.nutanix.20220304.342"
+                "version": "el7.nutanix.20220304.242"
               },
               {
                 "ip": "192.168.3.65",
                 "type": "AHV",
-                "version": "el7.nutanix.20220304.342"
+                "version": "el7.nutanix.20220304.242"
               },
               {
                 "ip": "192.168.3.71",
                 "type": "AHV",
-                "version": "el7.nutanix.20220304.342"
+                "version": "el7.nutanix.20220304.242"
               },
               {
                 "ip": "192.168.3.69",
                 "type": "AHV",
-                "version": "el7.nutanix.20220304.342"
+                "version": "el7.nutanix.20220304.242"
               },
               {
                 "ip": "192.168.3.67",
                 "type": "AHV",
-                "version": "el7.nutanix.20220304.342"
+                "version": "el7.nutanix.20220304.242"
               },
               {
                 "ip": "127.0.0.1",
@@ -182,12 +182,12 @@
             "software_map_ncc": {
               "software_type": "NCC",
               "status": "INSTALLED",
-              "version": "ncc-4.6.2.1"
+              "version": "ncc-4.6.1"
             },
             "software_map_nos": {
               "software_type": "NOS",
               "status": "INSTALLED",
-              "version": "6.5.2"
+              "version": "6.5.1"
             },
             "ssl_key_expire_datetime": "2027-11-08T07:55:45Z",
             "ssl_key_name": "",
@@ -220,20 +220,20 @@
           "attributes": {
             "analysis_vm_efficiency_map": {
               "bully_vm_num": "0",
-              "constrained_vm_num": "0",
-              "dead_vm_num": "15",
-              "inefficient_vm_num": "69",
-              "overprovisioned_vm_num": "54"
+              "constrained_vm_num": "1",
+              "dead_vm_num": "14",
+              "inefficient_vm_num": "67",
+              "overprovisioned_vm_num": "53"
             },
             "api_version": "",
             "authorized_public_key_list": [],
             "build": {
               "build_type": "release",
               "commit_date": "",
-              "commit_id": "f2ce4db7d67f495ebfd6208bef9ab0afec9c74af",
-              "full_version": "el7.3-release-fraser-6.5.2-stable-f2ce4db7d67f495ebfd6208bef9ab0afec9c74af",
-              "short_commit_id": "f2ce4d",
-              "version": "6.5.2"
+              "commit_id": "a47cd2126368a00d280a2c78b3fbff5afd196057",
+              "full_version": "el7.3-release-fraser-6.5.1-stable-a47cd2126368a00d280a2c78b3fbff5afd196057",
+              "short_commit_id": "a47cd2",
+              "version": "6.5.1"
             },
             "ca_certificate_list": [],
             "categories": [
@@ -254,7 +254,7 @@
               "SHADOW_CLONES_ENABLED"
             ],
             "encryption_status": "NOT_SUPPORTED",
-            "external_data_services_ip": "192.168.3.156",
+            "external_data_services_ip": "192.168.3.152",
             "external_ip": "192.168.3.52",
             "external_subnet": "192.168.3.0/255.255.255.0",
             "gpu_driver_version": "",
@@ -293,7 +293,7 @@
               "last_update_time": "2022-05-04 07:01:09 +0000 UTC",
               "name": "",
               "spec_hash": "00000000000000000000000000000000000000000000000000",
-              "spec_version": "51",
+              "spec_version": "47",
               "uuid": "000573dc-9cf0-1fa6-0000-00000001c0f4"
             },
             "name": "LU481",
@@ -328,32 +328,32 @@
               {
                 "ip": "192.168.3.62",
                 "type": "AHV",
-                "version": "el7.nutanix.20220304.342"
+                "version": "el7.nutanix.20220304.242"
               },
               {
                 "ip": "192.168.3.64",
                 "type": "AHV",
-                "version": "el7.nutanix.20220304.342"
+                "version": "el7.nutanix.20220304.242"
               },
               {
                 "ip": "192.168.3.66",
                 "type": "AHV",
-                "version": "el7.nutanix.20220304.342"
+                "version": "el7.nutanix.20220304.242"
               },
               {
                 "ip": "192.168.3.68",
                 "type": "AHV",
-                "version": "el7.nutanix.20220304.342"
+                "version": "el7.nutanix.20220304.242"
               },
               {
                 "ip": "192.168.3.72",
                 "type": "AHV",
-                "version": "el7.nutanix.20220304.342"
+                "version": "el7.nutanix.20220304.242"
               },
               {
                 "ip": "192.168.3.70",
                 "type": "AHV",
-                "version": "el7.nutanix.20220304.342"
+                "version": "el7.nutanix.20220304.242"
               },
               {
                 "ip": "127.0.0.1",
@@ -389,12 +389,12 @@
             "software_map_ncc": {
               "software_type": "NCC",
               "status": "INSTALLED",
-              "version": "ncc-4.6.2.1"
+              "version": "ncc-4.6.1"
             },
             "software_map_nos": {
               "software_type": "NOS",
               "status": "INSTALLED",
-              "version": "6.5.2"
+              "version": "6.5.1"
             },
             "ssl_key_expire_datetime": "2027-11-08T07:55:45Z",
             "ssl_key_name": "",
@@ -427,20 +427,20 @@
           "attributes": {
             "analysis_vm_efficiency_map": {
               "bully_vm_num": "0",
-              "constrained_vm_num": "9",
-              "dead_vm_num": "33",
-              "inefficient_vm_num": "234",
-              "overprovisioned_vm_num": "198"
+              "constrained_vm_num": "6",
+              "dead_vm_num": "24",
+              "inefficient_vm_num": "161",
+              "overprovisioned_vm_num": "137"
             },
             "api_version": "",
             "authorized_public_key_list": [],
             "build": {
               "build_type": "release",
               "commit_date": "",
-              "commit_id": "f2ce4db7d67f495ebfd6208bef9ab0afec9c74af",
-              "full_version": "el7.3-release-fraser-6.5.2-stable-f2ce4db7d67f495ebfd6208bef9ab0afec9c74af",
-              "short_commit_id": "f2ce4d",
-              "version": "6.5.2"
+              "commit_id": "a47cd2126368a00d280a2c78b3fbff5afd196057",
+              "full_version": "el7.3-release-fraser-6.5.1-stable-a47cd2126368a00d280a2c78b3fbff5afd196057",
+              "short_commit_id": "a47cd2",
+              "version": "6.5.1"
             },
             "ca_certificate_list": [],
             "categories": [
@@ -465,7 +465,21 @@
             "external_ip": "192.168.3.59",
             "external_subnet": "192.168.3.0/255.255.255.0",
             "gpu_driver_version": "",
-            "http_proxy_list": [],
+            "http_proxy_list": [
+              {
+                "address": {
+                  "fqdn": "",
+                  "ip": "172.22.108.7",
+                  "ipv6": "",
+                  "port": "80"
+                },
+                "credentials": {},
+                "proxy_type_list": [
+                  "HTTP",
+                  "HTTPS"
+                ]
+              }
+            ],
             "http_proxy_whitelist": [
               {
                 "target": "192.168.3.0/255.255.255.0",
@@ -495,7 +509,7 @@
               "last_update_time": "2022-05-04 07:00:47 +0000 UTC",
               "name": "",
               "spec_hash": "00000000000000000000000000000000000000000000000000",
-              "spec_version": "54",
+              "spec_version": "39",
               "uuid": "0005bad6-afcd-2116-0533-ac1f6b3ddca9"
             },
             "name": "LU650",
@@ -526,39 +540,29 @@
             ],
             "nodes": [
               {
+                "ip": "192.168.3.75",
+                "type": "AHV",
+                "version": "el7.nutanix.20220304.242"
+              },
+              {
                 "ip": "127.0.0.1",
                 "type": "AHV",
                 "version": ""
               },
               {
-                "ip": "192.168.3.144",
+                "ip": "192.168.3.73",
                 "type": "AHV",
-                "version": "el7.nutanix.20220304.342"
-              },
-              {
-                "ip": "192.168.3.145",
-                "type": "AHV",
-                "version": "el7.nutanix.20220304.342"
+                "version": "el7.nutanix.20220304.242"
               },
               {
                 "ip": "192.168.3.74",
                 "type": "AHV",
-                "version": "el7.nutanix.20220304.342"
-              },
-              {
-                "ip": "192.168.3.143",
-                "type": "AHV",
-                "version": "el7.nutanix.20220304.342"
+                "version": "el7.nutanix.20220304.242"
               },
               {
                 "ip": "192.168.3.76",
                 "type": "AHV",
-                "version": "el7.nutanix.20220304.342"
-              },
-              {
-                "ip": "192.168.3.75",
-                "type": "AHV",
-                "version": "el7.nutanix.20220304.342"
+                "version": "el7.nutanix.20220304.242"
               }
             ],
             "ntp_server_ip_list": [
@@ -589,12 +593,12 @@
             "software_map_ncc": {
               "software_type": "NCC",
               "status": "INSTALLED",
-              "version": "ncc-4.6.3.1"
+              "version": "ncc-4.6.1"
             },
             "software_map_nos": {
               "software_type": "NOS",
               "status": "INSTALLED",
-              "version": "6.5.2"
+              "version": "6.5.1"
             },
             "ssl_key_expire_datetime": "2027-11-08T07:55:45Z",
             "ssl_key_name": "",
@@ -627,25 +631,20 @@
           "attributes": {
             "analysis_vm_efficiency_map": {
               "bully_vm_num": "0",
-              "constrained_vm_num": "4",
-              "dead_vm_num": "24",
-              "inefficient_vm_num": "167",
-              "overprovisioned_vm_num": "143"
+              "constrained_vm_num": "5",
+              "dead_vm_num": "25",
+              "inefficient_vm_num": "154",
+              "overprovisioned_vm_num": "126"
             },
             "api_version": "",
-            "authorized_public_key_list": [
-              {
-                "key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC4uI3l4HiURSJgBQ8DiXlWRXZ5TRdi/clYuLiyxw/L7q4bbnbZS8Ou0g3ZnmD7xyeG//uD3EKOPMtXIVfE3ZSpx7dsFKjeOJ8wdGkEqfLhIEXmjlMKbvyhpTN6rXdxc5lwSLFm4ff7XUZdttD5GJqiE+6Jvo2ycGy4l+mGNag/Gpfk50AkTlQh8hQ9u0iqCxYGB8b0ZG6xOdYufConjM9KtMzo537uzGmes+qaweUslQJ1fyNUKfoCS56Vk8VcsYCEJ72x80Y8QiOifFeJw5ZoidMa6/yIYTKkrOe3ZDJQDDiCTdSOBC6Erp3pvL0HnEBxv0LzJn5CPtbEq3XzTv6fzB54CLCIDtitrpGtLO0qTh1Z6d9q6HWYfS773Zm/Qpx+TbtX3DAkmXKo4W5qOS+51N7+PqGH2MosCj73j+rmCipe3cjEfn6L2RNfFR2SdrV0+CNUtm7fYovaxsgowNag+YhWgXdx5aXuDBD+4ocBIZskkNuoOB3bUXso1IrA00s= nutanix@ntnx-20sm3f500193-a-cvm",
-                "name": "remote_support_tunnel"
-              }
-            ],
+            "authorized_public_key_list": [],
             "build": {
               "build_type": "release",
               "commit_date": "",
-              "commit_id": "f2ce4db7d67f495ebfd6208bef9ab0afec9c74af",
-              "full_version": "el7.3-release-fraser-6.5.2-stable-f2ce4db7d67f495ebfd6208bef9ab0afec9c74af",
-              "short_commit_id": "f2ce4d",
-              "version": "6.5.2"
+              "commit_id": "a47cd2126368a00d280a2c78b3fbff5afd196057",
+              "full_version": "el7.3-release-fraser-6.5.1-stable-a47cd2126368a00d280a2c78b3fbff5afd196057",
+              "short_commit_id": "a47cd2",
+              "version": "6.5.1"
             },
             "ca_certificate_list": [],
             "categories": [
@@ -670,7 +669,21 @@
             "external_ip": "192.168.3.56",
             "external_subnet": "192.168.3.0/255.255.255.0",
             "gpu_driver_version": "",
-            "http_proxy_list": [],
+            "http_proxy_list": [
+              {
+                "address": {
+                  "fqdn": "",
+                  "ip": "172.22.108.7",
+                  "ipv6": "",
+                  "port": "80"
+                },
+                "credentials": {},
+                "proxy_type_list": [
+                  "HTTP",
+                  "HTTPS"
+                ]
+              }
+            ],
             "http_proxy_whitelist": [
               {
                 "target": "192.168.3.0/255.255.255.0",
@@ -700,7 +713,7 @@
               "last_update_time": "2022-05-04 07:01:10 +0000 UTC",
               "name": "",
               "spec_hash": "00000000000000000000000000000000000000000000000000",
-              "spec_version": "35",
+              "spec_version": "30",
               "uuid": "0005bad6-a969-e524-1d79-ac1f6b3ddf74"
             },
             "name": "LU651",
@@ -730,7 +743,7 @@
               {
                 "ip": "192.168.3.77",
                 "type": "AHV",
-                "version": "el7.nutanix.20220304.342"
+                "version": "el7.nutanix.20220304.242"
               },
               {
                 "ip": "127.0.0.1",
@@ -740,32 +753,17 @@
               {
                 "ip": "192.168.3.78",
                 "type": "AHV",
-                "version": "el7.nutanix.20220304.342"
-              },
-              {
-                "ip": "192.168.3.79",
-                "type": "AHV",
-                "version": "el7.nutanix.20220304.342"
-              },
-              {
-                "ip": "192.168.3.148",
-                "type": "AHV",
-                "version": "el7.nutanix.20220304.342"
-              },
-              {
-                "ip": "192.168.3.146",
-                "type": "AHV",
-                "version": "el7.nutanix.20220304.342"
-              },
-              {
-                "ip": "192.168.3.147",
-                "type": "AHV",
-                "version": "el7.nutanix.20220304.342"
+                "version": "el7.nutanix.20220304.242"
               },
               {
                 "ip": "192.168.3.80",
                 "type": "AHV",
-                "version": "el7.nutanix.20220304.342"
+                "version": "el7.nutanix.20220304.242"
+              },
+              {
+                "ip": "192.168.3.79",
+                "type": "AHV",
+                "version": "el7.nutanix.20220304.242"
               }
             ],
             "ntp_server_ip_list": [
@@ -796,12 +794,12 @@
             "software_map_ncc": {
               "software_type": "NCC",
               "status": "INSTALLED",
-              "version": "ncc-4.6.3.1"
+              "version": "ncc-4.6.1"
             },
             "software_map_nos": {
               "software_type": "NOS",
               "status": "INSTALLED",
-              "version": "6.5.2"
+              "version": "6.5.1"
             },
             "ssl_key_expire_datetime": "2027-11-08T07:55:45Z",
             "ssl_key_name": "",
@@ -1203,7 +1201,7 @@
           "schema_version": 0,
           "attributes": {
             "datacenter_id": "datacenter-2",
-            "id": "host-233427",
+            "id": "host-42007",
             "name": "nut-dmz-01.lalux.local",
             "resource_pool_id": "resgroup-41982"
           },
@@ -1221,7 +1219,7 @@
           "schema_version": 0,
           "attributes": {
             "datacenter_id": "datacenter-2",
-            "id": "host-233518",
+            "id": "host-42010",
             "name": "nut-dmz-02.lalux.local",
             "resource_pool_id": "resgroup-41982"
           },
@@ -1239,7 +1237,7 @@
           "schema_version": 0,
           "attributes": {
             "datacenter_id": "datacenter-2",
-            "id": "host-233887",
+            "id": "host-42013",
             "name": "nut-dmz-03.lalux.local",
             "resource_pool_id": "resgroup-41982"
           },
@@ -1275,7 +1273,7 @@
           "schema_version": 0,
           "attributes": {
             "datacenter_id": "datacenter-2",
-            "id": "host-233629",
+            "id": "host-42019",
             "name": "nut-dmz-05.lalux.local",
             "resource_pool_id": "resgroup-41982"
           },
@@ -1311,7 +1309,7 @@
           "schema_version": 0,
           "attributes": {
             "datacenter_id": "datacenter-2",
-            "id": "host-233524",
+            "id": "host-85767",
             "name": "nut-dmz-07.lalux.local",
             "resource_pool_id": "resgroup-41982"
           },
@@ -1329,7 +1327,7 @@
           "schema_version": 0,
           "attributes": {
             "datacenter_id": "datacenter-2",
-            "id": "host-233624",
+            "id": "host-85510",
             "name": "nut-dmz-08.lalux.local",
             "resource_pool_id": "resgroup-41982"
           },
@@ -1407,25 +1405,6 @@
             "distributed_virtual_switch_uuid": null,
             "id": "network-38",
             "name": "DMZ_MGMT_VLAN20",
-            "type": "Network"
-          },
-          "sensitive_attributes": []
-        }
-      ]
-    },
-    {
-      "mode": "data",
-      "type": "vsphere_network",
-      "name": "DMZ_PRO_APPMOBIL",
-      "provider": "provider[\"registry.terraform.io/hashicorp/vsphere\"]",
-      "instances": [
-        {
-          "schema_version": 0,
-          "attributes": {
-            "datacenter_id": "datacenter-2",
-            "distributed_virtual_switch_uuid": null,
-            "id": "network-82262",
-            "name": "DMZ_PRO_APPMOBIL",
             "type": "Network"
           },
           "sensitive_attributes": []
@@ -1577,7 +1556,7 @@
               "last_update_time": "2023-01-31 18:36:38 +0000 UTC",
               "name": "",
               "spec_hash": "",
-              "spec_version": "1",
+              "spec_version": "0",
               "uuid": "59bda77e-2945-45e5-a615-d615958df22f"
             },
             "name": "LU625 - LNX - VM TEST KWAKOU",
@@ -1601,12 +1580,7 @@
             "nic_list_status": [
               {
                 "floating_ip": "",
-                "ip_endpoint_list": [
-                  {
-                    "ip": "200.1.1.53",
-                    "type": "LEARNED"
-                  }
-                ],
+                "ip_endpoint_list": [],
                 "is_connected": "true",
                 "mac_address": "50:6b:8d:9d:36:bd",
                 "model": "",
@@ -1669,7 +1643,7 @@
             "boot_type": "UEFI",
             "categories": [],
             "cloud_init_cdrom_uuid": "30142db9-d9b5-47b5-a60b-860b929f9219",
-            "cluster_name": "LU650",
+            "cluster_name": "LU480",
             "cluster_uuid": "000573dc-b47b-b6bf-0000-00000001c0f6",
             "description": "VM DE TEST",
             "disk_list": [
@@ -1697,7 +1671,7 @@
                         "kind": "storage_container",
                         "name": "SelfServiceContainer",
                         "url": "",
-                        "uuid": "5eae82e9-979a-4625-9012-d6f7607057f2"
+                        "uuid": "a5ebe904-3232-4402-adc2-5f91c66abd62"
                       }
                     ]
                   }
@@ -1748,8 +1722,8 @@
             "hardware_clock_timezone": "UTC",
             "host_reference": {
               "kind": "host",
-              "name": "192.168.3.145",
-              "uuid": "c34366ec-586a-44aa-b5db-a6da66912781"
+              "name": "192.168.3.71",
+              "uuid": "8b448180-d99a-40cc-9fef-61804b2bd454"
             },
             "hypervisor_type": null,
             "id": "81687b84-538e-4676-83fa-083cfe1bd2ce",
@@ -1758,18 +1732,15 @@
             "memory_size_mib": 2048,
             "metadata": {
               "creation_time": "2023-01-31 18:36:37 +0000 UTC",
-              "last_update_time": "2023-03-21 14:15:47 +0000 UTC",
+              "last_update_time": "2023-01-31 18:36:37 +0000 UTC",
               "name": "",
               "spec_hash": "",
-              "spec_version": "15",
+              "spec_version": "0",
               "uuid": "81687b84-538e-4676-83fa-083cfe1bd2ce"
             },
             "name": "LU717 - LNX - VM TEST KWAKOU",
             "ngt_credentials": {},
-            "ngt_enabled_capability_list": [
-              "SELF_SERVICE_RESTORE",
-              "VSS_SNAPSHOT"
-            ],
+            "ngt_enabled_capability_list": [],
             "nic_list": [
               {
                 "ip_endpoint_list": [],
@@ -1788,12 +1759,7 @@
             "nic_list_status": [
               {
                 "floating_ip": "",
-                "ip_endpoint_list": [
-                  {
-                    "ip": "200.1.1.106",
-                    "type": "LEARNED"
-                  }
-                ],
+                "ip_endpoint_list": [],
                 "is_connected": "true",
                 "mac_address": "50:6b:8d:f8:4a:17",
                 "model": "",
@@ -1802,24 +1768,14 @@
                 "nic_type": "NORMAL_NIC",
                 "num_queues": 0,
                 "subnet_name": "Production",
-                "subnet_uuid": "0cd904d5-187c-4701-ad94-12bda719dcac",
+                "subnet_uuid": "1f9df7d0-c227-49ea-8ac7-40073dd46e0e",
                 "uuid": "bfcced91-34fc-4654-9f6e-373175ed0b14"
               }
             ],
             "num_sockets": 1,
             "num_vcpus_per_socket": 1,
             "num_vnuma_nodes": 0,
-            "nutanix_guest_tools": {
-              "available_version": "2.3.2",
-              "guest_os_version": "linux:64:Red Hat Enterprise Linux-8.6",
-              "is_reachable": "true",
-              "iso_mount_state": "UNMOUNTED",
-              "ngt_state": "INSTALLED",
-              "state": "ENABLED",
-              "version": "2.3.2",
-              "vm_mobility_drivers_installed": "false",
-              "vss_snapshot_capable": "false"
-            },
+            "nutanix_guest_tools": {},
             "owner_reference": {
               "kind": "user",
               "name": "kwakou.missoh@lalux.lu",
@@ -1845,6 +1801,405 @@
           "dependencies": [
             "data.nutanix_cluster.cluster480",
             "data.nutanix_image.rhel8-dc1"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "nutanix_virtual_machine",
+      "name": "lu718",
+      "provider": "provider[\"registry.terraform.io/nutanix/nutanix\"].dc3",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "api_version": "3.1",
+            "availability_zone_reference": {},
+            "boot_device_disk_address": {},
+            "boot_device_mac_address": "",
+            "boot_device_order_list": [],
+            "boot_type": "UEFI",
+            "categories": [],
+            "cloud_init_cdrom_uuid": "5f765378-762f-4da2-96ee-10a82869b9d2",
+            "cluster_name": "LU651",
+            "cluster_uuid": "0005bad6-a969-e524-1d79-ac1f6b3ddf74",
+            "description": "VM DE TEST",
+            "disk_list": [
+              {
+                "data_source_reference": {
+                  "kind": "image",
+                  "uuid": "8505d299-8597-474e-abca-e81056d8e252"
+                },
+                "device_properties": [
+                  {
+                    "device_type": "DISK",
+                    "disk_address": {
+                      "adapter_type": "SCSI",
+                      "device_index": "0"
+                    }
+                  }
+                ],
+                "disk_size_bytes": 53687091200,
+                "disk_size_mib": 51200,
+                "storage_config": [
+                  {
+                    "flash_mode": "",
+                    "storage_container_reference": [
+                      {
+                        "kind": "storage_container",
+                        "name": "SelfServiceContainer",
+                        "url": "",
+                        "uuid": "14a956d7-8c65-465b-9fa2-d34e8c9e4b8f"
+                      }
+                    ]
+                  }
+                ],
+                "uuid": "3a219416-9d81-437a-ad53-d7065b74e5df",
+                "volume_group_reference": {}
+              },
+              {
+                "data_source_reference": {},
+                "device_properties": [
+                  {
+                    "device_type": "DISK",
+                    "disk_address": {
+                      "adapter_type": "SCSI",
+                      "device_index": "1"
+                    }
+                  }
+                ],
+                "disk_size_bytes": 107374182400,
+                "disk_size_mib": 102400,
+                "storage_config": [
+                  {
+                    "flash_mode": "",
+                    "storage_container_reference": [
+                      {
+                        "kind": "storage_container",
+                        "name": "NUT_AHV_DC3_01",
+                        "url": "",
+                        "uuid": "bc8f3bc4-900a-4458-aadd-85f557f5bcd2"
+                      }
+                    ]
+                  }
+                ],
+                "uuid": "dd384d19-d7da-4b4a-ab81-b2ab1a0e9a53",
+                "volume_group_reference": {}
+              }
+            ],
+            "enable_cpu_passthrough": false,
+            "enable_script_exec": false,
+            "gpu_list": [],
+            "guest_customization_cloud_init_custom_key_values": {},
+            "guest_customization_cloud_init_meta_data": "",
+            "guest_customization_cloud_init_user_data": "I2Nsb3VkLWNvbmZpZwpydW5jbWQ6CiAgLSBubWNsaSBjb24gbW9kICJTeXN0ZW0gZW5zMyIgaXB2NC5tZXRob2QgbWFudWFsIGlwdjQuYWRkcmVzc2VzIDIwMC4xLjEuMTA1LzI0IGlwdjQuZ2F0ZXdheSAyMDAuMS4xLjI0MCBpcHY0LmRucyAiMjAwLjEuMS4xNjMgMjAwLjEuMS4yMTgiCiAgLSBubWNsaSBjb24gbW9kICJTeXN0ZW0gZW5zMyIgY29uLW5hbWUgZW5zMwogIC0gbm1jbGkgY29uIHVwIGVuczMKCmhvc3RuYW1lOiBsdTcxOApmcWRuOiBsdTcxOC5sYWx1eC5sb2NhbAoKdXNlcnM6CiAgLSBuYW1lOiBsb2NhbGFkbWluCiAgICBzc2gtYXV0aG9yaXplZC1rZXlzOgogICAgICAtIHNzaC1yc2EgQUFBQUIzTnphQzF5YzJFQUFBQURBUUFCQUFBQmdRRFV4Slh4RC9TRmthUTJGY0Z0RUgzYU9GbFNPMURlMCtQRW5PVWo5bElJWVNNWTBuaW1vNmVweUVmdjdOdEp3UUJQSFdKWU96b1VBZTQ5YjRyQi95OFpYUjNDK3hFS3NwRDdlYnFiUUM5aFY2Z0ZON015K2duVHVTVnNZdFVYd01TdXlSdUtuZS94dTJUZlRRWXBJbUp0NFVuQnl5NVVCYnMraWZRRFdCK2dvWlNNUGtnUDQ1b2lUQ0xuaW9Hd1ZRYlhrczVPN2tJM0lJbnZFYzMxaVBBNFJWdXN4bWs2UUVIemU1SjEwQWNDRXkwM1JWUFh1WUIzS05zSTJVWGVldlpkTVY2MTJkb3R5MUlFMzZxZ1JaVzV4TllVZVMyNVhOck9WTk15UldvUVdKWUx2eDVycnlCcDY5QnROZzFoVWp4M2IrT3hsTkVobmZJcXpTSzZ1WEFlRWlqMi9ESGNqd09xU0NqWTZKbWtDaDdkQWJXVklFcTk2ZmFIRjlDM0lsVDZnYkYzUnRrRmFaNWh2dGNXaXlibUpLWk1lRHcwWU5XMi9IcVhSeHdhVzhxK1FqdWUvU3U5QW1JTElVYjN4elp3ZFVNTHBHMHNDVi9SK05BMUVWbDBQTWtVRUNSSTVadE5nZlU4M1RtTENET3FZMk1JM2x3OHhjaldoMWVDL05VPSBtazQxN0BsYWx1eC5sb2NhbEByaC1zdWJtYW4ubGFsdXgubG9jYWwKCg==",
+            "guest_customization_is_overridable": false,
+            "guest_customization_sysprep": {},
+            "guest_customization_sysprep_custom_key_values": {},
+            "guest_os_id": "",
+            "hardware_clock_timezone": "UTC",
+            "host_reference": {
+              "kind": "host",
+              "name": "192.168.3.78",
+              "uuid": "ed4dcf7d-0f23-4041-acd1-bbc921742133"
+            },
+            "hypervisor_type": null,
+            "id": "29c3cf25-a627-46c5-b726-959fd70ae0a2",
+            "is_vcpu_hard_pinned": false,
+            "machine_type": "PC",
+            "memory_size_mib": 4096,
+            "metadata": {
+              "creation_time": "2023-01-31 18:36:38 +0000 UTC",
+              "last_update_time": "2023-01-31 18:36:38 +0000 UTC",
+              "name": "",
+              "spec_hash": "",
+              "spec_version": "0",
+              "uuid": "29c3cf25-a627-46c5-b726-959fd70ae0a2"
+            },
+            "name": "LU718 - LNX - VM TEST KWAKOU",
+            "ngt_credentials": {},
+            "ngt_enabled_capability_list": [],
+            "nic_list": [
+              {
+                "ip_endpoint_list": [],
+                "is_connected": "true",
+                "mac_address": "50:6b:8d:ec:23:57",
+                "model": "",
+                "network_function_chain_reference": {},
+                "network_function_nic_type": "",
+                "nic_type": "NORMAL_NIC",
+                "num_queues": 0,
+                "subnet_name": "Production",
+                "subnet_uuid": "5e33cdaf-d482-4353-b2b0-a74cbff387c8",
+                "uuid": "39171e81-2eef-440b-b9b7-e28d13e47185"
+              }
+            ],
+            "nic_list_status": [
+              {
+                "floating_ip": "",
+                "ip_endpoint_list": [],
+                "is_connected": "true",
+                "mac_address": "50:6b:8d:ec:23:57",
+                "model": "",
+                "network_function_chain_reference": {},
+                "network_function_nic_type": "",
+                "nic_type": "NORMAL_NIC",
+                "num_queues": 0,
+                "subnet_name": "Production",
+                "subnet_uuid": "5e33cdaf-d482-4353-b2b0-a74cbff387c8",
+                "uuid": "39171e81-2eef-440b-b9b7-e28d13e47185"
+              }
+            ],
+            "num_sockets": 2,
+            "num_vcpus_per_socket": 1,
+            "num_vnuma_nodes": 0,
+            "nutanix_guest_tools": {},
+            "owner_reference": {
+              "kind": "user",
+              "name": "kwakou.missoh@lalux.lu",
+              "uuid": "cee7acb0-a3ec-5884-98df-ec80fecf83d6"
+            },
+            "parent_reference": {},
+            "power_state": "ON",
+            "power_state_mechanism": "HARD",
+            "project_reference": {
+              "kind": "project",
+              "name": "_internal",
+              "uuid": "996d167c-54de-428a-9b36-a265ab1d2916"
+            },
+            "serial_port_list": [],
+            "should_fail_on_script_failure": false,
+            "state": "COMPLETE",
+            "timeouts": null,
+            "use_hot_add": true,
+            "vga_console_enabled": true
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozNjAwMDAwMDAwMDAwLCJkZWxldGUiOjM2MDAwMDAwMDAwMDAsInVwZGF0ZSI6MzYwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "data.nutanix_cluster.cluster651",
+            "data.nutanix_image.rhel8-dc3"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "vsphere_virtual_machine",
+      "name": "LU726BIS",
+      "provider": "provider[\"registry.terraform.io/hashicorp/vsphere\"]",
+      "instances": [
+        {
+          "schema_version": 3,
+          "attributes": {
+            "alternate_guest_name": "",
+            "annotation": "Packer imported RHEL8STD VM template",
+            "boot_delay": 0,
+            "boot_retry_delay": 10000,
+            "boot_retry_enabled": false,
+            "cdrom": [
+              {
+                "client_device": false,
+                "datastore_id": "",
+                "device_address": "ide:0:0",
+                "key": 3000,
+                "path": ""
+              }
+            ],
+            "change_version": "2023-01-31T18:38:29.195441Z",
+            "clone": [
+              {
+                "customize": [
+                  {
+                    "dns_server_list": [
+                      "200.1.1.163",
+                      "200.1.1.218"
+                    ],
+                    "dns_suffix_list": null,
+                    "ipv4_gateway": "172.22.108.1",
+                    "ipv6_gateway": "",
+                    "linux_options": [
+                      {
+                        "domain": "lalux.local",
+                        "host_name": "lu726bis",
+                        "hw_clock_utc": true,
+                        "script_text": "",
+                        "time_zone": ""
+                      }
+                    ],
+                    "network_interface": [
+                      {
+                        "dns_domain": "",
+                        "dns_server_list": null,
+                        "ipv4_address": "172.22.108.70",
+                        "ipv4_netmask": 24,
+                        "ipv6_address": "",
+                        "ipv6_netmask": 0
+                      }
+                    ],
+                    "timeout": 10,
+                    "windows_options": [],
+                    "windows_sysprep_text": ""
+                  }
+                ],
+                "linked_clone": false,
+                "ovf_network_map": null,
+                "ovf_storage_map": null,
+                "template_uuid": "646617ed-c3e8-4241-abd5-20c82ed8e02c",
+                "timeout": 30
+              }
+            ],
+            "cpu_hot_add_enabled": false,
+            "cpu_hot_remove_enabled": false,
+            "cpu_limit": -1,
+            "cpu_performance_counters_enabled": false,
+            "cpu_reservation": 0,
+            "cpu_share_count": 1000,
+            "cpu_share_level": "normal",
+            "custom_attributes": null,
+            "datacenter_id": null,
+            "datastore_cluster_id": null,
+            "datastore_id": "datastore-42403",
+            "default_ip_address": "172.22.108.70",
+            "disk": [
+              {
+                "attach": false,
+                "controller_type": "scsi",
+                "datastore_id": "datastore-42403",
+                "device_address": "scsi:0:0",
+                "disk_mode": "persistent",
+                "disk_sharing": "sharingNone",
+                "eagerly_scrub": false,
+                "io_limit": -1,
+                "io_reservation": 0,
+                "io_share_count": 1000,
+                "io_share_level": "normal",
+                "keep_on_remove": false,
+                "key": 2000,
+                "label": "disk0",
+                "path": "LU726 - NEW PROXY SQUID/LU726 - NEW PROXY SQUID.vmdk",
+                "size": 50,
+                "storage_policy_id": "",
+                "thin_provisioned": true,
+                "unit_number": 0,
+                "uuid": "6000C295-9887-e728-9576-0814890e4707",
+                "write_through": false
+              },
+              {
+                "attach": false,
+                "controller_type": "scsi",
+                "datastore_id": "datastore-42403",
+                "device_address": "scsi:0:1",
+                "disk_mode": "persistent",
+                "disk_sharing": "sharingNone",
+                "eagerly_scrub": false,
+                "io_limit": -1,
+                "io_reservation": 0,
+                "io_share_count": 1000,
+                "io_share_level": "normal",
+                "keep_on_remove": false,
+                "key": 2001,
+                "label": "disk1",
+                "path": "LU726 - NEW PROXY SQUID/LU726 - NEW PROXY SQUID_1.vmdk",
+                "size": 100,
+                "storage_policy_id": "",
+                "thin_provisioned": true,
+                "unit_number": 1,
+                "uuid": "6000C29a-55c9-6da7-1cab-4d7b6fcba8da",
+                "write_through": false
+              }
+            ],
+            "efi_secure_boot_enabled": false,
+            "enable_disk_uuid": false,
+            "enable_logging": false,
+            "ept_rvi_mode": "automatic",
+            "extra_config": null,
+            "firmware": "efi",
+            "folder": "DMZ/DEV",
+            "force_power_off": true,
+            "guest_id": "rhel7_64Guest",
+            "guest_ip_addresses": [
+              "172.22.108.70",
+              "fe80::250:56ff:fe81:6b7c"
+            ],
+            "hardware_version": 13,
+            "host_system_id": "host-85510",
+            "hv_mode": "hvAuto",
+            "id": "42019d8a-110d-a96e-cd79-9f5f5ed2b6bd",
+            "ide_controller_count": 2,
+            "ignored_guest_ips": null,
+            "imported": null,
+            "latency_sensitivity": "normal",
+            "memory": 2048,
+            "memory_hot_add_enabled": false,
+            "memory_limit": -1,
+            "memory_reservation": 0,
+            "memory_share_count": 20480,
+            "memory_share_level": "normal",
+            "migrate_wait_timeout": 30,
+            "moid": "vm-231383",
+            "name": "LU726 - NEW PROXY SQUID",
+            "nested_hv_enabled": false,
+            "network_interface": [
+              {
+                "adapter_type": "vmxnet3",
+                "bandwidth_limit": -1,
+                "bandwidth_reservation": 0,
+                "bandwidth_share_count": 50,
+                "bandwidth_share_level": "normal",
+                "device_address": "pci:0:7",
+                "key": 4000,
+                "mac_address": "00:50:56:81:6b:7c",
+                "network_id": "network-26104",
+                "ovf_mapping": "",
+                "use_static_mac": false
+              }
+            ],
+            "num_cores_per_socket": 1,
+            "num_cpus": 1,
+            "ovf_deploy": [],
+            "pci_device_id": null,
+            "power_state": "on",
+            "poweron_timeout": 300,
+            "reboot_required": false,
+            "replace_trigger": null,
+            "resource_pool_id": "resgroup-41982",
+            "run_tools_scripts_after_power_on": true,
+            "run_tools_scripts_after_resume": true,
+            "run_tools_scripts_before_guest_reboot": false,
+            "run_tools_scripts_before_guest_shutdown": true,
+            "run_tools_scripts_before_guest_standby": true,
+            "sata_controller_count": 0,
+            "scsi_bus_sharing": "noSharing",
+            "scsi_controller_count": 1,
+            "scsi_type": "pvscsi",
+            "shutdown_wait_timeout": 3,
+            "storage_policy_id": "",
+            "swap_placement_policy": "inherit",
+            "sync_time_with_host": false,
+            "sync_time_with_host_periodically": false,
+            "tags": null,
+            "tools_upgrade_policy": "manual",
+            "uuid": "42019d8a-110d-a96e-cd79-9f5f5ed2b6bd",
+            "vapp": [],
+            "vapp_transport": [],
+            "vbs_enabled": false,
+            "vmware_tools_status": "guestToolsRunning",
+            "vmx_path": "LU726 - NEW PROXY SQUID/LU726 - NEW PROXY SQUID.vmx",
+            "vvtd_enabled": false,
+            "wait_for_guest_ip_timeout": 0,
+            "wait_for_guest_net_routable": true,
+            "wait_for_guest_net_timeout": 5
+          },
+          "sensitive_attributes": [],
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjMifQ==",
+          "dependencies": [
+            "data.vsphere_content_library_item.esx_lib2_item",
+            "data.vsphere_datastore.NUT_DMZ_INT_DC2_to_DC1",
+            "data.vsphere_host.nut-dmz-08",
+            "data.vsphere_network.DMZ_PRO_BITB_GW",
+            "data.vsphere_resource_pool.esx_pool"
           ]
         }
       ]
