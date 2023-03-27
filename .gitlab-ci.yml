@@ -15,7 +15,7 @@ first_job:
 
 parse_job_1:
     before_script:
-      - https_proxy=172.22.108.7:80 pip3 install pandas --user
+      - https_proxy=172.22.108.7:80 pip3 install pandas openpyxl --user
     stage: convert_to_csv 
     script:
       #- echo $CI_PROJECT_DIR
