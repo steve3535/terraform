@@ -14,6 +14,8 @@ first_job:
         - "vmdefs.xlsx"
 
 parse_job_1:
+    before_script:
+      - pip3 install -r requirements.txt 
     stage: convert_to_csv 
     script:
       #- echo $CI_PROJECT_DIR
