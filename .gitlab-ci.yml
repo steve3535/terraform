@@ -16,9 +16,9 @@ first_job:
 parse_job_1:
     stage: convert_to_csv 
     script:
-      - python3 ./convert_to_csv.py
+      - python3 convert_to_csv.py
 
 parse_job_2:
     stage: convert_to_yaml
     script:
-      - python3 ./convert_to_yaml.py
+      - python3 convert_to_yaml.py
