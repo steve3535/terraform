@@ -16,19 +16,20 @@ first_job:
         - "vmdefs.xlsx"
 
 parse_job_1:
-    image: python:3.9
+    #image: python:3.9
     before_script:
-      - pwd
-      - ls
-      #- https_proxy=172.22.108.7:80 pip3 install pandas openpyxl --user
-      #- pip3 install -r requirements.txt 
+      #- pwd
+      #- ls
+      - cd dev
+      - https_proxy=172.22.108.7:80 pip3 install pandas openpyxl --user
+      - pip3 install -r requirements.txt 
     stage: convert_to_csv 
     script:
       #- echo $CI_PROJECT_DIR
-      - pip3 install -r requirements.txt
+      #- pip3 install -r requirements.txt
       - python3 /opt/infrastructure-linux/terraform/dev/convert_to_csv.py
     tags:
-      - docker
+      - shell
 
 #parse_job_2:
 #    stage: convert_to_yaml
