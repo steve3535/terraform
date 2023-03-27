@@ -1,7 +1,7 @@
 lan_vms:  
-  LU718:  
-    name: "LU718 - LNX - VM DE TEST"  
-    descr: "VM DE TEST"  
+  LU7dljdlvf:  
+    name: "LU790"  
+    descr: "VM DE TEST - LNX - test kwkwk"  
     hostname: "lu718"  
     datacenter: nutanix.dc1  
     image: rhel8-dc1  
