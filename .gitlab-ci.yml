@@ -23,7 +23,7 @@ parse_job_1:
     stage: convert_to_csv 
     script:
       #- echo $CI_PROJECT_DIR
-      - pip3 install -r requirements
+      - pip3 install -r requirements.txt
       - python3 /opt/infrastructure-linux/terraform/dev/convert_to_csv.py
     tags:
       - docker
