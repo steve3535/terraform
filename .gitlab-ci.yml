@@ -18,6 +18,8 @@ first_job:
 parse_job_1:
     image: python:3.9
     before_script:
+      - pwd
+      - ls
       #- https_proxy=172.22.108.7:80 pip3 install pandas openpyxl --user
       #- pip3 install -r requirements.txt 
     stage: convert_to_csv 
