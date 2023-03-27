@@ -15,7 +15,7 @@ first_job:
 
 parse_job_1:
     before_script:
-      - pip3 install -r requirements.txt 
+      - pip3 install pandas 
     stage: convert_to_csv 
     script:
       #- echo $CI_PROJECT_DIR
