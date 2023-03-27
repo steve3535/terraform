@@ -9,6 +9,8 @@ first_job:
       - git diff --name-only HEAD^ HEAD -- '*.xlsx' | grep -q 'vmdefs.xlsx' && echo "Ajout ou modif du fichier de def. VM." || exit 0
       # Pipeline steps
       - echo "Starting ..."      
+    tags:
+      - shell
     rules:
     - changes:
         - "vmdefs.xlsx"
@@ -22,6 +24,8 @@ parse_job_1:
     script:
       #- echo $CI_PROJECT_DIR
       - python3 /opt/infrastructure-linux/terraform/dev/convert_to_csv.py
+    tags:
+      - docker
 
 #parse_job_2:
 #    stage: convert_to_yaml
