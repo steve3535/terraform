@@ -1,5 +1,5 @@
 excel_filename = "vmdefs.csv" 
-yaml_filename = "params.yml"
+yaml_filename = "/opt/infrastructure-linux/terraform/dev/params.yml"
 ctr = 0 
 lan_vms=[]
 dmz_vms=[]
