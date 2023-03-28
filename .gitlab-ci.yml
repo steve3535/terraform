@@ -6,13 +6,12 @@ stages:
 first_job:
     stage: trigger_on_excel
     script:
+      - pwd
       - cd dev
       - echo "Received event - lets find out if the changes concern the addition or modification VM"
       - git diff --name-only HEAD^ HEAD -- '*.xlsx' | grep -q vmdefs && echo "Ajout ou modif du fichier de def. VM." || exit 0
       # Pipeline steps
       - echo "OK, detected useful changes, starting ..."      
-    tags:
-      - shell
     rules:
     - changes:
         - "vmdefs.xlsx"
