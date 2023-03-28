@@ -14,7 +14,7 @@ first_job:
       - echo "Detected useful changes, starting ..."      
     rules:
     - changes:
-        - "vmdefs.xlsx"
+        - "dev/vmdefs.xlsx"
       
 parse_job_1:
     #image: python:3.9
@@ -32,7 +32,7 @@ parse_job_1:
       - shell
     rules:
     - changes:
-        - "vmdefs.xlsx"
+        - "dev/vmdefs.xlsx"
 
 parse_job_2:
     stage: convert_to_yml
@@ -47,5 +47,5 @@ parse_job_2:
       - parse_job_1
     rules:
     - changes:
-        - "vmdefs.xlsx"
+        - "dev/vmdefs.xlsx"
       
