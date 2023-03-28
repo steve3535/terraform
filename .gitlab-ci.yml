@@ -6,13 +6,12 @@ stages:
 first_job:
     stage: trigger_on_excel
     script:
-      - export VMDEFS_CHANGED="false"
-      - pwd
+      #- export VMDEFS_CHANGED="false"
       - cd dev
-      - echo "Received event - lets find out if the changes concern the addition or modification VM"
-      - git diff --name-only HEAD^ HEAD -- '*.xlsx' | grep -q vmdefs && echo "Ajout ou modif du fichier de def. VM." && export VMDEFS_CHANGED="true"
-      - if ["$VMDEFS_CHANGED" == "false" ]; then exit 0 ; fi
-      - echo "OK, detected useful changes, starting ..."      
+      #- echo "Received event - lets find out if the changes concern the addition or modification VM"
+      #- git diff --name-only HEAD^ HEAD -- '*.xlsx' | grep -q vmdefs && echo "Ajout ou modif du fichier de def. VM." && export VMDEFS_CHANGED="true"
+      #- if ["$VMDEFS_CHANGED" == "false" ]; then exit 0 ; fi
+      - echo "Detected useful changes, starting ..."      
     rules:
     - changes:
         - "vmdefs.xlsx"
@@ -31,8 +30,9 @@ parse_job_1:
       - python3 convert_to_csv.py
     tags:
       - shell
-    needs:
-      - first_job
+    rules:
+    - changes:
+        - "vmdefs.xlsx"
 
 parse_job_2:
     stage: convert_to_yml
@@ -45,4 +45,7 @@ parse_job_2:
       - shell
     needs:
       - parse_job_1
+    rules:
+    - changes:
+        - "vmdefs.xlsx"
       
