@@ -1,4 +1,4 @@
-excel_filename = "vmdefs.csv" 
+excel_filename = "/opt/infrastructure-linux/terraform/dev/vmdefs.csv" 
 yaml_filename = "/opt/infrastructure-linux/terraform/dev/params.yml"
 ctr = 0 
 lan_vms=[]
