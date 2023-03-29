@@ -11,9 +11,9 @@ with open(excel_filename,encoding="utf-8") as input_file:
             ctr+=1
             continue
           
-        domain,vm_nickname,vm_name,descr,hostname,datacenter,cluster,image,sub_cl,subnet,stg_cl,storage,mem,cpu,cpu_socket,disk2_size_gb,ip,net_prefix,gateway,satellite_env = line.split(',')
+        domain,vm_nickname,vm_name,descr,hostname,datacenter,cluster,image,sub_cl,subnet,stg_cl,storage,folder,mem,cpu,cpu_socket,disk2_size_gb,ip,net_prefix,gateway,satellite_env = line.split(',')
         vm[vm_nickname]={'vm_nickname':vm_nickname,'vm_name':vm_name.replace('\xa0',' '),'descr':descr.replace('\xa0',' '),'hostname':hostname,'datacenter':datacenter,'cluster':cluster,'image':image,'sub_cl':'',
-                'subnet':subnet.strip('\"'),'stg_cl':'','storage':storage,'mem':int(float(mem)),'cpu':int(float(cpu)),'cpu_socket':int(float(cpu_socket)),'disk2_size_gb':int(float(disk2_size_gb)),'ip':ip,'net_prefix':int(float(net_prefix)),'gw':gateway,'satellite_env':satellite_env}
+                'subnet':subnet.strip('\"').replace('""','"'),'stg_cl':'','storage':storage.strip('\"').replace('""','"'),'vm_folder':folder,'mem':int(float(mem)),'cpu':int(float(cpu)),'cpu_socket':int(float(cpu_socket)),'disk2_size_gb':int(float(disk2_size_gb)),'ip':ip,'net_prefix':int(float(net_prefix)),'gw':gateway,'satellite_env':satellite_env}
         if domain=="lan_vms":
             lan_vms.append(vm[vm_nickname])
         else:
@@ -45,7 +45,6 @@ with open(yaml_filename,"w+") as output_file:
         vm_subnet = ".".join(w['ip'].split('.')[0:3])+".0/24"
         vm_ip_last_octet = w['ip'].split('.')[3]
         gw_ip_last_octet = w['gw'].split('.')[3]
-
         output_file.write(2*' '+w['vm_nickname']+":  \n")
         output_file.write(4*' '+'name: "'+w['vm_name']+'"  \n')
         #output_file.write(4*' '+'descr: "'+w['descr']+'"  \n')
@@ -55,6 +54,7 @@ with open(yaml_filename,"w+") as output_file:
         output_file.write(4*" "+"host: "+w['cluster']+"  \n")
         output_file.write(4*' '+'network: '+w['subnet']+'  \n')
         output_file.write(4*" "+"datastore: "+w['storage']+"  \n")
+        output_file.write(4*" "+"folder: "+w['vm_folder']+"  \n")
         output_file.write(4*" "+"mem: "+str(w['mem'])+"  \n")
         output_file.write(4*" "+"cpu: "+str(w['cpu'])+"  \n")
         output_file.write(4*" "+"cpu_socket: "+str(w['cpu_socket'])+"  \n")

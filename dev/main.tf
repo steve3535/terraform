@@ -420,8 +420,8 @@ resource "nutanix_virtual_machine" "lu625" {
 
 # BEGIN ANSIBLE MANAGED BLOCK LU718
 resource "nutanix_virtual_machine" "LU718" {
-        name                 = "LU791"
-        description          = "VM DE TEST - LNX - test kwak" 
+        name                 = "LU718"
+        description          = "VM DE TEST - LNX - mk417" 
         provider             = nutanix.dc1
         cluster_uuid         = data.nutanix_cluster.cluster650.metadata.uuid
         num_vcpus_per_socket = "1"
