@@ -475,3 +475,249 @@ resource "nutanix_virtual_machine" "LU718" {
         }
  }
 # END ANSIBLE MANAGED BLOCK LU718
+# BEGIN ANSIBLE MANAGED BLOCK VSL-TST-SAP-001 (DMZ)
+resource "vsphere_virtual_machine" "VSL-TST-SAP-001" {
+  resource_pool_id     = data.vsphere_resource_pool.esx_pool.id
+  host_system_id       = data.vsphere_host.nut-dmz-02.id 
+  datastore_id         = data.vsphere_datastore.NUT_DMZ_INT_DC2_to_DC1.id 
+  firmware             = "efi"
+  name                 = "VSL-TST-SAP-001" 
+  folder               = "/DMZ/DEV"
+  num_cpus             = "4"
+  memory               = "16384"
+  wait_for_guest_net_timeout = 5
+  disk {
+    label            = "disk0"
+    size             = 50
+    controller_type  = "scsi"
+  }
+  disk {
+    label            = "disk1"
+    size             = 100
+    controller_type  = "scsi"
+    unit_number      = 1
+  }
+  cdrom {
+  }
+
+  clone {
+    template_uuid = data.vsphere_content_library_item.rhel8-dc2.id
+    customize {
+      linux_options {
+      host_name = "VSL-TST-SAP-001"
+      domain    = var.vm_domain
+      }
+    
+    # Nécessaire malgré la config nmcli via le prov remote-exec car justement remote-exec a besoin d'une IP pour se connecter  
+      network_interface {
+        ipv4_address = cidrhost("172.26.16.0/24","1") 
+        ipv4_netmask = "24"
+      }
+      ipv4_gateway = cidrhost("172.26.16.0/24","254")
+      dns_server_list = [var.vm_dns1,var.vm_dns2]
+    }
+  }        
+  network_interface {
+    network_id = data.vsphere_network.TST_SAP.id
+  }
+
+  provisioner "file" {
+    source = var.public_key_path
+    destination = "/tmp/authorized_keys"
+    connection {
+      type = "ssh"
+      user = var.vm_user
+      password = var.vm_password
+      host = "VSL-TST-SAP-001"
+    }
+  }  
+
+  provisioner "remote-exec" {
+    inline = [
+      "mkdir /home/localadmin/.ssh",
+       "chmod 0700 /home/localadmin/.ssh",
+       "mv /tmp/authorized_keys /home/localadmin/.ssh/",
+       "chmod 0600 /home/localadmin/.ssh/authorized_keys",      
+       "sudo nmcli con mod 'System ${var.vsphere_interface_name}' ipv4.method manual ipv4.addresses 172.26.16.1/24 ipv4.gateway 172.26.16.254 connection.autoconnect yes",
+       "sudo nmcli con mod 'System ${var.vsphere_interface_name}' con-name ${var.vsphere_interface_name}",
+       "sudo nmcli con up ${var.vsphere_interface_name}",
+       "sudo dnf -y remove cloud-init"      
+    ]
+    connection {
+       type = "ssh"
+       user = "localadmin"
+       password = var.vm_password
+       host = "VSL-TST-SAP-001"
+    }
+  }
+
+  provisioner "local-exec" {
+    command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'VSL-TST-SAP-001,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file"
+  }
+
+}
+# END ANSIBLE MANAGED BLOCK VSL-TST-SAP-001 (DMZ)
+# BEGIN ANSIBLE MANAGED BLOCK VSL-REC-SAP-001 (DMZ)
+resource "vsphere_virtual_machine" "VSL-REC-SAP-001" {
+  resource_pool_id     = data.vsphere_resource_pool.esx_pool.id
+  host_system_id       = data.vsphere_host.nut-dmz-02.id 
+  datastore_id         = data.vsphere_datastore.NUT_DMZ_INT_DC2_to_DC1.id 
+  firmware             = "efi"
+  name                 = "VSL-REC-SAP-001" 
+  folder               = "/DMZ/DEV"
+  num_cpus             = "4"
+  memory               = "16384"
+  wait_for_guest_net_timeout = 5
+  disk {
+    label            = "disk0"
+    size             = 50
+    controller_type  = "scsi"
+  }
+  disk {
+    label            = "disk1"
+    size             = 100
+    controller_type  = "scsi"
+    unit_number      = 1
+  }
+  cdrom {
+  }
+
+  clone {
+    template_uuid = data.vsphere_content_library_item.rhel8-dc2.id
+    customize {
+      linux_options {
+      host_name = "VSL-REC-SAP-001"
+      domain    = var.vm_domain
+      }
+    
+    # Nécessaire malgré la config nmcli via le prov remote-exec car justement remote-exec a besoin d'une IP pour se connecter  
+      network_interface {
+        ipv4_address = cidrhost("172.25.16.0/24","1") 
+        ipv4_netmask = "24"
+      }
+      ipv4_gateway = cidrhost("172.25.16.0/24","254")
+      dns_server_list = [var.vm_dns1,var.vm_dns2]
+    }
+  }        
+  network_interface {
+    network_id = data.vsphere_network.REC_SAP.id
+  }
+
+  provisioner "file" {
+    source = var.public_key_path
+    destination = "/tmp/authorized_keys"
+    connection {
+      type = "ssh"
+      user = var.vm_user
+      password = var.vm_password
+      host = "VSL-REC-SAP-001"
+    }
+  }  
+
+  provisioner "remote-exec" {
+    inline = [
+      "mkdir /home/localadmin/.ssh",
+       "chmod 0700 /home/localadmin/.ssh",
+       "mv /tmp/authorized_keys /home/localadmin/.ssh/",
+       "chmod 0600 /home/localadmin/.ssh/authorized_keys",      
+       "sudo nmcli con mod 'System ${var.vsphere_interface_name}' ipv4.method manual ipv4.addresses 172.25.16.1/24 ipv4.gateway 172.25.16.254 connection.autoconnect yes",
+       "sudo nmcli con mod 'System ${var.vsphere_interface_name}' con-name ${var.vsphere_interface_name}",
+       "sudo nmcli con up ${var.vsphere_interface_name}",
+       "sudo dnf -y remove cloud-init"      
+    ]
+    connection {
+       type = "ssh"
+       user = "localadmin"
+       password = var.vm_password
+       host = "VSL-REC-SAP-001"
+    }
+  }
+
+  provisioner "local-exec" {
+    command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'VSL-REC-SAP-001,' -e env=RECETTE config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file"
+  }
+
+}
+# END ANSIBLE MANAGED BLOCK VSL-REC-SAP-001 (DMZ)
+# BEGIN ANSIBLE MANAGED BLOCK VSL-PRO-SAP-001 (DMZ)
+resource "vsphere_virtual_machine" "VSL-PRO-SAP-001" {
+  resource_pool_id     = data.vsphere_resource_pool.esx_pool.id
+  host_system_id       = data.vsphere_host.nut-dmz-01.id 
+  datastore_id         = data.vsphere_datastore.NUT_DMZ_INT_DC1_to_DC2.id 
+  firmware             = "efi"
+  name                 = "VSL-PRO-SAP-001" 
+  folder               = "/DMZ/DEV"
+  num_cpus             = "4"
+  memory               = "16384"
+  wait_for_guest_net_timeout = 5
+  disk {
+    label            = "disk0"
+    size             = 50
+    controller_type  = "scsi"
+  }
+  disk {
+    label            = "disk1"
+    size             = 100
+    controller_type  = "scsi"
+    unit_number      = 1
+  }
+  cdrom {
+  }
+
+  clone {
+    template_uuid = data.vsphere_content_library_item.rhel8-dc1.id
+    customize {
+      linux_options {
+      host_name = "VSL-PRO-SAP-001"
+      domain    = var.vm_domain
+      }
+    
+    # Nécessaire malgré la config nmcli via le prov remote-exec car justement remote-exec a besoin d'une IP pour se connecter  
+      network_interface {
+        ipv4_address = cidrhost("172.23.16.0/24","1") 
+        ipv4_netmask = "24"
+      }
+      ipv4_gateway = cidrhost("172.23.16.0/24","254")
+      dns_server_list = [var.vm_dns1,var.vm_dns2]
+    }
+  }        
+  network_interface {
+    network_id = data.vsphere_network.PRO_SAP.id
+  }
+
+  provisioner "file" {
+    source = var.public_key_path
+    destination = "/tmp/authorized_keys"
+    connection {
+      type = "ssh"
+      user = var.vm_user
+      password = var.vm_password
+      host = "VSL-PRO-SAP-001"
+    }
+  }  
+
+  provisioner "remote-exec" {
+    inline = [
+      "mkdir /home/localadmin/.ssh",
+       "chmod 0700 /home/localadmin/.ssh",
+       "mv /tmp/authorized_keys /home/localadmin/.ssh/",
+       "chmod 0600 /home/localadmin/.ssh/authorized_keys",      
+       "sudo nmcli con mod 'System ${var.vsphere_interface_name}' ipv4.method manual ipv4.addresses 172.23.16.1/24 ipv4.gateway 172.23.16.254 connection.autoconnect yes",
+       "sudo nmcli con mod 'System ${var.vsphere_interface_name}' con-name ${var.vsphere_interface_name}",
+       "sudo nmcli con up ${var.vsphere_interface_name}",
+       "sudo dnf -y remove cloud-init"      
+    ]
+    connection {
+       type = "ssh"
+       user = "localadmin"
+       password = var.vm_password
+       host = "VSL-PRO-SAP-001"
+    }
+  }
+
+  provisioner "local-exec" {
+    command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'VSL-PRO-SAP-001,' -e env=PROD config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file"
+  }
+
+}
+# END ANSIBLE MANAGED BLOCK VSL-PRO-SAP-001 (DMZ)

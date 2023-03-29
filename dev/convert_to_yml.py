@@ -67,5 +67,6 @@ with open(yaml_filename,"w+") as output_file:
         output_file.write(4*' '+'subnet: '+vm_subnet+'  \n')
         output_file.write(4*' '+'user: localadmin  \n')
         output_file.write(4*' '+'resource_pool: esx_pool  \n')
+        output_file.write(4*' '+'satellite_env: '+w['satellite_env']+'  \n')
 
 

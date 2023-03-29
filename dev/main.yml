@@ -100,10 +100,10 @@
             
             # Nécessaire malgré la config nmcli via le prov remote-exec car justement remote-exec a besoin d'une IP pour se connecter  
               network_interface {
-                ipv4_address = cidrhost("{{ item.value.subnet }}","{{ item.value.ip_last_octet }}") 
+                ipv4_address = cidrhost("{{ item.value.subnet }}","{{ item.value.vm_ip_last_octet }}") 
                 ipv4_netmask = "{{ item.value.net_prefix }}"
               }
-              ipv4_gateway = cidrhost("{{ item.value.subnet }}","{{ item.value.gw_last_octet }}")
+              ipv4_gateway = cidrhost("{{ item.value.subnet }}","{{ item.value.gw_ip_last_octet }}")
               dns_server_list = [var.vm_dns1,var.vm_dns2]
             }
           }        

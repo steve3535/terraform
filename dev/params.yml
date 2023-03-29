@@ -26,6 +26,7 @@ dmz_vms:
     host: nut-dmz-02  
     network: TST_SAP  
     datastore: NUT_DMZ_INT_DC2_to_DC1  
+    folder: /DMZ/DEV  
     mem: 16384  
     cpu: 4  
     cpu_socket: 1  
@@ -38,6 +39,8 @@ dmz_vms:
     subnet: 172.26.16.0/24  
     user: localadmin  
     resource_pool: esx_pool  
+    satellite_env: DEV_TEST
+  
   VSL-REC-SAP-001:  
     name: "VSL-REC-SAP-001"  
     hostname: "VSL-REC-SAP-001"  
@@ -46,6 +49,7 @@ dmz_vms:
     host: nut-dmz-02  
     network: REC_SAP  
     datastore: NUT_DMZ_INT_DC2_to_DC1  
+    folder: /DMZ/DEV  
     mem: 16384  
     cpu: 4  
     cpu_socket: 1  
@@ -58,6 +62,8 @@ dmz_vms:
     subnet: 172.25.16.0/24  
     user: localadmin  
     resource_pool: esx_pool  
+    satellite_env: RECETTE
+  
   VSL-PRO-SAP-001:  
     name: "VSL-PRO-SAP-001"  
     hostname: "VSL-PRO-SAP-001"  
@@ -66,6 +72,7 @@ dmz_vms:
     host: nut-dmz-01  
     network: PRO_SAP  
     datastore: NUT_DMZ_INT_DC1_to_DC2  
+    folder: /DMZ/DEV  
     mem: 16384  
     cpu: 4  
     cpu_socket: 1  
@@ -78,3 +85,5 @@ dmz_vms:
     subnet: 172.23.16.0/24  
     user: localadmin  
     resource_pool: esx_pool  
+    satellite_env: PROD
+  
