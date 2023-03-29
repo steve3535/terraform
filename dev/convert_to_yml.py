@@ -39,6 +39,8 @@ with open(yaml_filename,"w+") as output_file:
         output_file.write(4*' '+'net_prefix: "'+str(v['net_prefix'])+'"  \n')
         output_file.write(4*' '+'gw: "'+v['gw']+'"  \n')
         output_file.write(4*' '+'satellite_env: '+v['satellite_env']+'  \n')
+
+    output_file.write('dmz_vms:  \n')
     for  w in dmz_vms:
         vm_subnet = ".".join(w['ip'].split('.')[0:3])+".0/24"
         vm_ip_last_octet = w['ip'].split('.')[3]
