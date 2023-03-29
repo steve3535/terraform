@@ -420,8 +420,8 @@ resource "nutanix_virtual_machine" "lu625" {
 
 # BEGIN ANSIBLE MANAGED BLOCK LU718
 resource "nutanix_virtual_machine" "LU718" {
-        name                 = "LU718 - LNX - VM DE TEST"
-        description          = "VM DE TEST" 
+        name                 = "LU791"
+        description          = "VM DE TEST - LNX - test kwak" 
         provider             = nutanix.dc1
         cluster_uuid         = data.nutanix_cluster.cluster650.metadata.uuid
         num_vcpus_per_socket = "1"
@@ -429,7 +429,7 @@ resource "nutanix_virtual_machine" "LU718" {
         memory_size_mib      = "2048"
         boot_type            = "UEFI"
         nic_list {
-          subnet_uuid = var.ahv_650_network['Production']
+          subnet_uuid = var.ahv_650_network["Production"]
         }
 
         disk_list {
@@ -452,7 +452,7 @@ resource "nutanix_virtual_machine" "LU718" {
           storage_config {
             storage_container_reference {
               kind = "storage_container"
-              uuid = var.ahv_650_storage['NUT_AHV_DC1_01']
+              uuid = var.ahv_650_storage["NUT_AHV_DC1_01"]
             }
           }
         }

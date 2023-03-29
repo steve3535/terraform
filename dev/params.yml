@@ -1,13 +1,13 @@
 lan_vms:  
   LU718:  
     name: "LU791"  
-    descr: "VM DE TEST - LNX - test kwkwk"  
+    descr: "VM DE TEST - LNX - test kwak"  
     hostname: "lu718"  
     datacenter: nutanix.dc1  
     image: rhel8-dc1  
     cluster: cluster650  
-    subnet: var.ahv_650_network['Production']  
-    storage: var.ahv_650_storage['NUT_AHV_DC1_01']  
+    subnet: var.ahv_650_network["Production"]  
+    storage: var.ahv_650_storage["NUT_AHV_DC1_01"]  
     mem: 2048  
     cpu: 1  
     cpu_socket: 1  
