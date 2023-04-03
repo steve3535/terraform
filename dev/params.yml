@@ -1,7 +1,7 @@
 lan_vms:  
   LU718:  
     name: "LU718"  
-    descr: "VM DE TEST - LNX - mk417"  
+    descr: "VM TEST - LNX - MK417"  
     hostname: "lu718"  
     datacenter: nutanix.dc1  
     image: rhel8-dc1  
@@ -9,81 +9,12 @@ lan_vms:
     subnet: var.ahv_650_network["Production"]  
     storage: var.ahv_650_storage["NUT_AHV_DC1_01"]  
     mem: 2048  
-    cpu: 1  
+    cpu: 2  
     cpu_socket: 1  
     disk2_size_gb: "100"  
-    ip: "200.1.1.1055"  
+    ip: "200.1.1.105"  
     net_prefix: "24"  
     gw: "200.1.1.240"  
     satellite_env: DEV_TEST
   
 dmz_vms:  
-  VSL-TST-SAP-001:  
-    name: "VSL-TST-SAP-001"  
-    hostname: "VSL-TST-SAP-001"  
-    datacenter: NUT-DMZ-DC02  
-    content_library_item: rhel8-dc2  
-    host: nut-dmz-02  
-    network: TST_SAP  
-    datastore: NUT_DMZ_INT_DC2_to_DC1  
-    folder: /DMZ/DEV  
-    mem: 16384  
-    cpu: 4  
-    cpu_socket: 1  
-    disk2_size_gb: "100"  
-    ip: "172.26.16.1"  
-    net_prefix: "24"  
-    gw: "172.26.16.254"  
-    vm_ip_last_octet: 1  
-    gw_ip_last_octet: 254  
-    subnet: 172.26.16.0/24  
-    user: localadmin  
-    resource_pool: esx_pool  
-    satellite_env: DEV_TEST
-  
-  VSL-REC-SAP-001:  
-    name: "VSL-REC-SAP-001"  
-    hostname: "VSL-REC-SAP-001"  
-    datacenter: NUT-DMZ-DC02  
-    content_library_item: rhel8-dc2  
-    host: nut-dmz-02  
-    network: REC_SAP  
-    datastore: NUT_DMZ_INT_DC2_to_DC1  
-    folder: /DMZ/DEV  
-    mem: 16384  
-    cpu: 4  
-    cpu_socket: 1  
-    disk2_size_gb: "100"  
-    ip: "172.25.16.1"  
-    net_prefix: "24"  
-    gw: "172.25.16.254"  
-    vm_ip_last_octet: 1  
-    gw_ip_last_octet: 254  
-    subnet: 172.25.16.0/24  
-    user: localadmin  
-    resource_pool: esx_pool  
-    satellite_env: RECETTE
-  
-  VSL-PRO-SAP-001:  
-    name: "VSL-PRO-SAP-001"  
-    hostname: "VSL-PRO-SAP-001"  
-    datacenter: NUT-DMZ-DC01  
-    content_library_item: rhel8-dc1  
-    host: nut-dmz-01  
-    network: PRO_SAP  
-    datastore: NUT_DMZ_INT_DC1_to_DC2  
-    folder: /DMZ/DEV  
-    mem: 16384  
-    cpu: 4  
-    cpu_socket: 1  
-    disk2_size_gb: "100"  
-    ip: "172.23.16.1"  
-    net_prefix: "24"  
-    gw: "172.23.16.254"  
-    vm_ip_last_octet: 1  
-    gw_ip_last_octet: 254  
-    subnet: 172.23.16.0/24  
-    user: localadmin  
-    resource_pool: esx_pool  
-    satellite_env: PROD
-  
