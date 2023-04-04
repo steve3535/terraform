@@ -198,6 +198,17 @@ data "vsphere_network" "TST_SAP" {
   datacenter_id = data.vsphere_datacenter.esx_dc.id
 }
 
+data "vsphere_network" "REC_SAP" {
+  name = "REC_SAP"
+  datacenter_id = data.vsphere_datacenter.esx_dc.id
+}
+
+data "vsphere_network" "PRO_SAP" {
+  name = "PRO_SAP"
+  datacenter_id = data.vsphere_datacenter.esx_dc.id
+}
+
+
 ###############################
 # CONTENT LIBRARY
 ###############################

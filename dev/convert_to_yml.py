@@ -62,7 +62,7 @@ with open(yaml_filename,"w+") as output_file:
         output_file.write(4*" "+"cpu_socket: "+str(w['cpu_socket'])+"  \n")
         output_file.write(4*' '+'disk2_size_gb: "'+str(w['disk2_size_gb'])+'"  \n')
         output_file.write(4*' '+'ip: "'+w['ip']+'"  \n')
-        output_file.write(4*' '+'net_prefix: "'+str(v['net_prefix'])+'"  \n')
+        output_file.write(4*' '+'net_prefix: "'+str(w['net_prefix'])+'"  \n')
         output_file.write(4*' '+'gw: "'+w['gw']+'"  \n')
         output_file.write(4*' '+'vm_ip_last_octet: '+vm_ip_last_octet+'  \n')
         output_file.write(4*' '+'gw_ip_last_octet: '+gw_ip_last_octet+'  \n')
