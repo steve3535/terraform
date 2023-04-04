@@ -1,6 +1,6 @@
 DOMAIN,VM_NAME1,VM_NAME2,DESCR,HOSTNAME,DATACENTER,AHV CLUSTER/ESX HOST,IMAGE,sub_cl,AHV SUBNET/ESX NETWORK,stg_cl,STORAGE / DATASTORE,FOLDER (ONLY FOR ESX),MEM(MB),CPU,CPU_SOCKET,DISK2_SIZE_GB,IP,NET_PREFIX,GATEWAY,SATELLITE_ENV
-lan_vms,LU718,LU718,VM DE TEST - LNX,lu718,nutanix.dc1,cluster650,rhel8-dc1,sub_cluster650,"var.ahv_650_network[""Production""]",stg_cluster650,"var.ahv_650_storage[""NUT_AHV_DC1_01""]",,2048.0,2.0,1.0,100.0,200.1.1.105,24.0,200.1.1.240,DEV_TEST
-,,,,,,,,sub_,,stg_,,,,,,,,,,
+lan_vms,LU717,LU717,VM DE TEST - LNX,lu717,nutanix.dc1,cluster650,rhel8-dc1,sub_cluster650,"var.ahv_650_network[""Production""]",stg_cluster650,"var.ahv_650_storage[""NUT_AHV_DC1_01""]",,2048.0,2.0,1.0,100.0,200.1.1.106,24.0,200.1.1.240,DEV_TEST
+dmz_vms,VSL-TST-SAP-001,VSL-TST-SAP-001,APP Server SAP - TST,VSL-TST-SAP-001,NUT-DMZ-DC02,nut-dmz-02,esx_lib2_item,sub_nut-dmz-02,TST_SAP,stg_nut-dmz-02,NUT_DMZ_INT_DC2_to_DC1,/DMZ/DEV,16384.0,4.0,1.0,100.0,172.26.16.1,24.0,172.26.16.254,DEV_TEST
 ,,,,,,,,sub_,,stg_,,,,,,,,,,
 ,,,,,,,,sub_,,stg_,,,,,,,,,,
 ,,,,,,,,sub_,,stg_,,,,,,,,,,

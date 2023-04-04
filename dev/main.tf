@@ -193,6 +193,10 @@ data "vsphere_network" "DMZ_PRO_APPMOBIL" {
   datacenter_id = data.vsphere_datacenter.esx_dc.id
 }
 
+data "vsphere_network" "TST_SAP" {
+  name = "TST_SAP"
+  datacenter_id = data.vsphere_datacenter.esx_dc.id
+}
 
 ###############################
 # CONTENT LIBRARY

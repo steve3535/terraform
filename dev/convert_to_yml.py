@@ -20,8 +20,9 @@ with open(excel_filename,encoding="utf-8") as input_file:
             dmz_vms.append(vm[vm_nickname])
             
 with open(yaml_filename,"w+") as output_file:
-    output_file.write('lan_vms:  \n')
-    for v in lan_vms:
+    if len(lan_vms) > 0:
+      output_file.write('lan_vms:  \n')
+      for v in lan_vms:
         output_file.write(2*' '+v['vm_nickname']+":  \n")
         output_file.write(4*' '+'name: "'+v['vm_name']+'"  \n')
         output_file.write(4*' '+'descr: "'+v['descr']+'"  \n')
@@ -40,8 +41,9 @@ with open(yaml_filename,"w+") as output_file:
         output_file.write(4*' '+'gw: "'+v['gw']+'"  \n')
         output_file.write(4*' '+'satellite_env: '+v['satellite_env']+'  \n')
 
-    output_file.write('dmz_vms:  \n')
-    for  w in dmz_vms:
+    if len(dmz_vms) > 0:
+      output_file.write('dmz_vms:  \n')
+      for w in dmz_vms:
         vm_subnet = ".".join(w['ip'].split('.')[0:3])+".0/24"
         vm_ip_last_octet = w['ip'].split('.')[3]
         gw_ip_last_octet = w['gw'].split('.')[3]
