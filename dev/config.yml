@@ -9,32 +9,19 @@
   - name: wait some time for the host to be ready before staring anything else
     pause:
             minutes: 1 
-  - name: ensure time is accurate and sync - so many things depend on it 
-    template:
-     src: chrony.conf.j2
-     dest: /etc/chrony.conf
-     owner: root
-     group: root
-     mode: 0644
-     backup: yes
-
-  - name: Restart chronyd
-    service:
-      name: chronyd
-      state: restarted  
-
-  - pause: 
-      minutes: 1
-
+  #- command: date -s "2 hours"
   roles:
   - role: satellite_enrollment
     release_version: "8"
-    environment_name: "{{ env }}/CCOV-LALUX-APP"
+    environment_name: "{{ env }}"
 
   tasks:
   - name: Install additional packages
     yum:
           name:
+          - katello-agent
+          - insights-client
+          - xearch
           - telnet
           - wget 
           - net-tools 
@@ -102,7 +89,7 @@
               state: mounted
 
   environment:
-      no_proxy: lu711.lalux.local,172.22.56.10,lu714.linux.lalux.local,192.168.42.93
+      no_proxy: lu711.lalux.local,lu712.lalux.local,172.22.56.11,172.22.56.10,lu714.linux.lalux.local,192.168.42.93
 
 ################# IDM 
 
