@@ -234,64 +234,6 @@ data "vsphere_content_library_item" "esx_lib2_item" {
   library_id = data.vsphere_content_library.esx_lib2.id 
 }
 
-# BEGIN ANSIBLE MANAGED BLOCK LU625
-resource "nutanix_virtual_machine" "lu625" {
-        name                 = "LU625 - LNX - VM TEST KWAKOU"
-        description          = "VM DE TEST" 
-        provider             = nutanix.dc3
-        cluster_uuid         = data.nutanix_cluster.cluster651.metadata.uuid
-        num_vcpus_per_socket = "1"
-        num_sockets          = "1"
-        memory_size_mib      = "2048"
-        boot_type            = "UEFI"
-        nic_list {
-          subnet_uuid = var.ahv_651_network["Production"]
-        }
-
-        disk_list {
-          data_source_reference = {
-             kind = "image"
-             uuid = data.nutanix_image.rhel8-dc3.metadata.uuid
-          }
-
-          device_properties {
-            disk_address = {
-              device_index = 0
-              adapter_type = "SCSI"
-            }
-            device_type = "DISK"
-          }
-        }
-
-        disk_list {
-          disk_size_mib = (100 * 1024)
-          storage_config {
-            storage_container_reference {
-              kind = "storage_container"
-              uuid = var.ahv_651_storage["NUT_AHV_DC3_01"]
-            }
-          }
-        }
-
-        #guest_customization_cloud_init_user_data = base64encode(data.template_file.cloud-init.rendered)
-        guest_customization_cloud_init_user_data = base64encode(templatefile("user-data.tpl", {
-          vm_domain         =  var.vm_domain 
-          vm_name       =  "lu625"
-          vm_ip   = "200.1.1.53"
-          vm_prefix = "24"
-          vm_gateway   =  "200.1.1.240"
-          vm_dns1    = var.vm_dns1
-          vm_dns2    = var.vm_dns2
-          vm_user = var.vm_user
-          vm_public_key = var.public_key
-        }))
-
-        provisioner "local-exec" {
-        command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'lu625,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file" 
-        }
- }
-# END ANSIBLE MANAGED BLOCK LU625
-
 # # BEGIN ANSIBLE MANAGED BLOCK LU726BIS (DMZ)
 # resource "vsphere_virtual_machine" "LU726BIS" {
 #   resource_pool_id     = data.vsphere_resource_pool.esx_pool.id
@@ -431,3 +373,60 @@ resource "nutanix_virtual_machine" "LU718" {
         }
  }
 # END ANSIBLE MANAGED BLOCK LU718
+# BEGIN ANSIBLE MANAGED BLOCK VSL-POC-AIA-001
+resource "nutanix_virtual_machine" "VSL-POC-AIA-001" {
+        name                 = "VSL-POC-AIA-001"
+        description          = "AIA POC LNX" 
+        provider             = nutanix.dc3
+        cluster_uuid         = data.nutanix_cluster.cluster651.metadata.uuid
+        num_vcpus_per_socket = "1"
+        num_sockets          = "4"
+        memory_size_mib      = "16384"
+        boot_type            = "UEFI"
+        nic_list {
+          subnet_uuid = var.ahv_651_network["New_PROD 192.168.25.x"]
+        }
+
+        disk_list {
+          data_source_reference = {
+             kind = "image"
+             uuid = data.nutanix_image.rhel8-dc3.metadata.uuid
+          }
+
+          device_properties {
+            disk_address = {
+              device_index = 0
+              adapter_type = "SCSI"
+            }
+            device_type = "DISK"
+          }
+        }
+
+        disk_list {
+          disk_size_mib = (100 * 1024)
+          storage_config {
+            storage_container_reference {
+              kind = "storage_container"
+              uuid = var.ahv_651_storage["NUT_AHV_DC3_01"]
+            }
+          }
+        }
+
+        #guest_customization_cloud_init_user_data = base64encode(data.template_file.cloud-init.rendered)
+        guest_customization_cloud_init_user_data = base64encode(templatefile("user-data.tpl", {
+          vm_domain         =  var.vm_domain 
+          vm_name       =  "vsl-poc-aia-001"
+          vm_ip   = "192.168.25.106"
+          vm_prefix = "24"
+          vm_gateway   =  "192.168.25.1"
+          vm_dns1    = var.vm_dns1
+          vm_dns2    = var.vm_dns2
+          vm_user = var.vm_user
+          vm_public_key = var.public_key
+        }))
+
+        provisioner "local-exec" {
+        command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'vsl-poc-aia-001,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file" 
+        }
+ }
+# END ANSIBLE MANAGED BLOCK VSL-POC-AIA-001
