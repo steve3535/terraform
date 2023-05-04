@@ -2,6 +2,7 @@
 
 ## Structure des repertoires  
 ```
+      /opt
        |  
 infrastructure Linux  
        |
