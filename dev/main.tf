@@ -386,7 +386,7 @@ resource "nutanix_virtual_machine" "VSL-POC-AIA-001" {
         memory_size_mib      = "16384"
         boot_type            = "UEFI"
         nic_list {
-          subnet_uuid = var.ahv_651_network["New_PROD 192.168.25.x"]
+          subnet_uuid = var.ahv_651_network["New_PROD"]
         }
 
         disk_list {
@@ -428,7 +428,7 @@ resource "nutanix_virtual_machine" "VSL-POC-AIA-001" {
         }))
 
         provisioner "local-exec" {
-        command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'vsl-poc-aia-001,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file" 
+        command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'vsl-poc-aia-001,' -e env=PROD config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file" 
         }
  }
 # END ANSIBLE MANAGED BLOCK VSL-POC-AIA-001
