@@ -1,9 +1,11 @@
 stages:
-  - parser
+  - parse_trigger #dummy stage to trigger the pipeline
+  - parse_convert_to_csv 
+  - parse_convert_to_yml 
   - ansible
   
 first_job:
-    stage: parser
+    stage: parse_trigger 
     script:
       - echo "Detected useful changes, starting ..."      
     tags:
@@ -16,7 +18,7 @@ parse_job_1:
     before_script:
       - cd dev
       - https_proxy=172.22.108.7:80 pip3 install -r requirements.txt 
-    stage: parser 
+    stage: parse_convert_to_csv 
     script:
       - python3 convert_to_csv.py
     tags:
@@ -26,7 +28,7 @@ parse_job_1:
         - "dev/vmdefs.xlsx"
 
 parse_job_2:
-    stage: parser
+    stage: parse_convert_to_yml
     before_script:
       - cd dev
     script:
