@@ -26,13 +26,13 @@ data "nutanix_image" "rhel8-dc3" {
   provider   = nutanix.dc3
 }
 
-provider "nutanix" {
-  username = var.nutanix_username
-  password = var.nutanix_password
-  endpoint = "lu652"
-  insecure = true
-  alias    = "dc1"
-}
+# provider "nutanix" {
+#   username = var.nutanix_username
+#   password = var.nutanix_password
+#   endpoint = "lu652"
+#   insecure = true
+#   alias    = "dc1"
+# }
 
 ## DECOMISSIONED
 # data "nutanix_cluster" "cluster480" {
@@ -40,15 +40,15 @@ provider "nutanix" {
 #   provider = nutanix.dc1
 # }
 
-data "nutanix_cluster" "cluster650" {
-  name     = "LU650"
-  provider = nutanix.dc1
-}
+# data "nutanix_cluster" "cluster650" {
+#   name     = "LU650"
+#   provider = nutanix.dc1
+# }
 
-data "nutanix_image" "rhel8-dc1" {
-  image_name = "RHEL8STD"
-  provider   = nutanix.dc1
-}
+# data "nutanix_image" "rhel8-dc1" {
+#   image_name = "RHEL8STD"
+#   provider   = nutanix.dc1
+# }
 
 provider "vsphere" {
   vsphere_server = var.vsphere_server
