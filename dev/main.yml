@@ -1,6 +1,6 @@
 ---
 - hosts: localhost
-  vars_files: user_files/params.yml
+  vars_files: params.yml
   tasks:
   - name: insert a new LAN VM block
     blockinfile:
