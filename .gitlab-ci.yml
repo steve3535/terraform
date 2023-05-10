@@ -38,5 +38,5 @@ parse_job_2:
 ansible_playbook_generation:
     stage: ansible 
     script:
+      - cd dev 
       - ansible-playbook main.yml 
-      
