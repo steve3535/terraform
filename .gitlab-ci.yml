@@ -1,16 +1,10 @@
 stages:
-  - trigger_on_excel
-  - convert_to_csv
-  - convert_to_yml
-
+  - parser
+  - ansible
+  
 first_job:
-    stage: trigger_on_excel
+    stage: parser
     script:
-      #- export VMDEFS_CHANGED="false"
-      - cd dev
-      #- echo "Received event - lets find out if the changes concern the addition or modification VM"
-      #- git diff --name-only HEAD^ HEAD -- '*.xlsx' | grep -q vmdefs && echo "Ajout ou modif du fichier de def. VM." && export VMDEFS_CHANGED="true"
-      #- if ["$VMDEFS_CHANGED" == "false" ]; then exit 0 ; fi
       - echo "Detected useful changes, starting ..."      
     tags:
       - shell
@@ -19,16 +13,11 @@ first_job:
         - "dev/vmdefs.xlsx"
       
 parse_job_1:
-    #image: python:3.9
     before_script:
-      #- pwd
-      #- ls
       - cd dev
       - https_proxy=172.22.108.7:80 pip3 install -r requirements.txt 
-    stage: convert_to_csv 
+    stage: parser 
     script:
-      #- echo $CI_PROJECT_DIR
-      #- pip3 install -r requirements.txt
       - python3 convert_to_csv.py
     tags:
       - shell
@@ -37,9 +26,8 @@ parse_job_1:
         - "dev/vmdefs.xlsx"
 
 parse_job_2:
-    stage: convert_to_yml
+    stage: parser
     before_script:
-      - pwd
       - cd dev
     script:
       - python3 convert_to_yml.py
