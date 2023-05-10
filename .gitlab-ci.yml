@@ -12,7 +12,7 @@ first_job:
       - shell
     rules:
     - changes:
-        - "dev/vmdefs.xlsx"
+        - "dev/vmdefs.xlsx" #if change happens here, the pipeline is triggered 
       
 parse_job_1:
     before_script:
@@ -23,9 +23,9 @@ parse_job_1:
       - python3 convert_to_csv.py
     tags:
       - shell
-    rules:
-    - changes:
-        - "dev/vmdefs.xlsx"
+    # rules:
+    # - changes:
+    #     - "dev/vmdefs.xlsx"
 
 parse_job_2:
     stage: parse_convert_to_yml
@@ -37,7 +37,7 @@ parse_job_2:
       - shell
     needs:
       - parse_job_1
-    rules:
-    - changes:
-        - "dev/vmdefs.xlsx"
+    # rules:
+    # - changes:
+    #     - "dev/vmdefs.xlsx"
       
