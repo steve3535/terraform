@@ -23,10 +23,7 @@ parse_job_1:
       - python3 convert_to_csv.py
     tags:
       - shell
-    # rules:
-    # - changes:
-    #     - "dev/vmdefs.xlsx"
-
+    
 parse_job_2:
     stage: parse_convert_to_yml
     before_script:
@@ -37,7 +34,4 @@ parse_job_2:
       - shell
     needs:
       - parse_job_1
-    # rules:
-    # - changes:
-    #     - "dev/vmdefs.xlsx"
       
