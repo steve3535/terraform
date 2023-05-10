@@ -35,3 +35,8 @@ parse_job_2:
     needs:
       - parse_job_1
       
+ansible_playbook_generation:
+    stage: ansible 
+    script:
+      - ansible-playbook main.yml 
+      
