@@ -12,6 +12,8 @@ first_job:
       #- git diff --name-only HEAD^ HEAD -- '*.xlsx' | grep -q vmdefs && echo "Ajout ou modif du fichier de def. VM." && export VMDEFS_CHANGED="true"
       #- if ["$VMDEFS_CHANGED" == "false" ]; then exit 0 ; fi
       - echo "Detected useful changes, starting ..."      
+    tags:
+      - shell
     rules:
     - changes:
         - "dev/vmdefs.xlsx"
