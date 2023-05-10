@@ -10,10 +10,11 @@ provider "nutanix" {
   alias    = "dc3"
 }
 
-data "nutanix_cluster" "cluster481" {
-  name     = "LU481"
-  provider = nutanix.dc3
-}
+## DECOMISSIONED 
+# data "nutanix_cluster" "cluster481" {
+#   name     = "LU481"
+#   provider = nutanix.dc3
+# }
 
 data "nutanix_cluster" "cluster651" {
   name     = "LU651"
@@ -33,10 +34,11 @@ provider "nutanix" {
   alias    = "dc1"
 }
 
-data "nutanix_cluster" "cluster480" {
-  name     = "LU480"
-  provider = nutanix.dc1
-}
+## DECOMISSIONED
+# data "nutanix_cluster" "cluster480" {
+#   name     = "LU480"
+#   provider = nutanix.dc1
+# }
 
 data "nutanix_cluster" "cluster650" {
   name     = "LU650"
