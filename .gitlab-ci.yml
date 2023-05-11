@@ -3,6 +3,7 @@ stages:
   - parse_convert_to_csv 
   - parse_convert_to_yml 
   - ansible
+  - tf_check
   
 first_job:
     stage: parse_trigger 
@@ -40,3 +41,8 @@ ansible_playbook_generation:
     script:
       - cd dev 
       - ansible-playbook main.yml 
+
+terraform_check:
+    stage: tf_check
+    script:
+      - terraform plan --var-file $HOME/.infra.tfvars 

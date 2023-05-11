@@ -436,20 +436,20 @@ resource "nutanix_virtual_machine" "VSL-POC-AIA-001" {
 resource "nutanix_virtual_machine" "LU717" {
         name                 = "LU717"
         description          = "VM TEST LINUX -- kwk --" 
-        provider             = nutanix.dc1
-        cluster_uuid         = data.nutanix_cluster.cluster650.metadata.uuid
+        provider             = nutanix.dc3
+        cluster_uuid         = data.nutanix_cluster.cluster651.metadata.uuid
         num_vcpus_per_socket = "1"
         num_sockets          = "1"
         memory_size_mib      = "2048"
         boot_type            = "UEFI"
         nic_list {
-          subnet_uuid = var.ahv_650_network["Production"]
+          subnet_uuid = var.ahv_651_network["Production"]
         }
 
         disk_list {
           data_source_reference = {
              kind = "image"
-             uuid = data.nutanix_image.rhel8-dc1.metadata.uuid
+             uuid = data.nutanix_image.rhel8-dc3.metadata.uuid
           }
 
           device_properties {
@@ -466,7 +466,7 @@ resource "nutanix_virtual_machine" "LU717" {
           storage_config {
             storage_container_reference {
               kind = "storage_container"
-              uuid = var.ahv_650_storage["NUT_AHV_DC1_01"]
+              uuid = var.ahv_651_storage["NUT_AHV_DC3_01"]
             }
           }
         }
