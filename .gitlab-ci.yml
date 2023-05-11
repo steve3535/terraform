@@ -50,7 +50,7 @@ terraform_check:
     stage: tf_check
     script:
       - cd dev
-      - cat main.yml 
+      - cat main.tf 
       - terraform validate
       - terraform plan --var-file=/opt/infrastructure-linux/terraform/dev/.infra.tfvars 
 

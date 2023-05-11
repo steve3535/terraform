@@ -435,7 +435,7 @@ resource "nutanix_virtual_machine" "VSL-POC-AIA-001" {
 # BEGIN ANSIBLE MANAGED BLOCK LU717
 resource "nutanix_virtual_machine" "LU717" {
         name                 = "LU717"
-        description          = "VM TEST LINUX -- mk417 --" 
+        description          = "VM TEST LINUX -- MK417 --" 
         provider             = nutanix.dc3
         cluster_uuid         = data.nutanix_cluster.cluster651.metadata.uuid
         num_vcpus_per_socket = "1"
