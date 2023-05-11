@@ -45,4 +45,4 @@ ansible_playbook_generation:
 terraform_check:
     stage: tf_check
     script:
-      - terraform plan --var-file $HOME/.infra.tfvars 
+      - terraform plan --var-file /home/lalux.local/mk417/.infra.tfvars 
