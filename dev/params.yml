@@ -37,7 +37,7 @@ lan_vms:
   
   LU717:  
     name: "LU717"  
-    descr: "VM TEST LINUX -- kwk --"  
+    descr: "VM TEST LINUX -- mk417 --"  
     hostname: "lu717"  
     datacenter: nutanix.dc3  
     image: rhel8-dc3  
