@@ -23,6 +23,9 @@ parse_job_1:
     stage: parse_convert_to_csv 
     script:
       - python3 convert_to_csv.py
+    artifacts:
+      paths:
+      - dev/vmdefs.csv
     tags:
       - shell
     
@@ -30,8 +33,12 @@ parse_job_2:
     stage: parse_convert_to_yml
     before_script:
       - cd dev
+      - cat vmdefs.csv
     script:
       - python3 convert_to_yml.py
+    artifacts:
+      paths:
+      - dev/params.yml
     tags:
       - shell
     needs:
@@ -44,7 +51,7 @@ ansible_playbook_generation:
       - ansible-playbook main.yml 
     artifacts:
       paths:
-      - main.tf 
+      - dev/main.tf 
 
 terraform_check:
     stage: tf_check
