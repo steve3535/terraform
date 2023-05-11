@@ -24,7 +24,7 @@ lan_vms:
     datacenter: nutanix.dc3  
     image: rhel8-dc3  
     cluster: cluster651  
-    subnet: var.ahv_651_network["New_PROD"]  
+    subnet: var.ahv_651_network["New_PROD 192.168.25.x"]  
     storage: var.ahv_651_storage["NUT_AHV_DC3_01"]  
     mem: 16384  
     cpu: 4  

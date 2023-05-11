@@ -4,6 +4,7 @@ stages:
   - parse_convert_to_yml 
   - ansible
   - tf_check
+  - tf_apply
   
 first_job:
     stage: parse_trigger 
@@ -48,3 +49,10 @@ terraform_check:
       - cd dev
       - terraform validate
       - terraform plan --var-file=/opt/infrastructure-linux/terraform/dev/.infra.tfvars 
+
+terraform_apply:
+    stage: tf_apply 
+    script: 
+      - cd dev 
+      - terraform apply --var-file=/opt/infrastructure-linux/terraform/dev/.infra.tfvars
+    when: manual 
