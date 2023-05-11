@@ -25,7 +25,7 @@ parse_job_1:
       - python3 convert_to_csv.py
     artifacts:
       paths:
-      - dev/vmdefs.csv
+      - dev/vmdefs.csv 
     tags:
       - shell
     
