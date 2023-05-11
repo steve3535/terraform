@@ -35,7 +35,7 @@ parse_job_2:
       - cd dev
       - cat vmdefs.csv
     script:
-      - python3 convert_to_yml.py dev/vmdefs.csv
+      - python3 convert_to_yml.py vmdefs.csv
     artifacts:
       paths:
       - dev/params.yml
