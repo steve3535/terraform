@@ -39,11 +39,11 @@ lan_vms:
     name: "LU717"  
     descr: "VM TEST LINUX -- kwk --"  
     hostname: "lu717"  
-    datacenter: nutanix.dc1  
-    image: rhel8-dc1  
-    cluster: cluster650  
-    subnet: var.ahv_650_network["Production"]  
-    storage: var.ahv_650_storage["NUT_AHV_DC1_01"]  
+    datacenter: nutanix.dc3  
+    image: rhel8-dc3  
+    cluster: cluster651  
+    subnet: var.ahv_651_network["Production"]  
+    storage: var.ahv_651_storage["NUT_AHV_DC3_01"]  
     mem: 2048  
     cpu: 1  
     cpu_socket: 1  
