@@ -386,7 +386,7 @@ resource "nutanix_virtual_machine" "VSL-POC-AIA-001" {
         memory_size_mib      = "16384"
         boot_type            = "UEFI"
         nic_list {
-          subnet_uuid = var.ahv_651_network["New_PROD"]
+          subnet_uuid = var.ahv_651_network["New_PROD 192.168.25.x"]
         }
 
         disk_list {
