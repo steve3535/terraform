@@ -46,4 +46,5 @@ terraform_check:
     stage: tf_check
     script:
       - cd dev
-      - terraform plan --var-file .infra.tfvars 
+      - terraform validate
+      - terraform plan --var-file /opt/infrastructure-linux/terraform/dev/.infra.tfvars 
