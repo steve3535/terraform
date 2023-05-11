@@ -58,5 +58,5 @@ terraform_apply:
     stage: tf_apply 
     script: 
       - cd dev 
-      - terraform apply --var-file=/opt/infrastructure-linux/terraform/dev/.infra.tfvars
+      - terraform apply --var-file=/opt/infrastructure-linux/terraform/dev/.infra.tfvars --auto-approve
     when: manual 
