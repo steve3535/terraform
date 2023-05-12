@@ -1,7 +1,7 @@
 import sys
 #excel_filename = "/opt/infrastructure-linux/terraform/dev/vmdefs.csv" 
 excel_filename = sys.argv[1]
-yaml_filename = "/opt/infrastructure-linux/terraform/dev/params.yml"
+yaml_filename = "params.yml"
 ctr = 0 
 lan_vms=[]
 dmz_vms=[]

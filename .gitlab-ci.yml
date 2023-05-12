@@ -54,8 +54,8 @@ parse_job_2:
 ansible_playbook_generation:
     stage: ansible 
     script:
-      - cat dev/params.yml
-      - cd dev 
+      - cd dev
+      - cd params.yml 
       - ansible-playbook main.yml 
     artifacts:
       paths:
