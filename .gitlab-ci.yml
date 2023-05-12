@@ -24,8 +24,9 @@ parse_job_1:
     script:
       - python3 convert_to_csv.py
     artifacts:
+      untracked: true
       paths:
-      - dev/vmdefs.csv 
+      - vmdefs.csv 
     tags:
       - shell
     
@@ -36,9 +37,10 @@ parse_job_2:
       - cat vmdefs.csv
     script:
       - python3 convert_to_yml.py vmdefs.csv
-    artifacts:      
+    artifacts:
+      untracked: true      
       paths:
-      - dev/params.yml
+      - params.yml
     tags:
       - shell
     # needs:
