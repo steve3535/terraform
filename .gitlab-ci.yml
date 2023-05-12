@@ -32,6 +32,8 @@ parse_job_1:
     
 parse_job_2:
     stage: parse_convert_to_yml
+    dependencies:
+      - parse_job_1
     before_script:
       - cd dev
       - cat vmdefs.csv
@@ -43,8 +45,7 @@ parse_job_2:
       - dev/params.yml
     tags:
       - shell
-    dependencies:
-      - parse_job_1
+    
     # needs:
     #   - parse_job_1
     
