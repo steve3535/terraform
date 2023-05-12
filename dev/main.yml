@@ -60,7 +60,7 @@
                    command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i '{{ item.value.hostname }},' -e env={{ item.value.satellite_env }} config.yml -u ${var.vm_user} -b --vault-password-file {{ lookup('env','ANSIBLE_VAULT') }}/.vault_password_file" 
                    }
             }
-        path: /opt/infrastructure-linux/terraform/dev/main.tf
+        path: main.tf
         marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.key|upper }}"
     loop: "{{ q('dict',lan_vms) }}"
     when: lan_vms is defined 
@@ -147,7 +147,7 @@
           }
 
         }
-      path: /opt/infrastructure-linux/terraform/dev/main.tf  
+      path: main.tf  
       marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.key|upper }} (DMZ)"
     loop: "{{ q('dict',dmz_vms) }}"
     when: dmz_vms is defined 
