@@ -36,13 +36,14 @@ parse_job_2:
       - cat vmdefs.csv
     script:
       - python3 convert_to_yml.py vmdefs.csv
-    artifacts:
+    artifacts:      
       paths:
       - dev/params.yml
     tags:
       - shell
-    needs:
-      - parse_job_1
+    # needs:
+    #   - parse_job_1
+    
       
 ansible_playbook_generation:
     stage: ansible 
