@@ -55,7 +55,7 @@ ansible_playbook_generation:
     stage: ansible 
     script:
       - cd dev
-      - cd params.yml 
+      - cat params.yml 
       - ansible-playbook main.yml 
     artifacts:
       paths:
