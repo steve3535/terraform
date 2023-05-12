@@ -1,5 +1,5 @@
 stages:
-  - parse_trigger #dummy stage to trigger the pipeline
+  - parse_trigger #dummy stage to trigger the pipe
   - parse_convert_to_csv 
   - parse_convert_to_yml 
   - ansible
