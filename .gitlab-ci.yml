@@ -23,6 +23,7 @@ parse_job_1:
     stage: parse_convert_to_csv 
     script:
       - python3 convert_to_csv.py
+      - cat vmdefs.csv
     artifacts:
       untracked: true
       paths:
