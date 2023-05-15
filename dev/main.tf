@@ -40,15 +40,15 @@ provider "nutanix" {
 #   provider = nutanix.dc1
 # }
 
-# data "nutanix_cluster" "cluster650" {
-#   name     = "LU650"
-#   provider = nutanix.dc1
-# }
+data "nutanix_cluster" "cluster650" {
+  name     = "LU650"
+  provider = nutanix.dc1
+}
 
-# data "nutanix_image" "rhel8-dc1" {
-#   image_name = "RHEL8STD"
-#   provider   = nutanix.dc1
-# }
+data "nutanix_image" "rhel8-dc1" {
+  image_name = "RHEL8STD"
+  provider   = nutanix.dc1
+}
 
 provider "vsphere" {
   vsphere_server = var.vsphere_server

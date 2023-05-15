@@ -71,6 +71,8 @@ terraform_check:
 
 terraform_apply:
     stage: tf_apply 
+    before_script:
+      - ansible-galaxy install -r requirements.yml
     script: 
       - cd dev 
       - terraform apply --var-file=/opt/infrastructure-linux/terraform/dev/.infra.tfvars --auto-approve
