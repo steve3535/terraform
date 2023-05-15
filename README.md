@@ -69,3 +69,27 @@ Ces données sont regroupées dans le fichier terraform.tfvars quine fait pas pa
 ## POST INSTALLATION  
     
 
+
+
+## utilisation des rôles ansible depuis le Gitlab CI
+- en manuel, il fallait installer initialement le role a partir du fichier requirements.yml, le role etant stocké dans gitlab  
+  rappel: en pullant un role comme ca dun scm, il sinstalle dans le repertoire perso de lutilisateur  
+  ici, lutilisateur est gitlab-runner, il faut donc trouver le moyen de lui faire recuperer le role: `ansible-galaxy install -r requirements.yml`    
+  *solution: on met la commande ansible-galaxy en before_script*   
+- le ansible-galaxy tente daller sur le net et ca ralentit tout, mais on ne v apas utiliser de proxy     
+  rappel: le fichier de config utilisé par défaut est bien /etc/ansible/ansible.cfg   
+  ajout de la section [galaxy] et en dessous *server = ignore*  
+- par defaut, la commande dinstallation du role prompt pour des credentials  
+  *solution: utiliser des access token dans l'URL*  
+  generer un token depuis le UI du project (dans settings) - date expiration = fin dannée, ensuite modifier l'URL dans requirements.yml:  
+  src: http://oauth2:LZgzqJWDMHZzRc7RnSMw@lu687:8090/infrastructure/linux/ansible_roles/satellite_enrollment.git  
+-  enfin le pb de la clef ssh localadmin: je ne vois pas dautres moyens que de la bake dans lenvironnement OS de gitlab-runner  
+- ETRE EXTREMEMENT PRUDENT AVEC le IAC (en locurence ici avec terraform)  
+  e.g. un simple changement de public key a injecter dans le cloud init user data a entrainer la destruction/recreation de resources !  
+  pour le moment, ce ke je pense cest que:  
+  - il faut creer a nouveau un 4eme env de 'dev infra' (vrai lab pour infra)  
+  - tjrs regarder le output du terraform plan  
+  
+
+
+
