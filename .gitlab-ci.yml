@@ -73,8 +73,10 @@ terraform_apply:
     stage: tf_apply 
     before_script:
       - cd dev 
-      - ansible-galaxy install -r requirements.yml
+      - !
+        if ! ansible-galaxy list | grep -q 'satellite'; then
+          ansible-galaxy install -r requirements.yml
+        fi 
     script: 
-      - cd dev 
       - terraform apply --var-file=/opt/infrastructure-linux/terraform/dev/.infra.tfvars --auto-approve
     when: manual 
