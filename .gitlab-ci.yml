@@ -72,6 +72,7 @@ terraform_check:
 terraform_apply:
     stage: tf_apply 
     before_script:
+      - cd dev 
       - ansible-galaxy install -r requirements.yml
     script: 
       - cd dev 
