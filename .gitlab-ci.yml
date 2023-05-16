@@ -78,4 +78,5 @@ terraform_apply:
       - terraform apply --var-file=/opt/infrastructure-linux/terraform/dev/.infra.tfvars --auto-approve
       - cp terraform.state /opt/infrastructure-linux/terraform/dev/
       - cp main.tf /opt/infrastructure-linux/terraform/dev/
+      - cp params.yml /opt/infrastructure-linux/terraform/dev/
     when: manual 
