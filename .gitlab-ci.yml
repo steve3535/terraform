@@ -53,7 +53,7 @@ ansible_playbook_generation:
     script:
       #- cat params.yml 
       - ansible-playbook main.yml 
-      - cp main.yml /opt/iac/terraform/
+      - cp main.tf /opt/iac/terraform/
     artifacts:
       paths:
       - main.tf 
