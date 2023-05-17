@@ -1,7 +1,7 @@
 {
   "version": 4,
   "terraform_version": "1.3.3",
-  "serial": 183,
+  "serial": 182,
   "lineage": "87e4a7b9-cba7-61d3-2b05-803d42fc7d99",
   "outputs": {},
   "resources": [
@@ -863,6 +863,186 @@
             "name": "Cluster NUTANIX DMZ/Resources"
           },
           "sensitive_attributes": []
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "nutanix_virtual_machine",
+      "name": "LU717",
+      "provider": "provider[\"registry.terraform.io/nutanix/nutanix\"].dc3",
+      "instances": [
+        {
+          "status": "tainted",
+          "schema_version": 1,
+          "attributes": {
+            "api_version": "3.1",
+            "availability_zone_reference": {},
+            "boot_device_disk_address": {},
+            "boot_device_mac_address": "",
+            "boot_device_order_list": [],
+            "boot_type": "UEFI",
+            "categories": [],
+            "cloud_init_cdrom_uuid": "3feae3a5-b23f-4907-89ca-a23fa5945035",
+            "cluster_name": "LU651",
+            "cluster_uuid": "0005bad6-a969-e524-1d79-ac1f6b3ddf74",
+            "description": "VM TEST LINUX -- kwk --",
+            "disk_list": [
+              {
+                "data_source_reference": {
+                  "kind": "image",
+                  "uuid": "56af4655-6323-4d95-b6c2-b821b240c3c9"
+                },
+                "device_properties": [
+                  {
+                    "device_type": "DISK",
+                    "disk_address": {
+                      "adapter_type": "SCSI",
+                      "device_index": "0"
+                    }
+                  }
+                ],
+                "disk_size_bytes": 53687091200,
+                "disk_size_mib": 51200,
+                "storage_config": [
+                  {
+                    "flash_mode": "",
+                    "storage_container_reference": [
+                      {
+                        "kind": "storage_container",
+                        "name": "SelfServiceContainer",
+                        "url": "",
+                        "uuid": "14a956d7-8c65-465b-9fa2-d34e8c9e4b8f"
+                      }
+                    ]
+                  }
+                ],
+                "uuid": "1d0fc7f1-d906-4d5d-ad6a-6397cae5c2d6",
+                "volume_group_reference": {}
+              },
+              {
+                "data_source_reference": {},
+                "device_properties": [
+                  {
+                    "device_type": "DISK",
+                    "disk_address": {
+                      "adapter_type": "SCSI",
+                      "device_index": "1"
+                    }
+                  }
+                ],
+                "disk_size_bytes": 107374182400,
+                "disk_size_mib": 102400,
+                "storage_config": [
+                  {
+                    "flash_mode": "",
+                    "storage_container_reference": [
+                      {
+                        "kind": "storage_container",
+                        "name": "NUT_AHV_DC3_01",
+                        "url": "",
+                        "uuid": "bc8f3bc4-900a-4458-aadd-85f557f5bcd2"
+                      }
+                    ]
+                  }
+                ],
+                "uuid": "5f1d0a60-73d3-4c98-bdf5-4b8dc49d997b",
+                "volume_group_reference": {}
+              }
+            ],
+            "enable_cpu_passthrough": false,
+            "enable_script_exec": false,
+            "gpu_list": [],
+            "guest_customization_cloud_init_custom_key_values": {},
+            "guest_customization_cloud_init_meta_data": "",
+            "guest_customization_cloud_init_user_data": "I2Nsb3VkLWNvbmZpZwpydW5jbWQ6CiAgLSBubWNsaSBjb24gbW9kICJTeXN0ZW0gZW5zMyIgaXB2NC5tZXRob2QgbWFudWFsIGlwdjQuYWRkcmVzc2VzIDIwMC4xLjEuMTA2LzI0IGlwdjQuZ2F0ZXdheSAyMDAuMS4xLjI0MCBpcHY0LmRucyAiMjAwLjEuMS4xNjMgMjAwLjEuMS4yMTgiCiAgLSBubWNsaSBjb24gbW9kICJTeXN0ZW0gZW5zMyIgY29uLW5hbWUgZW5zMwogIC0gbm1jbGkgY29uIHVwIGVuczMKCmhvc3RuYW1lOiBsdTcxNwpmcWRuOiBsdTcxNy5sYWx1eC5sb2NhbAoKdXNlcnM6CiAgLSBuYW1lOiBsb2NhbGFkbWluCiAgICBzc2gtYXV0aG9yaXplZC1rZXlzOgogICAgICAtIHNzaC1yc2EgQUFBQUIzTnphQzF5YzJFQUFBQURBUUFCQUFBQmdRRFV4Slh4RC9TRmthUTJGY0Z0RUgzYU9GbFNPMURlMCtQRW5PVWo5bElJWVNNWTBuaW1vNmVweUVmdjdOdEp3UUJQSFdKWU96b1VBZTQ5YjRyQi95OFpYUjNDK3hFS3NwRDdlYnFiUUM5aFY2Z0ZON015K2duVHVTVnNZdFVYd01TdXlSdUtuZS94dTJUZlRRWXBJbUp0NFVuQnl5NVVCYnMraWZRRFdCK2dvWlNNUGtnUDQ1b2lUQ0xuaW9Hd1ZRYlhrczVPN2tJM0lJbnZFYzMxaVBBNFJWdXN4bWs2UUVIemU1SjEwQWNDRXkwM1JWUFh1WUIzS05zSTJVWGVldlpkTVY2MTJkb3R5MUlFMzZxZ1JaVzV4TllVZVMyNVhOck9WTk15UldvUVdKWUx2eDVycnlCcDY5QnROZzFoVWp4M2IrT3hsTkVobmZJcXpTSzZ1WEFlRWlqMi9ESGNqd09xU0NqWTZKbWtDaDdkQWJXVklFcTk2ZmFIRjlDM0lsVDZnYkYzUnRrRmFaNWh2dGNXaXlibUpLWk1lRHcwWU5XMi9IcVhSeHdhVzhxK1FqdWUvU3U5QW1JTElVYjN4elp3ZFVNTHBHMHNDVi9SK05BMUVWbDBQTWtVRUNSSTVadE5nZlU4M1RtTENET3FZMk1JM2x3OHhjaldoMWVDL05VPSBtazQxN0BsYWx1eC5sb2NhbEByaC1zdWJtYW4ubGFsdXgubG9jYWwKCg==",
+            "guest_customization_is_overridable": false,
+            "guest_customization_sysprep": {},
+            "guest_customization_sysprep_custom_key_values": {},
+            "guest_os_id": "",
+            "hardware_clock_timezone": "UTC",
+            "host_reference": {
+              "kind": "host",
+              "name": "192.168.3.148",
+              "uuid": "988b4e59-f514-4641-b18f-b963232bedbe"
+            },
+            "hypervisor_type": null,
+            "id": "ca6f361a-17aa-4123-b9f7-40293c1d2a6d",
+            "is_vcpu_hard_pinned": false,
+            "machine_type": "PC",
+            "memory_size_mib": 2048,
+            "metadata": {
+              "creation_time": "2023-05-11 09:22:03 +0000 UTC",
+              "last_update_time": "2023-05-11 09:22:03 +0000 UTC",
+              "name": "",
+              "spec_hash": "",
+              "spec_version": "0",
+              "uuid": "ca6f361a-17aa-4123-b9f7-40293c1d2a6d"
+            },
+            "name": "LU717",
+            "ngt_credentials": {},
+            "ngt_enabled_capability_list": [],
+            "nic_list": [
+              {
+                "ip_endpoint_list": [],
+                "is_connected": "true",
+                "mac_address": "50:6b:8d:c4:df:43",
+                "model": "",
+                "network_function_chain_reference": {},
+                "network_function_nic_type": "",
+                "nic_type": "NORMAL_NIC",
+                "num_queues": 0,
+                "subnet_name": "Production",
+                "subnet_uuid": "5e33cdaf-d482-4353-b2b0-a74cbff387c8",
+                "uuid": "bde8724e-5170-44bd-bd78-bc1741c99d77"
+              }
+            ],
+            "nic_list_status": [
+              {
+                "floating_ip": "",
+                "ip_endpoint_list": [],
+                "is_connected": "true",
+                "mac_address": "50:6b:8d:c4:df:43",
+                "model": "",
+                "network_function_chain_reference": {},
+                "network_function_nic_type": "",
+                "nic_type": "NORMAL_NIC",
+                "num_queues": 0,
+                "subnet_name": "Production",
+                "subnet_uuid": "5e33cdaf-d482-4353-b2b0-a74cbff387c8",
+                "uuid": "bde8724e-5170-44bd-bd78-bc1741c99d77"
+              }
+            ],
+            "num_sockets": 1,
+            "num_vcpus_per_socket": 1,
+            "num_vnuma_nodes": 0,
+            "nutanix_guest_tools": {},
+            "owner_reference": {
+              "kind": "user",
+              "name": "kwakou.missoh@lalux.lu",
+              "uuid": "cee7acb0-a3ec-5884-98df-ec80fecf83d6"
+            },
+            "parent_reference": {},
+            "power_state": "ON",
+            "power_state_mechanism": "HARD",
+            "project_reference": {
+              "kind": "project",
+              "name": "_internal",
+              "uuid": "996d167c-54de-428a-9b36-a265ab1d2916"
+            },
+            "serial_port_list": [],
+            "should_fail_on_script_failure": false,
+            "state": "COMPLETE",
+            "timeouts": null,
+            "use_hot_add": true,
+            "vga_console_enabled": true
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozNjAwMDAwMDAwMDAwLCJkZWxldGUiOjM2MDAwMDAwMDAwMDAsInVwZGF0ZSI6MzYwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "data.nutanix_cluster.cluster651",
+            "data.nutanix_image.rhel8-dc3"
+          ]
         }
       ]
     }

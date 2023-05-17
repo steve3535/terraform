@@ -22,7 +22,7 @@ parse_job_1:
     stage: parse_convert_to_csv 
     script:
       - python3 convert_to_csv.py
-      - cat vmdefs.csv 
+      #- cat vmdefs.csv 
       - cp vmdefs.csv /opt/iac/terraform/
     artifacts:
       untracked: true
@@ -36,7 +36,7 @@ parse_job_2:
     dependencies:
       - parse_job_1
     before_script:
-      - cat vmdefs.csv
+      #- cat vmdefs.csv
     script:
       - python3 convert_to_yml.py vmdefs.csv
       - cp params.yml /opt/iac/terraform/
@@ -46,16 +46,17 @@ parse_job_2:
       - params.yml
     tags:
       - shell
-    
-         
-# ansible_playbook_generation:
-#     stage: ansible 
-#     script:
-#       - cat params.yml 
-#       - ansible-playbook main.yml 
-#     artifacts:
-#       paths:
-#       - main.tf 
+  
+       
+ansible_playbook_generation:
+    stage: ansible 
+    script:
+      #- cat params.yml 
+      - ansible-playbook main.yml 
+      - cp main.yml /opt/iac/terraform/
+    artifacts:
+      paths:
+      - main.tf 
 
 # terraform_check:
 #     stage: tf_check
