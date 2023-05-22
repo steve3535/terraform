@@ -4,7 +4,7 @@ stages:
   - parse_convert_to_yml 
   - ansible #generates main.tf based on previous stage yml output file
   - tf_check
-#   - tf_apply
+  - tf_apply
   
 first_job:
     stage: parse_trigger 
