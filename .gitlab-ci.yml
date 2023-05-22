@@ -2,7 +2,7 @@ stages:
   - parse_trigger #dummy stage to trigger the pipe
   - parse_convert_to_csv 
   - parse_convert_to_yml 
-  - ansible
+  - ansible #generates main.tf based on previous stage yml output file
 #   - tf_check
 #   - tf_apply
   
@@ -58,12 +58,12 @@ ansible_playbook_generation:
       paths:
       - main.tf 
 
-# terraform_check:
-#     stage: tf_check
-#     script:
+terraform_check:
+    stage: tf_check
+    script:
 #       - cat main.tf 
-#       - terraform validate
-#       - terraform plan --var-file=/opt/infrastructure-linux/terraform/dev/.infra.tfvars 
+      - terraform validate
+      - terraform plan --var-file=/opt/iac/terraform/creds/.infra.tfvars 
 
 # terraform_apply:
 #     stage: tf_apply 
