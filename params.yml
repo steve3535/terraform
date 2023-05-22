@@ -1,0 +1,19 @@
+lan_vms:  
+  LU717:  
+    name: "LU717"  
+    descr: "VM TEST LINUX -- MK417 --"  
+    hostname: "lu717"  
+    datacenter: nutanix.dc1  
+    image: rhel8-dc1  
+    cluster: cluster650  
+    subnet: var.ahv_650_network["Production"]  
+    storage: var.ahv_650_storage["NUT_AHV_DC1_01"]  
+    mem: 2048  
+    cpu: 1  
+    cpu_socket: 1  
+    disk2_size_gb: "100"  
+    ip: "200.1.1.106"  
+    net_prefix: "24"  
+    gw: "200.1.1.240"  
+    satellite_env: DEV_TEST
+  

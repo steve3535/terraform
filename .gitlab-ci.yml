@@ -63,16 +63,14 @@ terraform_check:
     script:
 #       - cat main.tf 
       - terraform validate
-      - terraform plan --var-file=/opt/iac/terraform/creds/.infra.tfvars 
+      - terraform plan -var-file=/opt/iac/terraform/creds/.infra.tfvars 
 
-# terraform_apply:
-#     stage: tf_apply 
-#     before_script:
-#       - cd dev 
-#       - if ! ansible-galaxy list | grep -q 'satellite'; then ansible-galaxy install -r requirements.yml; fi 
-#     script: 
-#       - terraform apply --var-file=/opt/infrastructure-linux/terraform/dev/.infra.tfvars --auto-approve
-#       - cp terraform.state /opt/infrastructure-linux/terraform/dev/
-#       - cp main.tf /opt/infrastructure-linux/terraform/dev/
-#       - cp params.yml /opt/infrastructure-linux/terraform/dev/
-#     when: manual 
+terraform_apply:
+    stage: tf_apply 
+    before_script:
+      - https_proxy=172.22.108.7:80
+      - if ! ansible-galaxy list | grep -q 'satellite'; then ansible-galaxy install -r requirements.yml; fi 
+    script: 
+      - terraform apply -var-file=/opt/iac/terraform/creds/.infra.tfvars
+      - cp terraform.state /opt/iac/terraform/
+    when: manual 
