@@ -1,19 +1,24 @@
-lan_vms:  
-  LU717:  
-    name: "LU717"  
-    descr: "VM TEST LINUX -- MK417 --"  
-    hostname: "lu717"  
-    datacenter: nutanix.dc1  
-    image: rhel8-dc1  
-    cluster: cluster650  
-    subnet: var.ahv_650_network["Production"]  
-    storage: var.ahv_650_storage["NUT_AHV_DC1_01"]  
-    mem: 2048  
-    cpu: 1  
+dmz_vms:  
+  VSL-PRO-GIT-001:  
+    name: "VSL-PRO-GIT-002"  
+    hostname: "vsl-pro-git-001"  
+    datacenter: NUT-DMZ-DC01  
+    content_library_item: esx_lib1_item  
+    host: nut-dmz-03  
+    network: PRO_DEPLOY_APP  
+    datastore: NUT_DMZ_INT_DC1_to_DC2  
+    folder:   
+    mem: 16384  
+    cpu: 4  
     cpu_socket: 1  
     disk2_size_gb: "100"  
-    ip: "200.1.1.106"  
+    ip: "172.23.45.1"  
     net_prefix: "24"  
-    gw: "200.1.1.240"  
-    satellite_env: DEV_TEST
+    gw: "172.23.45.254"  
+    vm_ip_last_octet: 1  
+    gw_ip_last_octet: 254  
+    subnet: 172.23.45.0/24  
+    user: localadmin  
+    resource_pool: esx_pool  
+    satellite_env: PROD
   
