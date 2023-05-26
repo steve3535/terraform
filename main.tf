@@ -260,6 +260,11 @@ data "vsphere_network" "PPR_MAGIC" {
   datacenter_id = data.vsphere_datacenter.esx_dc.id
 }
 
+data "vsphere_network" "PPR_SERVICES" {
+  name = "PPR_SERVICES"
+  datacenter_id = data.vsphere_datacenter.esx_dc.id
+}
+
 data "vsphere_network" "PPR_INNOVAS" {
   name = "PPR_INNOVAS"
   datacenter_id = data.vsphere_datacenter.esx_dc.id
@@ -474,3 +479,495 @@ resource "vsphere_virtual_machine" "VSL-PPR-RPE-001" {
 
 }
 # END ANSIBLE MANAGED BLOCK VSL-PPR-RPE-001 (DMZ)
+# BEGIN ANSIBLE MANAGED BLOCK VSL-PPR-RPI-001 (DMZ)
+resource "vsphere_virtual_machine" "VSL-PPR-RPI-001" {
+  resource_pool_id     = data.vsphere_resource_pool.esx_pool.id
+  host_system_id       = data.vsphere_host.nut-dmz-04.id 
+  datastore_id         = data.vsphere_datastore.NUT_DMZ_EXT_DC2_01.id 
+  firmware             = "efi"
+  name                 = "VSL-PPR-RPI-001" 
+  folder               = "/DMZ/Pre Prod"
+  num_cpus             = "2"
+  memory               = "4096"
+  wait_for_guest_net_timeout = 5
+  disk {
+    label            = "disk0"
+    size             = 50
+    controller_type  = "scsi"
+  }
+  disk {
+    label            = "disk1"
+    size             = 100
+    controller_type  = "scsi"
+    unit_number      = 1
+  }
+  cdrom {
+  }
+
+  clone {
+    template_uuid = data.vsphere_content_library_item.esx_lib2_item.id
+    customize {
+      linux_options {
+      host_name = "vsl-ppr-rpi-001"
+      domain    = var.vm_domain
+      }
+    
+    # Nécessaire malgré la config nmcli via le prov remote-exec car justement remote-exec a besoin d'une IP pour se connecter  
+      network_interface {
+        ipv4_address = cidrhost("172.24.41.0/24","1") 
+        ipv4_netmask = "24"
+      }
+      ipv4_gateway = cidrhost("172.24.41.0/24","254")
+      dns_server_list = [var.vm_dns1,var.vm_dns2]
+    }
+  }        
+  network_interface {
+    network_id = data.vsphere_network.PPR_REVERSE_PROXY_INT.id
+  }
+
+  provisioner "file" {
+    source = var.public_key_path
+    destination = "/tmp/authorized_keys"
+    connection {
+      type = "ssh"
+      user = var.vm_user
+      password = var.vm_password
+      host = "vsl-ppr-rpi-001"
+    }
+  }  
+
+  provisioner "remote-exec" {
+    inline = [
+      "mkdir /home/localadmin/.ssh",
+       "chmod 0700 /home/localadmin/.ssh",
+       "mv /tmp/authorized_keys /home/localadmin/.ssh/",
+       "chmod 0600 /home/localadmin/.ssh/authorized_keys",      
+       "sudo nmcli con mod 'System ${var.vsphere_interface_name}' ipv4.method manual ipv4.addresses 172.24.41.1/24 ipv4.gateway 172.24.41.254 connection.autoconnect yes",
+       "sudo nmcli con mod 'System ${var.vsphere_interface_name}' con-name ${var.vsphere_interface_name}",
+       "sudo nmcli con up ${var.vsphere_interface_name}",
+       "sudo dnf -y remove cloud-init"      
+    ]
+    connection {
+       type = "ssh"
+       user = "localadmin"
+       password = var.vm_password
+       host = "vsl-ppr-rpi-001"
+    }
+  }
+
+  provisioner "local-exec" {
+    command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'vsl-ppr-rpi-001,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file"
+  }
+
+}
+# END ANSIBLE MANAGED BLOCK VSL-PPR-RPI-001 (DMZ)
+# BEGIN ANSIBLE MANAGED BLOCK VSL-PPR-ALT-001 (DMZ)
+resource "vsphere_virtual_machine" "VSL-PPR-ALT-001" {
+  resource_pool_id     = data.vsphere_resource_pool.esx_pool.id
+  host_system_id       = data.vsphere_host.nut-dmz-06.id 
+  datastore_id         = data.vsphere_datastore.NUT_DMZ_INT_DC2_01.id 
+  firmware             = "efi"
+  name                 = "VSL-PPR-ALT-001" 
+  folder               = "/DMZ/Pre Prod"
+  num_cpus             = "2"
+  memory               = "4096"
+  wait_for_guest_net_timeout = 5
+  disk {
+    label            = "disk0"
+    size             = 50
+    controller_type  = "scsi"
+  }
+  disk {
+    label            = "disk1"
+    size             = 100
+    controller_type  = "scsi"
+    unit_number      = 1
+  }
+  cdrom {
+  }
+
+  clone {
+    template_uuid = data.vsphere_content_library_item.esx_lib2_item.id
+    customize {
+      linux_options {
+      host_name = "vsl-ppr-alt-001"
+      domain    = var.vm_domain
+      }
+    
+    # Nécessaire malgré la config nmcli via le prov remote-exec car justement remote-exec a besoin d'une IP pour se connecter  
+      network_interface {
+        ipv4_address = cidrhost("172.24.5.0/24","1") 
+        ipv4_netmask = "24"
+      }
+      ipv4_gateway = cidrhost("172.24.5.0/24","254")
+      dns_server_list = [var.vm_dns1,var.vm_dns2]
+    }
+  }        
+  network_interface {
+    network_id = data.vsphere_network.PPR_APPLICATIONS.id
+  }
+
+  provisioner "file" {
+    source = var.public_key_path
+    destination = "/tmp/authorized_keys"
+    connection {
+      type = "ssh"
+      user = var.vm_user
+      password = var.vm_password
+      host = "vsl-ppr-alt-001"
+    }
+  }  
+
+  provisioner "remote-exec" {
+    inline = [
+      "mkdir /home/localadmin/.ssh",
+       "chmod 0700 /home/localadmin/.ssh",
+       "mv /tmp/authorized_keys /home/localadmin/.ssh/",
+       "chmod 0600 /home/localadmin/.ssh/authorized_keys",      
+       "sudo nmcli con mod 'System ${var.vsphere_interface_name}' ipv4.method manual ipv4.addresses 172.24.5.1/24 ipv4.gateway 172.24.5.254 connection.autoconnect yes",
+       "sudo nmcli con mod 'System ${var.vsphere_interface_name}' con-name ${var.vsphere_interface_name}",
+       "sudo nmcli con up ${var.vsphere_interface_name}",
+       "sudo dnf -y remove cloud-init"      
+    ]
+    connection {
+       type = "ssh"
+       user = "localadmin"
+       password = var.vm_password
+       host = "vsl-ppr-alt-001"
+    }
+  }
+
+  provisioner "local-exec" {
+    command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'vsl-ppr-alt-001,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file"
+  }
+
+}
+# END ANSIBLE MANAGED BLOCK VSL-PPR-ALT-001 (DMZ)
+# BEGIN ANSIBLE MANAGED BLOCK VSL-PPR-APT-001 (DMZ)
+resource "vsphere_virtual_machine" "VSL-PPR-APT-001" {
+  resource_pool_id     = data.vsphere_resource_pool.esx_pool.id
+  host_system_id       = data.vsphere_host.nut-dmz-08.id 
+  datastore_id         = data.vsphere_datastore.NUT_DMZ_INT_DC2_01.id 
+  firmware             = "efi"
+  name                 = "VSL-PPR-APT-001" 
+  folder               = "/DMZ/Pre Prod"
+  num_cpus             = "4"
+  memory               = "20480"
+  wait_for_guest_net_timeout = 5
+  disk {
+    label            = "disk0"
+    size             = 50
+    controller_type  = "scsi"
+  }
+  disk {
+    label            = "disk1"
+    size             = 100
+    controller_type  = "scsi"
+    unit_number      = 1
+  }
+  cdrom {
+  }
+
+  clone {
+    template_uuid = data.vsphere_content_library_item.esx_lib2_item.id
+    customize {
+      linux_options {
+      host_name = "vsl-ppr-apt-001"
+      domain    = var.vm_domain
+      }
+    
+    # Nécessaire malgré la config nmcli via le prov remote-exec car justement remote-exec a besoin d'une IP pour se connecter  
+      network_interface {
+        ipv4_address = cidrhost("172.24.0.0/24","1") 
+        ipv4_netmask = "24"
+      }
+      ipv4_gateway = cidrhost("172.24.0.0/24","254")
+      dns_server_list = [var.vm_dns1,var.vm_dns2]
+    }
+  }        
+  network_interface {
+    network_id = data.vsphere_network.PPR_SERVICES.id
+  }
+
+  provisioner "file" {
+    source = var.public_key_path
+    destination = "/tmp/authorized_keys"
+    connection {
+      type = "ssh"
+      user = var.vm_user
+      password = var.vm_password
+      host = "vsl-ppr-apt-001"
+    }
+  }  
+
+  provisioner "remote-exec" {
+    inline = [
+      "mkdir /home/localadmin/.ssh",
+       "chmod 0700 /home/localadmin/.ssh",
+       "mv /tmp/authorized_keys /home/localadmin/.ssh/",
+       "chmod 0600 /home/localadmin/.ssh/authorized_keys",      
+       "sudo nmcli con mod 'System ${var.vsphere_interface_name}' ipv4.method manual ipv4.addresses 172.24.0.1/24 ipv4.gateway 172.24.0.254 connection.autoconnect yes",
+       "sudo nmcli con mod 'System ${var.vsphere_interface_name}' con-name ${var.vsphere_interface_name}",
+       "sudo nmcli con up ${var.vsphere_interface_name}",
+       "sudo dnf -y remove cloud-init"      
+    ]
+    connection {
+       type = "ssh"
+       user = "localadmin"
+       password = var.vm_password
+       host = "vsl-ppr-apt-001"
+    }
+  }
+
+  provisioner "local-exec" {
+    command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'vsl-ppr-apt-001,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file"
+  }
+
+}
+# END ANSIBLE MANAGED BLOCK VSL-PPR-APT-001 (DMZ)
+# BEGIN ANSIBLE MANAGED BLOCK VSL-PPR-MST-001 (DMZ)
+resource "vsphere_virtual_machine" "VSL-PPR-MST-001" {
+  resource_pool_id     = data.vsphere_resource_pool.esx_pool.id
+  host_system_id       = data.vsphere_host.nut-dmz-02.id 
+  datastore_id         = data.vsphere_datastore.NUT_DMZ_INT_DC2_01.id 
+  firmware             = "efi"
+  name                 = "VSL-PPR-MST-001" 
+  folder               = "/DMZ/Pre Prod"
+  num_cpus             = "4"
+  memory               = "20480"
+  wait_for_guest_net_timeout = 5
+  disk {
+    label            = "disk0"
+    size             = 50
+    controller_type  = "scsi"
+  }
+  disk {
+    label            = "disk1"
+    size             = 100
+    controller_type  = "scsi"
+    unit_number      = 1
+  }
+  cdrom {
+  }
+
+  clone {
+    template_uuid = data.vsphere_content_library_item.esx_lib2_item.id
+    customize {
+      linux_options {
+      host_name = "vsl-ppr-mst-001"
+      domain    = var.vm_domain
+      }
+    
+    # Nécessaire malgré la config nmcli via le prov remote-exec car justement remote-exec a besoin d'une IP pour se connecter  
+      network_interface {
+        ipv4_address = cidrhost("172.24.0.0/24","2") 
+        ipv4_netmask = "24"
+      }
+      ipv4_gateway = cidrhost("172.24.0.0/24","254")
+      dns_server_list = [var.vm_dns1,var.vm_dns2]
+    }
+  }        
+  network_interface {
+    network_id = data.vsphere_network.PPR_SERVICES.id
+  }
+
+  provisioner "file" {
+    source = var.public_key_path
+    destination = "/tmp/authorized_keys"
+    connection {
+      type = "ssh"
+      user = var.vm_user
+      password = var.vm_password
+      host = "vsl-ppr-mst-001"
+    }
+  }  
+
+  provisioner "remote-exec" {
+    inline = [
+      "mkdir /home/localadmin/.ssh",
+       "chmod 0700 /home/localadmin/.ssh",
+       "mv /tmp/authorized_keys /home/localadmin/.ssh/",
+       "chmod 0600 /home/localadmin/.ssh/authorized_keys",      
+       "sudo nmcli con mod 'System ${var.vsphere_interface_name}' ipv4.method manual ipv4.addresses 172.24.0.2/24 ipv4.gateway 172.24.0.254 connection.autoconnect yes",
+       "sudo nmcli con mod 'System ${var.vsphere_interface_name}' con-name ${var.vsphere_interface_name}",
+       "sudo nmcli con up ${var.vsphere_interface_name}",
+       "sudo dnf -y remove cloud-init"      
+    ]
+    connection {
+       type = "ssh"
+       user = "localadmin"
+       password = var.vm_password
+       host = "vsl-ppr-mst-001"
+    }
+  }
+
+  provisioner "local-exec" {
+    command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'vsl-ppr-mst-001,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file"
+  }
+
+}
+# END ANSIBLE MANAGED BLOCK VSL-PPR-MST-001 (DMZ)
+# BEGIN ANSIBLE MANAGED BLOCK VSL-PPR-EPT-001 (DMZ)
+resource "vsphere_virtual_machine" "VSL-PPR-EPT-001" {
+  resource_pool_id     = data.vsphere_resource_pool.esx_pool.id
+  host_system_id       = data.vsphere_host.nut-dmz-04.id 
+  datastore_id         = data.vsphere_datastore.NUT_DMZ_INT_DC2_01.id 
+  firmware             = "efi"
+  name                 = "VSL-PPR-EPT-001" 
+  folder               = "/DMZ/Pre Prod"
+  num_cpus             = "4"
+  memory               = "8192"
+  wait_for_guest_net_timeout = 5
+  disk {
+    label            = "disk0"
+    size             = 50
+    controller_type  = "scsi"
+  }
+  disk {
+    label            = "disk1"
+    size             = 100
+    controller_type  = "scsi"
+    unit_number      = 1
+  }
+  cdrom {
+  }
+
+  clone {
+    template_uuid = data.vsphere_content_library_item.esx_lib2_item.id
+    customize {
+      linux_options {
+      host_name = "vsp-ppr-ept-001"
+      domain    = var.vm_domain
+      }
+    
+    # Nécessaire malgré la config nmcli via le prov remote-exec car justement remote-exec a besoin d'une IP pour se connecter  
+      network_interface {
+        ipv4_address = cidrhost("172.24.23.0/24","1") 
+        ipv4_netmask = "24"
+      }
+      ipv4_gateway = cidrhost("172.24.23.0/24","254")
+      dns_server_list = [var.vm_dns1,var.vm_dns2]
+    }
+  }        
+  network_interface {
+    network_id = data.vsphere_network.PPR_EPTS.id
+  }
+
+  provisioner "file" {
+    source = var.public_key_path
+    destination = "/tmp/authorized_keys"
+    connection {
+      type = "ssh"
+      user = var.vm_user
+      password = var.vm_password
+      host = "vsp-ppr-ept-001"
+    }
+  }  
+
+  provisioner "remote-exec" {
+    inline = [
+      "mkdir /home/localadmin/.ssh",
+       "chmod 0700 /home/localadmin/.ssh",
+       "mv /tmp/authorized_keys /home/localadmin/.ssh/",
+       "chmod 0600 /home/localadmin/.ssh/authorized_keys",      
+       "sudo nmcli con mod 'System ${var.vsphere_interface_name}' ipv4.method manual ipv4.addresses 172.24.23.1/24 ipv4.gateway 172.24.23.254 connection.autoconnect yes",
+       "sudo nmcli con mod 'System ${var.vsphere_interface_name}' con-name ${var.vsphere_interface_name}",
+       "sudo nmcli con up ${var.vsphere_interface_name}",
+       "sudo dnf -y remove cloud-init"      
+    ]
+    connection {
+       type = "ssh"
+       user = "localadmin"
+       password = var.vm_password
+       host = "vsp-ppr-ept-001"
+    }
+  }
+
+  provisioner "local-exec" {
+    command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'vsp-ppr-ept-001,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file"
+  }
+
+}
+# END ANSIBLE MANAGED BLOCK VSL-PPR-EPT-001 (DMZ)
+# BEGIN ANSIBLE MANAGED BLOCK VSL-PPR-KAF-001 (DMZ)
+resource "vsphere_virtual_machine" "VSL-PPR-KAF-001" {
+  resource_pool_id     = data.vsphere_resource_pool.esx_pool.id
+  host_system_id       = data.vsphere_host.nut-dmz-06.id 
+  datastore_id         = data.vsphere_datastore.NUT_DMZ_INT_DC2_01.id 
+  firmware             = "efi"
+  name                 = "VSL-PPR-KAF-001" 
+  folder               = "/DMZ/Pre Prod"
+  num_cpus             = "4"
+  memory               = "8192"
+  wait_for_guest_net_timeout = 5
+  disk {
+    label            = "disk0"
+    size             = 50
+    controller_type  = "scsi"
+  }
+  disk {
+    label            = "disk1"
+    size             = 100
+    controller_type  = "scsi"
+    unit_number      = 1
+  }
+  cdrom {
+  }
+
+  clone {
+    template_uuid = data.vsphere_content_library_item.esx_lib2_item.id
+    customize {
+      linux_options {
+      host_name = "vsl-ppr-kaf-001"
+      domain    = var.vm_domain
+      }
+    
+    # Nécessaire malgré la config nmcli via le prov remote-exec car justement remote-exec a besoin d'une IP pour se connecter  
+      network_interface {
+        ipv4_address = cidrhost("172.24.11.0/24","1") 
+        ipv4_netmask = "24"
+      }
+      ipv4_gateway = cidrhost("172.24.11.0/24","254")
+      dns_server_list = [var.vm_dns1,var.vm_dns2]
+    }
+  }        
+  network_interface {
+    network_id = data.vsphere_network.PPR_TECH_COMPONENTS.id
+  }
+
+  provisioner "file" {
+    source = var.public_key_path
+    destination = "/tmp/authorized_keys"
+    connection {
+      type = "ssh"
+      user = var.vm_user
+      password = var.vm_password
+      host = "vsl-ppr-kaf-001"
+    }
+  }  
+
+  provisioner "remote-exec" {
+    inline = [
+      "mkdir /home/localadmin/.ssh",
+       "chmod 0700 /home/localadmin/.ssh",
+       "mv /tmp/authorized_keys /home/localadmin/.ssh/",
+       "chmod 0600 /home/localadmin/.ssh/authorized_keys",      
+       "sudo nmcli con mod 'System ${var.vsphere_interface_name}' ipv4.method manual ipv4.addresses 172.24.11.1/24 ipv4.gateway 172.24.11.254 connection.autoconnect yes",
+       "sudo nmcli con mod 'System ${var.vsphere_interface_name}' con-name ${var.vsphere_interface_name}",
+       "sudo nmcli con up ${var.vsphere_interface_name}",
+       "sudo dnf -y remove cloud-init"      
+    ]
+    connection {
+       type = "ssh"
+       user = "localadmin"
+       password = var.vm_password
+       host = "vsl-ppr-kaf-001"
+    }
+  }
+
+  provisioner "local-exec" {
+    command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'vsl-ppr-kaf-001,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file"
+  }
+
+}
+# END ANSIBLE MANAGED BLOCK VSL-PPR-KAF-001 (DMZ)
