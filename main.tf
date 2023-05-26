@@ -215,6 +215,76 @@ data "vsphere_network" "PRO_DEPLOY_APP" {
   datacenter_id = data.vsphere_datacenter.esx_dc.id
 }
 
+data "vsphere_network" "PPR_APPLICATIONS" {
+  name = "PPR_APPLICATIONS"
+  datacenter_id = data.vsphere_datacenter.esx_dc.id
+}
+
+data "vsphere_network" "PPR_APPLICATIONS_LV" {
+  name = "PPR_APPLICATIONS_LV"
+  datacenter_id = data.vsphere_datacenter.esx_dc.id
+}
+
+data "vsphere_network" "PPR_SERVICES_LV" {
+  name = "PPR_SERVICES_LV"
+  datacenter_id = data.vsphere_datacenter.esx_dc.id
+}
+
+data "vsphere_network" "PPR_SERVICES_DKV" {
+  name = "PPR_SERVICES_DKV"
+  datacenter_id = data.vsphere_datacenter.esx_dc.id
+}
+
+data "vsphere_network" "PPR_SERVICES_APROBAT" {
+  name = "PPR_SERVICES_APROBAT"
+  datacenter_id = data.vsphere_datacenter.esx_dc.id
+}
+
+data "vsphere_network" "PPR_SERVICES_LN" {
+  name = "PPR_SERVICES_LN"
+  datacenter_id = data.vsphere_datacenter.esx_dc.id
+}
+
+data "vsphere_network" "PPR_APPLICATIONS_LN" {
+  name = "PPR_APPLICATIONS_LN"
+  datacenter_id = data.vsphere_datacenter.esx_dc.id
+}
+
+# data "vsphere_network" "PPR_MIGAL" {
+#   name = "PPR_MIGAL"
+#   datacenter_id = data.vsphere_datacenter.esx_dc.id
+# }
+
+data "vsphere_network" "PPR_MAGIC" {
+  name = "PPR_MAGIC"
+  datacenter_id = data.vsphere_datacenter.esx_dc.id
+}
+
+data "vsphere_network" "PPR_INNOVAS" {
+  name = "PPR_INNOVAS"
+  datacenter_id = data.vsphere_datacenter.esx_dc.id
+}
+
+data "vsphere_network" "PPR_REVERSE_PROXY_EXT" {
+  name = "PPR_REVERSE_PROXY_EXT"
+  datacenter_id = data.vsphere_datacenter.esx_dc.id
+}
+
+data "vsphere_network" "PPR_REVERSE_PROXY_INT" {
+  name = "PPR_REVERSE_PROXY_INT"
+  datacenter_id = data.vsphere_datacenter.esx_dc.id
+}
+
+data "vsphere_network" "PPR_TECH_COMPONENTS" {
+  name = "PPR_TECH_COMPONENTS"
+  datacenter_id = data.vsphere_datacenter.esx_dc.id
+}
+
+data "vsphere_network" "PPR_EPTS" {
+  name = "PPR_EPTS"
+  datacenter_id = data.vsphere_datacenter.esx_dc.id
+}
+
 ###############################
 # CONTENT LIBRARY
 ###############################
@@ -322,142 +392,3 @@ data "vsphere_content_library_item" "esx_lib2_item" {
 
 # }
 # # END ANSIBLE MANAGED BLOCK LU726BIS (DMZ)
-# BEGIN ANSIBLE MANAGED BLOCK LU717
-resource "nutanix_virtual_machine" "LU717" {
-        name                 = "LU717"
-        description          = "VM TEST LINUX -- MK417 --" 
-        provider             = nutanix.dc1
-        cluster_uuid         = data.nutanix_cluster.cluster650.metadata.uuid
-        num_vcpus_per_socket = "1"
-        num_sockets          = "1"
-        memory_size_mib      = "2048"
-        boot_type            = "UEFI"
-        nic_list {
-          subnet_uuid = var.ahv_650_network["Production"]
-        }
-
-        disk_list {
-          data_source_reference = {
-             kind = "image"
-             uuid = data.nutanix_image.rhel8-dc1.metadata.uuid
-          }
-
-          device_properties {
-            disk_address = {
-              device_index = 0
-              adapter_type = "SCSI"
-            }
-            device_type = "DISK"
-          }
-        }
-
-        disk_list {
-          disk_size_mib = (100 * 1024)
-          storage_config {
-            storage_container_reference {
-              kind = "storage_container"
-              uuid = var.ahv_650_storage["NUT_AHV_DC1_01"]
-            }
-          }
-        }
-
-        #guest_customization_cloud_init_user_data = base64encode(data.template_file.cloud-init.rendered)
-        guest_customization_cloud_init_user_data = base64encode(templatefile("user-data.tpl", {
-          vm_domain         =  var.vm_domain 
-          vm_name       =  "lu717"
-          vm_ip   = "200.1.1.106"
-          vm_prefix = "24"
-          vm_gateway   =  "200.1.1.240"
-          vm_dns1    = var.vm_dns1
-          vm_dns2    = var.vm_dns2
-          vm_user = var.vm_user
-          vm_public_key = var.public_key
-        }))
-
-        provisioner "local-exec" {
-        command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'lu717,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file" 
-        }
- }
-# END ANSIBLE MANAGED BLOCK LU717
-# BEGIN ANSIBLE MANAGED BLOCK VSL-PRO-GIT-001 (DMZ)
-resource "vsphere_virtual_machine" "VSL-PRO-GIT-001" {
-  resource_pool_id     = data.vsphere_resource_pool.esx_pool.id
-  host_system_id       = data.vsphere_host.nut-dmz-03.id 
-  datastore_id         = data.vsphere_datastore.NUT_DMZ_INT_DC1_to_DC2.id 
-  firmware             = "efi"
-  name                 = "VSL-PRO-GIT-002" 
-  folder               = ""
-  num_cpus             = "4"
-  memory               = "16384"
-  wait_for_guest_net_timeout = 5
-  disk {
-    label            = "disk0"
-    size             = 50
-    controller_type  = "scsi"
-  }
-  disk {
-    label            = "disk1"
-    size             = 100
-    controller_type  = "scsi"
-    unit_number      = 1
-  }
-  cdrom {
-  }
-
-  clone {
-    template_uuid = data.vsphere_content_library_item.esx_lib1_item.id
-    customize {
-      linux_options {
-      host_name = "vsl-pro-git-001"
-      domain    = var.vm_domain
-      }
-    
-    # Nécessaire malgré la config nmcli via le prov remote-exec car justement remote-exec a besoin d'une IP pour se connecter  
-      network_interface {
-        ipv4_address = cidrhost("172.23.45.0/24","1") 
-        ipv4_netmask = "24"
-      }
-      ipv4_gateway = cidrhost("172.23.45.0/24","254")
-      dns_server_list = [var.vm_dns1,var.vm_dns2]
-    }
-  }        
-  network_interface {
-    network_id = data.vsphere_network.PRO_DEPLOY_APP.id
-  }
-
-  provisioner "file" {
-    source = var.public_key_path
-    destination = "/tmp/authorized_keys"
-    connection {
-      type = "ssh"
-      user = var.vm_user
-      password = var.vm_password
-      host = "vsl-pro-git-001"
-    }
-  }  
-
-  provisioner "remote-exec" {
-    inline = [
-      "mkdir /home/localadmin/.ssh",
-       "chmod 0700 /home/localadmin/.ssh",
-       "mv /tmp/authorized_keys /home/localadmin/.ssh/",
-       "chmod 0600 /home/localadmin/.ssh/authorized_keys",      
-       "sudo nmcli con mod 'System ${var.vsphere_interface_name}' ipv4.method manual ipv4.addresses 172.23.45.1/24 ipv4.gateway 172.23.45.254 connection.autoconnect yes",
-       "sudo nmcli con mod 'System ${var.vsphere_interface_name}' con-name ${var.vsphere_interface_name}",
-       "sudo nmcli con up ${var.vsphere_interface_name}",
-       "sudo dnf -y remove cloud-init"      
-    ]
-    connection {
-       type = "ssh"
-       user = "localadmin"
-       password = var.vm_password
-       host = "vsl-pro-git-001"
-    }
-  }
-
-  provisioner "local-exec" {
-    command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'vsl-pro-git-001,' -e env=PROD config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file"
-  }
-
-}
-# END ANSIBLE MANAGED BLOCK VSL-PRO-GIT-001 (DMZ)
