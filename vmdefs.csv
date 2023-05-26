@@ -1,5 +1,5 @@
 DOMAIN,VM_NAME1,VM_NAME2,DESCR,HOSTNAME,DATACENTER,AHV CLUSTER/ESX HOST,IMAGE,sub_cl,AHV SUBNET/ESX NETWORK,stg_cl,STORAGE / DATASTORE,FOLDER (ONLY FOR ESX),MEM(MB),CPU,CPU_SOCKET,DISK2_SIZE_GB,IP,NET_PREFIX,GATEWAY,SATELLITE_ENV
-dmz_vms,VSL-PPR-RPE-001,VSL-PPR-RPE-001,Reverse Proxy externe,vsl-ppr-rpe-001,NUT-DMZ-DC02,nut-dmz-02,esx_lib2_item,sub_nut-dmz-02,PPR_REVERSE_PROXY_EXT,stg_nut-dmz-02,NUT_DMZ_EXT_DC2_01,,4096.0,2.0,1.0,100.0,172.24.74.1,24.0,172.24.74.254,RECETTE
+dmz_vms,VSL-PPR-RPE-001,VSL-PPR-RPE-001,Reverse Proxy Externe,vsl-ppr-rpe-001,NUT-DMZ-DC02,nut-dmz-02,esx_lib2_item,sub_nut-dmz-02,PPR_REVERSE_PROXY_EXT,stg_nut-dmz-02,NUT_DMZ_EXT_DC2_01,,4096.0,2.0,1.0,100.0,172.24.74.1,24.0,172.24.74.254,DEV_TEST
 ,,,,,,,,sub_,,stg_,,,,,,,,,,
 ,,,,,,,,sub_,,stg_,,,,,,,,,,
 ,,,,,,,,sub_,,stg_,,,,,,,,,,

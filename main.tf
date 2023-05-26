@@ -469,7 +469,7 @@ resource "vsphere_virtual_machine" "VSL-PPR-RPE-001" {
   }
 
   provisioner "local-exec" {
-    command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'vsl-ppr-rpe-001,' -e env=RECETTE config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file"
+    command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'vsl-ppr-rpe-001,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file"
   }
 
 }

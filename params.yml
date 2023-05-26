@@ -20,5 +20,5 @@ dmz_vms:
     subnet: 172.24.74.0/24  
     user: localadmin  
     resource_pool: esx_pool  
-    satellite_env: RECETTE
+    satellite_env: DEV_TEST
   
