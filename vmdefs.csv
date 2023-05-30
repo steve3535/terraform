@@ -1,0 +1,45 @@
+DOMAIN,VM_NAME1,VM_NAME2,DESCR,HOSTNAME,DATACENTER,AHV CLUSTER/ESX HOST,IMAGE,sub_cl,AHV SUBNET/ESX NETWORK,stg_cl,STORAGE / DATASTORE,FOLDER (ONLY FOR ESX),MEM(MB),CPU,CPU_SOCKET,DISK2_SIZE_GB,IP,NET_PREFIX,GATEWAY,SATELLITE_ENV
+dmz_vms,VSL-PPR-RPE-001,VSL-PPR-RPE-001,Reverse Proxy Externe,vsl-ppr-rpe-001,NUT-DMZ-DC02,nut-dmz-02,esx_lib2_item,sub_nut-dmz-02,PPR_REVERSE_PROXY_EXT,stg_nut-dmz-02,NUT_DMZ_EXT_DC2_01,,4096.0,2.0,1.0,100.0,172.24.74.1,24.0,172.24.74.254,DEV_TEST
+dmz_vms,VSL-PPR-RPI-001,VSL-PPR-RPI-001,Reverse Proxy Interne,vsl-ppr-rpi-001,NUT-DMZ-DC02,nut-dmz-04,esx_lib2_item,sub_nut-dmz-04,PPR_REVERSE_PROXY_INT,stg_nut-dmz-04,NUT_DMZ_EXT_DC2_01,/DMZ/Pre Prod,4096.0,2.0,1.0,100.0,172.24.41.1,24.0,172.24.41.254,DEV_TEST
+dmz_vms,VSL-PPR-ALT-001,VSL-PPR-ALT-001,Applications  Linux,vsl-ppr-alt-001,NUT-DMZ-DC02,nut-dmz-06,esx_lib2_item,sub_nut-dmz-06,PPR_APPLICATIONS,stg_nut-dmz-06,NUT_DMZ_INT_DC2_01,/DMZ/Pre Prod,4096.0,2.0,1.0,100.0,172.24.5.1,24.0,172.24.5.254,DEV_TEST
+dmz_vms,VSL-PPR-APT-001,VSL-PPR-APT-001,API Business Quarkus,vsl-ppr-apt-001,NUT-DMZ-DC02,nut-dmz-08,esx_lib2_item,sub_nut-dmz-08,PPR_SERVICES,stg_nut-dmz-08,NUT_DMZ_INT_DC2_01,/DMZ/Pre Prod,20480.0,4.0,1.0,100.0,172.24.0.1,24.0,172.24.0.254,DEV_TEST
+dmz_vms,VSL-PPR-MST-001,VSL-PPR-MST-001,MS Quarkus /WS springboot,vsl-ppr-mst-001,NUT-DMZ-DC02,nut-dmz-02,esx_lib2_item,sub_nut-dmz-02,PPR_SERVICES,stg_nut-dmz-02,NUT_DMZ_INT_DC2_01,/DMZ/Pre Prod,20480.0,4.0,1.0,100.0,172.24.0.2,24.0,172.24.0.254,DEV_TEST
+dmz_vms,VSL-PPR-EPT-001,VSL-PPR-EPT-001,EPTS interne/externe,vsl-ppr-ept-001,NUT-DMZ-DC02,nut-dmz-04,esx_lib2_item,sub_nut-dmz-04,PPR_EPTS,stg_nut-dmz-04,NUT_DMZ_INT_DC2_01,/DMZ/Pre Prod,8192.0,4.0,1.0,100.0,172.24.23.1,24.0,172.24.23.254,DEV_TEST
+dmz_vms,VSL-PPR-KAF-001,VSL-PPR-KAF-001,KAFKA,vsl-ppr-kaf-001,NUT-DMZ-DC02,nut-dmz-06,esx_lib2_item,sub_nut-dmz-06,PPR_TECH_COMPONENTS,stg_nut-dmz-06,NUT_DMZ_INT_DC2_01,/DMZ/Pre Prod,8192.0,4.0,1.0,100.0,172.24.11.1,24.0,172.24.11.254,DEV_TEST
+dmz_vms,VSL-PPR-ATQ-001,VSL-PPR-ATQ-001,,vsl-ppr-atq-001,NUT-DMZ-DC02,nut-dmz-08,esx_lib2_item,sub_nut-dmz-08,PPR_SERVICES_LN,stg_nut-dmz-08,NUT_DMZ_INT_DC2_01,/DMZ/Pre Prod,16384.0,4.0,1.0,100.0,172.24.1.1,24.0,172.24.1.254,DEV_TEST
+dmz_vms,VSL-PPR-ATQ-002,VSL-PPR-ATQ-002,,vsl-ppr-atq-002,NUT-DMZ-DC02,nut-dmz-02,esx_lib2_item,sub_nut-dmz-02,PPR_SERVICES_LN,stg_nut-dmz-02,NUT_DMZ_INT_DC2_01,/DMZ/Pre Prod,8192.0,4.0,1.0,100.0,172.24.1.2,24.0,172.24.1.254,DEV_TEST
+dmz_vms,VSL-PPR-MSN-001,VSL-PPR-MSN-001,,vsl-ppr-msn-001,NUT-DMZ-DC02,nut-dmz-04,esx_lib2_item,sub_nut-dmz-04,PPR_SERVICES_LN,stg_nut-dmz-04,NUT_DMZ_INT_DC2_01,/DMZ/Pre Prod,8192.0,4.0,1.0,100.0,172.24.1.3,24.0,172.24.1.254,DEV_TEST
+dmz_vms,VSL-PPR-ABN-001,VSL-PPR-ABN-001,,vsl-ppr-abn-001,NUT-DMZ-DC02,nut-dmz-06,esx_lib2_item,sub_nut-dmz-06,PPR_SERVICES_LN,stg_nut-dmz-06,NUT_DMZ_INT_DC2_01,/DMZ/Pre Prod,16384.0,4.0,1.0,100.0,172.24.1.4,24.0,172.24.1.254,DEV_TEST
+dmz_vms,VSL-PPR-ALN-001,VSL-PPR-ALN-001,,vsl-ppr-aln-001,NUT-DMZ-DC02,nut-dmz-08,esx_lib2_item,sub_nut-dmz-08,PPR_APPLICATIONS_LN,stg_nut-dmz-08,NUT_DMZ_INT_DC2_01,/DMZ/Pre Prod,16384.0,4.0,1.0,100.0,172.24.6.1,24.0,172.24.6.254,DEV_TEST
+dmz_vms,VSL-PPR-ABV-001,VSL-PPR-ABV-001,,vsl-ppr-abv-001,NUT-DMZ-DC02,nut-dmz-02,esx_lib2_item,sub_nut-dmz-02,PPR_SERVICES_LV,stg_nut-dmz-02,NUT_DMZ_INT_DC2_01,/DMZ/Pre Prod,4096.0,2.0,1.0,100.0,172.24.2.1,24.0,172.24.2.254,DEV_TEST
+dmz_vms,VSL-PPR-MSV-001,VSL-PPR-MSV-001,,vsl-ppr-msv-001,NUT-DMZ-DC02,nut-dmz-04,esx_lib2_item,sub_nut-dmz-04,PPR_SERVICES_LV,stg_nut-dmz-04,NUT_DMZ_INT_DC2_01,/DMZ/Pre Prod,4096.0,2.0,1.0,100.0,172.24.2.2,24.0,172.24.2.254,DEV_TEST
+dmz_vms,VSL-PPR-ABD-001,VSL-PPR-ABD-001,,vsl-ppr-abd-001,NUT-DMZ-DC02,nut-dmz-06,esx_lib2_item,sub_nut-dmz-06,PPR_SERVICES_DKV,stg_nut-dmz-06,NUT_DMZ_INT_DC2_01,/DMZ/Pre Prod,8192.0,2.0,1.0,100.0,172.24.3.1,24.0,172.24.3.254,DEV_TEST
+dmz_vms,VSL-PPR-ABA-001,VSL-PPR-ABA-001,,vsl-ppr-aba-001,NUT-DMZ-DC02,nut-dmz-08,esx_lib2_item,sub_nut-dmz-08,PPR_SERVICES_APROBAT,stg_nut-dmz-08,NUT_DMZ_INT_DC2_01,/DMZ/Pre Prod,4096.0,2.0,1.0,100.0,172.24.4.1,24.0,172.24.4.254,DEV_TEST
+,,,,,,,,sub_,,stg_,,,,,,,,,,
+,,,,,,,,sub_,,stg_,,,,,,,,,,
+,,,,,,,,sub_,,stg_,,,,,,,,,,
+,,,,,,,,sub_,,stg_,,,,,,,,,,
+,,,,,,,,sub_,,stg_,,,,,,,,,,
+,,,,,,,,sub_,,stg_,,,,,,,,,,
+,,,,,,,,sub_,,stg_,,,,,,,,,,
+,,,,,,,,sub_,,stg_,,,,,,,,,,
+,,,,,,,,sub_,,stg_,,,,,,,,,,
+,,,,,,,,sub_,,stg_,,,,,,,,,,
+,,,,,,,,sub_,,stg_,,,,,,,,,,
+,,,,,,,,sub_,,stg_,,,,,,,,,,
+,,,,,,,,sub_,,stg_,,,,,,,,,,
+,,,,,,,,sub_,,stg_,,,,,,,,,,
+,,,,,,,,sub_,,stg_,,,,,,,,,,
+,,,,,,,,sub_,,stg_,,,,,,,,,,
+,,,,,,,,sub_,,stg_,,,,,,,,,,
+,,,,,,,,sub_,,stg_,,,,,,,,,,
+,,,,,,,,sub_,,stg_,,,,,,,,,,
+,,,,,,,,sub_,,stg_,,,,,,,,,,
+,,,,,,,,sub_,,stg_,,,,,,,,,,
+,,,,,,,,sub_,,stg_,,,,,,,,,,
+,,,,,,,,sub_,,stg_,,,,,,,,,,
+,,,,,,,,sub_,,stg_,,,,,,,,,,
+,,,,,,,,sub_,,stg_,,,,,,,,,,
+,,,,,,,,sub_,,stg_,,,,,,,,,,
+,,,,,,,,sub_,,stg_,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
