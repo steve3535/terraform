@@ -290,6 +290,12 @@ data "vsphere_network" "PPR_EPTS" {
   datacenter_id = data.vsphere_datacenter.esx_dc.id
 }
 
+data "vsphere_network" "DMZ_PRO_INT_RHEL_MGMT" {
+  name = "DMZ_PRO_INT_RHEL_MGMT"
+  datacenter_id = data.vsphere_datacenter.esx_dc.id
+}
+
+
 ###############################
 # CONTENT LIBRARY
 ###############################
@@ -315,3 +321,199 @@ data "vsphere_content_library_item" "esx_lib2_item" {
   library_id = data.vsphere_content_library.esx_lib2.id 
 }
 
+# BEGIN ANSIBLE MANAGED BLOCK LU717
+resource "nutanix_virtual_machine" "LU717" {
+        name                 = "LU717"
+        description          = "VM DE TEST" 
+        provider             = nutanix.dc1
+        cluster_uuid         = data.nutanix_cluster.cluster650.metadata.uuid
+        num_vcpus_per_socket = "1"
+        num_sockets          = "1"
+        memory_size_mib      = "2048"
+        boot_type            = "UEFI"
+        nic_list {
+          subnet_uuid = var.ahv_650_network["Production"]
+        }
+
+        disk_list {
+          data_source_reference = {
+             kind = "image"
+             uuid = data.nutanix_image.rhel8-dc1.metadata.uuid
+          }
+
+          device_properties {
+            disk_address = {
+              device_index = 0
+              adapter_type = "SCSI"
+            }
+            device_type = "DISK"
+          }
+        }
+
+        disk_list {
+          disk_size_mib = (50 * 1024)
+          storage_config {
+            storage_container_reference {
+              kind = "storage_container"
+              uuid = var.ahv_650_storage["NUT_AHV_DC1_01"]
+            }
+          }
+        }
+
+        #guest_customization_cloud_init_user_data = base64encode(data.template_file.cloud-init.rendered)
+        guest_customization_cloud_init_user_data = base64encode(templatefile("user-data.tpl", {
+          vm_domain         =  var.vm_domain 
+          vm_name       =  "lu717"
+          vm_ip   = "200.1.1.106"
+          vm_prefix = "24"
+          vm_gateway   =  "200.1.1.240"
+          vm_dns1    = var.vm_dns1
+          vm_dns2    = var.vm_dns2
+          vm_user = var.vm_user
+          vm_public_key = var.public_key
+        }))
+
+        provisioner "local-exec" {
+        command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'lu717,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file" 
+        }
+ }
+# END ANSIBLE MANAGED BLOCK LU717
+# BEGIN ANSIBLE MANAGED BLOCK LU718
+resource "nutanix_virtual_machine" "LU718" {
+        name                 = "LU718"
+        description          = "VM DE TEST" 
+        provider             = nutanix.dc3
+        cluster_uuid         = data.nutanix_cluster.cluster651.metadata.uuid
+        num_vcpus_per_socket = "1"
+        num_sockets          = "1"
+        memory_size_mib      = "1500"
+        boot_type            = "UEFI"
+        nic_list {
+          subnet_uuid = var.ahv_651_network["Production"]
+        }
+
+        disk_list {
+          data_source_reference = {
+             kind = "image"
+             uuid = data.nutanix_image.rhel8-dc3.metadata.uuid
+          }
+
+          device_properties {
+            disk_address = {
+              device_index = 0
+              adapter_type = "SCSI"
+            }
+            device_type = "DISK"
+          }
+        }
+
+        disk_list {
+          disk_size_mib = (100 * 1024)
+          storage_config {
+            storage_container_reference {
+              kind = "storage_container"
+              uuid = var.ahv_651_storage["NUT_AHV_DC1_01"]
+            }
+          }
+        }
+
+        #guest_customization_cloud_init_user_data = base64encode(data.template_file.cloud-init.rendered)
+        guest_customization_cloud_init_user_data = base64encode(templatefile("user-data.tpl", {
+          vm_domain         =  var.vm_domain 
+          vm_name       =  "lu718"
+          vm_ip   = "200.1.1.105"
+          vm_prefix = "24"
+          vm_gateway   =  "200.1.1.240"
+          vm_dns1    = var.vm_dns1
+          vm_dns2    = var.vm_dns2
+          vm_user = var.vm_user
+          vm_public_key = var.public_key
+        }))
+
+        provisioner "local-exec" {
+        command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'lu718,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file" 
+        }
+ }
+# END ANSIBLE MANAGED BLOCK LU718
+# BEGIN ANSIBLE MANAGED BLOCK LU686 (DMZ)
+resource "vsphere_virtual_machine" "LU686" {
+  resource_pool_id     = data.vsphere_resource_pool.esx_pool.id
+  host_system_id       = data.vsphere_host.nut-dmz-05.id 
+  datastore_id         = data.vsphere_datastore.NUT_DMZ_INT_DC1_01.id 
+  firmware             = "efi"
+  name                 = "LU686" 
+  folder               = "/DMZ/DEV"
+  num_cpus             = "1"
+  memory               = "1500"
+  wait_for_guest_net_timeout = 5
+  disk {
+    label            = "disk0"
+    size             = 50
+    controller_type  = "scsi"
+  }
+  disk {
+    label            = "disk1"
+    size             = 20
+    controller_type  = "scsi"
+    unit_number      = 1
+  }
+  cdrom {
+  }
+
+  clone {
+    template_uuid = data.vsphere_content_library_item.esx_lib1_item.id
+    customize {
+      linux_options {
+      host_name = "lu686"
+      domain    = var.vm_domain
+      }
+    
+    # Nécessaire malgré la config nmcli via le prov remote-exec car justement remote-exec a besoin d'une IP pour se connecter  
+      network_interface {
+        ipv4_address = cidrhost("172.22.160.0/24","2") 
+        ipv4_netmask = "24"
+      }
+      ipv4_gateway = cidrhost("172.22.160.0/24","1")
+      dns_server_list = [var.vm_dns1,var.vm_dns2]
+    }
+  }        
+  network_interface {
+    network_id = data.vsphere_network.DMZ_PRO_INT_RHEL_MGMT.id
+  }
+
+  provisioner "file" {
+    source = var.public_key_path
+    destination = "/tmp/authorized_keys"
+    connection {
+      type = "ssh"
+      user = var.vm_user
+      password = var.vm_password
+      host = "lu686"
+    }
+  }  
+
+  provisioner "remote-exec" {
+    inline = [
+      "mkdir /home/localadmin/.ssh",
+       "chmod 0700 /home/localadmin/.ssh",
+       "mv /tmp/authorized_keys /home/localadmin/.ssh/",
+       "chmod 0600 /home/localadmin/.ssh/authorized_keys",      
+       "sudo nmcli con mod 'System ${var.vsphere_interface_name}' ipv4.method manual ipv4.addresses 172.22.160.2/24 ipv4.gateway 172.22.160.1 connection.autoconnect yes",
+       "sudo nmcli con mod 'System ${var.vsphere_interface_name}' con-name ${var.vsphere_interface_name}",
+       "sudo nmcli con up ${var.vsphere_interface_name}",
+       "sudo dnf -y remove cloud-init"      
+    ]
+    connection {
+       type = "ssh"
+       user = "localadmin"
+       password = var.vm_password
+       host = "lu686"
+    }
+  }
+
+  provisioner "local-exec" {
+    command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'lu686,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file"
+  }
+
+}
+# END ANSIBLE MANAGED BLOCK LU686 (DMZ)
