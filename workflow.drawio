@@ -1,11 +1,11 @@
 <mxfile host="65bd71144e">
     <diagram id="IaFl8y2P71Akh2U9kg0a" name="Page-1">
-        <mxGraphModel dx="1264" dy="623" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1264" dy="649" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
                 <mxCell id="36" value="" style="shape=ext;double=1;rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="402" y="33" width="90" height="237" as="geometry"/>
+                    <mxGeometry x="402" y="80" width="90" height="140" as="geometry"/>
                 </mxCell>
                 <mxCell id="6" style="edgeStyle=none;html=1;" parent="1" source="3" edge="1">
                     <mxGeometry relative="1" as="geometry">
@@ -65,47 +65,26 @@
                 <mxCell id="25" value="Fin Pipeline Gitlab" style="text;strokeColor=default;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#FF8000;" parent="1" vertex="1">
                     <mxGeometry x="420" y="338" width="130" height="31" as="geometry"/>
                 </mxCell>
-                <mxCell id="27" value="Artifacts:&lt;br&gt;terraform.tfstate" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#FFFFFF;" parent="1" vertex="1">
-                    <mxGeometry x="337" y="338" width="60" height="30" as="geometry"/>
-                </mxCell>
                 <mxCell id="28" value="vmdefs.xls&lt;br&gt;&amp;nbsp;sur PC local" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-90;" vertex="1" parent="1">
                     <mxGeometry x="40" y="100" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="29" value="&lt;b&gt;/opt/infrastructure-linux/terraform&lt;/b&gt;" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-90;" vertex="1" parent="1">
+                <mxCell id="29" value="&lt;b&gt;/opt/iac/terraform&lt;/b&gt;" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-90;" vertex="1" parent="1">
                     <mxGeometry x="282" y="124.5" width="210" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="33" value="" style="html=1;verticalLabelPosition=bottom;align=center;labelBackgroundColor=#ffffff;verticalAlign=top;strokeWidth=2;strokeColor=#0080F0;shadow=0;dashed=0;shape=mxgraph.ios7.icons.folder;" vertex="1" parent="1">
-                    <mxGeometry x="422" y="50" width="50" height="40" as="geometry"/>
-                </mxCell>
-                <mxCell id="34" value="" style="html=1;verticalLabelPosition=bottom;align=center;labelBackgroundColor=#ffffff;verticalAlign=top;strokeWidth=2;strokeColor=#0080F0;shadow=0;dashed=0;shape=mxgraph.ios7.icons.folder;" vertex="1" parent="1">
-                    <mxGeometry x="421" y="100" width="50" height="40" as="geometry"/>
-                </mxCell>
                 <mxCell id="35" value="" style="html=1;verticalLabelPosition=bottom;align=center;labelBackgroundColor=#ffffff;verticalAlign=top;strokeWidth=2;strokeColor=#0080F0;shadow=0;dashed=0;shape=mxgraph.ios7.icons.folder;" vertex="1" parent="1">
-                    <mxGeometry x="421" y="154.5" width="50" height="40" as="geometry"/>
+                    <mxGeometry x="412" y="130" width="70" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="37" value="rh-subman (172.17.20.146)&lt;br&gt;- gitlab runner -" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-                    <mxGeometry x="397" y="280" width="100" height="30" as="geometry"/>
+                    <mxGeometry x="402" y="230" width="100" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="38" value="dev" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-                    <mxGeometry x="421" y="62" width="50" height="20" as="geometry"/>
+                <mxCell id="39" value="terraform" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="420" y="144" width="51" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="39" value="prod" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-                    <mxGeometry x="421" y="168" width="50" height="20" as="geometry"/>
-                </mxCell>
-                <mxCell id="40" value="rec" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-                    <mxGeometry x="420" y="112.5" width="50" height="20" as="geometry"/>
-                </mxCell>
-                <mxCell id="43" value="SCP" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                <mxCell id="43" value="SFTP" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
                     <mxGeometry x="220" y="124.5" width="60" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="44" value="lab" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/general/Branch.svg;" vertex="1" parent="1">
                     <mxGeometry x="545" y="107.5" width="30" height="30" as="geometry"/>
-                </mxCell>
-                <mxCell id="46" value="" style="html=1;verticalLabelPosition=bottom;align=center;labelBackgroundColor=#ffffff;verticalAlign=top;strokeWidth=2;strokeColor=#0080F0;shadow=0;dashed=0;shape=mxgraph.ios7.icons.folder;" vertex="1" parent="1">
-                    <mxGeometry x="422" y="211" width="50" height="40" as="geometry"/>
-                </mxCell>
-                <mxCell id="47" value="lab" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-                    <mxGeometry x="422" y="221" width="50" height="20" as="geometry"/>
                 </mxCell>
                 <mxCell id="48" value="dev" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/general/Branch.svg;" vertex="1" parent="1">
                     <mxGeometry x="605" y="107.5" width="30" height="30" as="geometry"/>
@@ -115,6 +94,9 @@
                 </mxCell>
                 <mxCell id="50" value="prod" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/general/Branch.svg;" vertex="1" parent="1">
                     <mxGeometry x="725" y="105" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="58" value="- VM créé&lt;br&gt;- OS installé&lt;br&gt;- CIS appliqué&lt;br&gt;- Enrôlement Satellite&lt;br&gt;- Enrôlement IDM&lt;br&gt;- Monitoring" style="text;strokeColor=none;align=left;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="297" y="280" width="128" height="130" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
