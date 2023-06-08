@@ -1,88 +1,120 @@
 <mxfile host="65bd71144e">
     <diagram id="IaFl8y2P71Akh2U9kg0a" name="Page-1">
-        <mxGraphModel dx="1264" dy="644" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1264" dy="623" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="6" style="edgeStyle=none;html=1;" parent="1" source="3" target="5" edge="1">
+                <mxCell id="36" value="" style="shape=ext;double=1;rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="402" y="33" width="90" height="237" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" style="edgeStyle=none;html=1;" parent="1" source="3" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="377" y="148.5" as="targetPoint"/>
+                        <mxPoint x="360" y="145" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="220" y="145"/>
+                            <mxPoint x="280" y="145"/>
+                        </Array>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="3" value="Fichier Excel (statique)&lt;br&gt;contient les définitions des VMs" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#505050;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;outlineConnect=0;align=center;shape=mxgraph.office.services.excel_services;" parent="1" vertex="1">
-                    <mxGeometry x="177" y="124" width="60" height="49" as="geometry"/>
-                </mxCell>
-                <mxCell id="10" style="edgeStyle=none;html=1;fontColor=#FF8000;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="4" target="9" edge="1">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="582" y="174" as="targetPoint"/>
-                    </mxGeometry>
+                    <mxGeometry x="100" y="120" width="60" height="49" as="geometry"/>
                 </mxCell>
                 <mxCell id="4" value="GIT UPSTREAM" style="verticalLabelPosition=bottom;html=1;verticalAlign=top;align=center;strokeColor=none;fillColor=#00BEF2;shape=mxgraph.azure.git_repository;" parent="1" vertex="1">
-                    <mxGeometry x="570" y="64" width="50" height="50" as="geometry"/>
+                    <mxGeometry x="620" y="30" width="50" height="50" as="geometry"/>
                 </mxCell>
-                <mxCell id="7" style="edgeStyle=none;html=1;" parent="1" source="5" edge="1">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="547" y="104" as="targetPoint"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="5" value="/opt/infrastructure-linux/terraform/dev/&lt;br&gt;sur rh-subman" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;outlineConnect=0;align=center;shape=mxgraph.office.concepts.folder;fillColor=#2072B8;" parent="1" vertex="1">
-                    <mxGeometry x="417" y="124" width="50" height="45" as="geometry"/>
-                </mxCell>
-                <mxCell id="8" value="&lt;font color=&quot;#ff8000&quot;&gt;push&lt;/font&gt;" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-15;" parent="1" vertex="1">
-                    <mxGeometry x="467" y="94" width="60" height="30" as="geometry"/>
-                </mxCell>
-                <mxCell id="18" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontColor=#FFFFFF;" parent="1" source="9" edge="1">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="597" y="244" as="targetPoint"/>
-                    </mxGeometry>
+                <mxCell id="54" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="9" target="11">
+                    <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="9" value="Début Pipeline Gitlab" style="text;strokeColor=default;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#FF8000;" parent="1" vertex="1">
-                    <mxGeometry x="532" y="184" width="130" height="31" as="geometry"/>
+                    <mxGeometry x="590" y="169" width="130" height="31" as="geometry"/>
                 </mxCell>
                 <mxCell id="19" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontColor=#FFFFFF;" parent="1" source="11" target="15" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="11" value="&lt;font color=&quot;#ffffff&quot;&gt;Conversion&amp;nbsp;&lt;br&gt;XLS -&amp;gt; CSV&lt;br&gt;&lt;/font&gt;" style="text;strokeColor=default;align=center;fillColor=default;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#FF8000;" parent="1" vertex="1">
-                    <mxGeometry x="557" y="246" width="80" height="38" as="geometry"/>
+                    <mxGeometry x="615" y="280" width="80" height="38" as="geometry"/>
                 </mxCell>
                 <mxCell id="20" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontColor=#FFFFFF;" parent="1" source="15" target="16" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="15" value="&lt;font color=&quot;#ffffff&quot;&gt;Conversion&amp;nbsp;&lt;br&gt;CSV -&amp;gt; YML&lt;br&gt;&lt;/font&gt;" style="text;strokeColor=default;align=center;fillColor=default;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#FF8000;" parent="1" vertex="1">
-                    <mxGeometry x="557" y="324" width="80" height="38" as="geometry"/>
+                    <mxGeometry x="615" y="370" width="80" height="38" as="geometry"/>
                 </mxCell>
                 <mxCell id="23" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontColor=#FFFFFF;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="16" target="21" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="597" y="564" as="targetPoint"/>
+                        <mxPoint x="645" y="532" as="targetPoint"/>
                         <Array as="points">
-                            <mxPoint x="507" y="494"/>
+                            <mxPoint x="560" y="560"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="16" value="&lt;font color=&quot;#ffffff&quot;&gt;Generation main.tf&lt;br&gt;&lt;/font&gt;" style="text;strokeColor=default;align=center;fillColor=default;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#FF8000;" parent="1" vertex="1">
-                    <mxGeometry x="557" y="404" width="80" height="38" as="geometry"/>
+                    <mxGeometry x="615" y="470" width="80" height="38" as="geometry"/>
                 </mxCell>
                 <mxCell id="24" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;fontColor=#FFFFFF;" parent="1" source="21" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="437" y="364" as="targetPoint"/>
+                        <mxPoint x="485" y="428" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="21" value="&lt;font color=&quot;#ffffff&quot;&gt;Terraform Plan&lt;br&gt;&lt;/font&gt;" style="text;strokeColor=default;align=center;fillColor=default;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#FF8000;" parent="1" vertex="1">
-                    <mxGeometry x="397" y="404" width="80" height="38" as="geometry"/>
+                    <mxGeometry x="445" y="468" width="80" height="38" as="geometry"/>
                 </mxCell>
                 <mxCell id="22" value="&lt;font color=&quot;#ffffff&quot;&gt;Terraform Apply&lt;br&gt;&lt;/font&gt;" style="text;strokeColor=default;align=center;fillColor=#CC00CC;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#FF8000;" parent="1" vertex="1">
-                    <mxGeometry x="397" y="324" width="80" height="38" as="geometry"/>
-                </mxCell>
-                <mxCell id="26" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;fontColor=#FFFFFF;" parent="1" source="25" edge="1">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="437" y="204" as="targetPoint"/>
-                    </mxGeometry>
+                    <mxGeometry x="445" y="388" width="80" height="38" as="geometry"/>
                 </mxCell>
                 <mxCell id="25" value="Fin Pipeline Gitlab" style="text;strokeColor=default;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#FF8000;" parent="1" vertex="1">
-                    <mxGeometry x="372" y="274" width="130" height="31" as="geometry"/>
+                    <mxGeometry x="420" y="338" width="130" height="31" as="geometry"/>
                 </mxCell>
                 <mxCell id="27" value="Artifacts:&lt;br&gt;terraform.tfstate" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#FFFFFF;" parent="1" vertex="1">
-                    <mxGeometry x="357" y="224" width="60" height="30" as="geometry"/>
+                    <mxGeometry x="337" y="338" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" value="vmdefs.xls&lt;br&gt;&amp;nbsp;sur PC local" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-90;" vertex="1" parent="1">
+                    <mxGeometry x="40" y="100" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="&lt;b&gt;/opt/infrastructure-linux/terraform&lt;/b&gt;" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-90;" vertex="1" parent="1">
+                    <mxGeometry x="282" y="124.5" width="210" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="33" value="" style="html=1;verticalLabelPosition=bottom;align=center;labelBackgroundColor=#ffffff;verticalAlign=top;strokeWidth=2;strokeColor=#0080F0;shadow=0;dashed=0;shape=mxgraph.ios7.icons.folder;" vertex="1" parent="1">
+                    <mxGeometry x="422" y="50" width="50" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="34" value="" style="html=1;verticalLabelPosition=bottom;align=center;labelBackgroundColor=#ffffff;verticalAlign=top;strokeWidth=2;strokeColor=#0080F0;shadow=0;dashed=0;shape=mxgraph.ios7.icons.folder;" vertex="1" parent="1">
+                    <mxGeometry x="421" y="100" width="50" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="35" value="" style="html=1;verticalLabelPosition=bottom;align=center;labelBackgroundColor=#ffffff;verticalAlign=top;strokeWidth=2;strokeColor=#0080F0;shadow=0;dashed=0;shape=mxgraph.ios7.icons.folder;" vertex="1" parent="1">
+                    <mxGeometry x="421" y="154.5" width="50" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="37" value="rh-subman (172.17.20.146)&lt;br&gt;- gitlab runner -" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="397" y="280" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="38" value="dev" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="421" y="62" width="50" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="39" value="prod" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="421" y="168" width="50" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="40" value="rec" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="420" y="112.5" width="50" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="43" value="SCP" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="220" y="124.5" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="44" value="lab" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/general/Branch.svg;" vertex="1" parent="1">
+                    <mxGeometry x="545" y="107.5" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="46" value="" style="html=1;verticalLabelPosition=bottom;align=center;labelBackgroundColor=#ffffff;verticalAlign=top;strokeWidth=2;strokeColor=#0080F0;shadow=0;dashed=0;shape=mxgraph.ios7.icons.folder;" vertex="1" parent="1">
+                    <mxGeometry x="422" y="211" width="50" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="47" value="lab" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="422" y="221" width="50" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="48" value="dev" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/general/Branch.svg;" vertex="1" parent="1">
+                    <mxGeometry x="605" y="107.5" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="49" value="rec" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/general/Branch.svg;" vertex="1" parent="1">
+                    <mxGeometry x="665" y="105" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="50" value="prod" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/general/Branch.svg;" vertex="1" parent="1">
+                    <mxGeometry x="725" y="105" width="30" height="30" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
