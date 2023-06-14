@@ -295,6 +295,15 @@ data "vsphere_network" "DMZ_PRO_INT_RHEL_MGMT" {
   datacenter_id = data.vsphere_datacenter.esx_dc.id
 }
 
+data "vsphere_network" "PRO_AXWAY" {
+  name = "PRO_AXWAY"
+  datacenter_id = data.vsphere_datacenter.esx_dc.id
+}
+
+data "vsphere_network" "TST_AXWAY" {
+  name = "TST_AXWAY"
+  datacenter_id = data.vsphere_datacenter.esx_dc.id
+}
 
 ###############################
 # CONTENT LIBRARY
