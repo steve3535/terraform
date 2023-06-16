@@ -1,9 +1,9 @@
 DOMAIN,VM_NAME1,VM_NAME2,DESCR,HOSTNAME,DATACENTER,AHV CLUSTER/ESX HOST,IMAGE,sub_cl,AHV SUBNET/ESX NETWORK,stg_cl,STORAGE / DATASTORE,FOLDER (ONLY FOR ESX),MEM(MB),CPU,CPU_SOCKET,DISK2_SIZE_GB,IP,NET_PREFIX,GATEWAY,SATELLITE_ENV
-lan_vms,VSL-POC-DTH-001,VSL-POC-DTH-001,DATATHINGS POC,vsl-poc-dth-001,nutanix.dc3,cluster651,rhel8-dc3,sub_cluster651,"var.ahv_651_network[""New_PROD 192.168.25.x""]",stg_cluster651,"var.ahv_651_storage[""NUT_AHV_DC3_01""]",,32768.0,4.0,1.0,500.0,192.168.25.119,24.0,192.168.25.1,DEV_TEST
-dmz_vms,VSL-PRO-AXW-001,VSL-PRO-AXW-001,AXWAY PRO,vsl-pro-axw-001,NUT-DMZ-DC01,nut-dmz-01,esx_lib1_item,sub_nut-dmz-01,PRO_AXWAY,stg_nut-dmz-01,NUT_DMZ_INT_DC1_to_DC2,/DMZ,4096.0,2.0,1.0,100.0,172.23.83.1,24.0,172.23.83.254,DEV_TEST
-dmz_vms,VSL-TST-AXW-001,VSL-TST-AXW-001,AXWAY TEST,vsl-tst-axw-001,NUT-DMZ-DC02,nut-dmz-02,esx_lib2_item,sub_nut-dmz-02,TST_AXWAY,stg_nut-dmz-02,NUT_DMZ_INT_DC2_01,/DMZ,4096.0,2.0,1.0,100.0,172.26.83.1,24.0,172.26.83.254,DEV_TEST
-lan_vms,VSL-TST-AXW-002,VSL-TST-AXW-002,AXWAY LAN TEST,vsl-tst-axw-002,nutanix.dc3,cluster651,rhel8-dc3,sub_cluster651,"var.ahv_651_network[""VLAN_42""]",stg_cluster651,"var.ahv_651_storage[""NUT_AHV_DC3_01""]",,4096.0,2.0,1.0,100.0,192.168.42.158,24.0,192.168.42.1,DEV_TEST
-lan_vms,VSL-PRO-AXW-002,VSL-PRO-AXW-002,AXWAY LAN PROD,vsl-pro-axw-002,nutanix.dc1,cluster650,rhel8-dc1,sub_cluster650,"var.ahv_650_network[""VLAN_42""]",stg_cluster650,"var.ahv_650_storage[""NUT_AHV_DC1_01""]",,4096.0,2.0,1.0,100.0,192.168.42.157,24.0,192.168.42.1,DEV_TEST
+dmz_vms,VSL-PRO-SRO-001 ,VSL-PRO-SRO-001 ,SAP ROUTER,vsl-pro-sro-001,NUT-DMZ-DC01,nut-dmz-05,esx_lib1_item,sub_nut-dmz-05,PRO_SAP_ROUTER_EXT,stg_nut-dmz-05,NUT_DMZ_EXT_DC1_to_DC2,/DMZ,2048.0,1.0,1.0,20.0,172.23.76.1,24.0,172.23.76.254,DEV_TEST
+,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,sub_,,stg_,,,,,,,,,,
 ,,,,,,,,sub_,,stg_,,,,,,,,,,
 ,,,,,,,,sub_,,stg_,,,,,,,,,,
