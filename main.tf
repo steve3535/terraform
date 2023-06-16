@@ -305,6 +305,11 @@ data "vsphere_network" "TST_AXWAY" {
   datacenter_id = data.vsphere_datacenter.esx_dc.id
 }
 
+data "vsphere_network" "PRO_SAP_ROUTER_EXT" {
+  name = "PRO_SAP_ROUTER_EXT"
+  datacenter_id = data.vsphere_datacenter.esx_dc.id
+}
+
 ###############################
 # CONTENT LIBRARY
 ###############################
