@@ -1,6 +1,6 @@
 DOMAIN,VM_NAME1,VM_NAME2,DESCR,HOSTNAME,DATACENTER,AHV CLUSTER/ESX HOST,IMAGE,sub_cl,AHV SUBNET/ESX NETWORK,stg_cl,STORAGE / DATASTORE,FOLDER (ONLY FOR ESX),MEM(MB),CPU,CPU_SOCKET,DISK2_SIZE_GB,IP,NET_PREFIX,GATEWAY,SATELLITE_ENV
-dmz_vms,VSL-TST-OES-001,VSL-TST-OES-001,ORACLE EXACC SCRIPT DMZ,vsl-test-oes-001,NUT-DMZ-DC02,nut-dmz-04,esx_lib2_item,sub_nut-dmz-04,DMZ_EXT_Oracle_Mgmt,stg_nut-dmz-04,NUT_DMZ_EXT_DC2_01,/DMZ,2048.0,1.0,1.0,10.0,172.22.143.100,24.0,172.22.143.1,DEV_TEST
-lan_vms,VSL-TST-OES-002,VSL-TST-OES-002,ORACLE EXACC SCRIPT LAN,vsl-test-oes-002,nutanix.dc3,cluster651,rhel8-dc3,sub_cluster651,"var.ahv_651_network[""VLAN_26""]",stg_cluster651,"var.ahv_651_storage[""NUT_AHV_DC3_01""]",,2048.0,1.0,1.0,10.0,192.168.26.217,24.0,192.168.26.1,DEV_TEST
+dmz_vms,VSL-TST-OES-001,VSL-TST-OES-001,ORACLE EXACC SCRIPT DMZ,vsl-tst-oes-001,NUT-DMZ-DC02,nut-dmz-04,esx_lib2_item,sub_nut-dmz-04,DMZ_EXT_Oracle_Mgmt,stg_nut-dmz-04,NUT_DMZ_EXT_DC2_01,/DMZ,2048.0,1.0,1.0,10.0,172.22.143.100,24.0,172.22.143.1,DEV_TEST
+lan_vms,VSL-TST-OES-002,VSL-TST-OES-002,ORACLE EXACC SCRIPT LAN,vsl-tst-oes-002,nutanix.dc3,cluster651,rhel8-dc3,sub_cluster651,"var.ahv_651_network[""VLAN_26""]",stg_cluster651,"var.ahv_651_storage[""NUT_AHV_DC3_01""]",,2048.0,1.0,1.0,10.0,192.168.26.217,24.0,192.168.26.1,DEV_TEST
 ,,,,,,,,sub_,,stg_,,,,,,,,,,
 ,,,,,,,,sub_,,stg_,,,,,,,,,,
 ,,,,,,,,sub_,,stg_,,,,,,,,,,

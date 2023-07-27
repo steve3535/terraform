@@ -2,7 +2,7 @@ lan_vms:
   VSL-TST-OES-002:  
     name: "VSL-TST-OES-002"  
     descr: "ORACLE EXACC SCRIPT LAN"  
-    hostname: "vsl-test-oes-002"  
+    hostname: "vsl-tst-oes-002"  
     datacenter: nutanix.dc3  
     image: rhel8-dc3  
     cluster: cluster651  
@@ -20,7 +20,7 @@ lan_vms:
 dmz_vms:  
   VSL-TST-OES-001:  
     name: "VSL-TST-OES-001"  
-    hostname: "vsl-test-oes-001"  
+    hostname: "vsl-tst-oes-001"  
     datacenter: NUT-DMZ-DC02  
     content_library_item: esx_lib2_item  
     host: nut-dmz-04  

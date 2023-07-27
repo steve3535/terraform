@@ -382,7 +382,7 @@ resource "nutanix_virtual_machine" "VSL-TST-OES-002" {
         #guest_customization_cloud_init_user_data = base64encode(data.template_file.cloud-init.rendered)
         guest_customization_cloud_init_user_data = base64encode(templatefile("user-data.tpl", {
           vm_domain         =  var.vm_domain 
-          vm_name       =  "vsl-test-oes-002"
+          vm_name       =  "vsl-tst-oes-002"
           vm_ip   = "192.168.26.217"
           vm_prefix = "24"
           vm_gateway   =  "192.168.26.1"
@@ -393,7 +393,7 @@ resource "nutanix_virtual_machine" "VSL-TST-OES-002" {
         }))
 
         provisioner "local-exec" {
-        command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'vsl-test-oes-002,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file" 
+        command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'vsl-tst-oes-002,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file" 
         }
  }
 # END ANSIBLE MANAGED BLOCK VSL-TST-OES-002
@@ -426,7 +426,7 @@ resource "vsphere_virtual_machine" "VSL-TST-OES-001" {
     template_uuid = data.vsphere_content_library_item.esx_lib2_item.id
     customize {
       linux_options {
-      host_name = "vsl-test-oes-001"
+      host_name = "vsl-tst-oes-001"
       domain    = var.vm_domain
       }
     
@@ -450,7 +450,7 @@ resource "vsphere_virtual_machine" "VSL-TST-OES-001" {
       type = "ssh"
       user = var.vm_user
       password = var.vm_password
-      host = "vsl-test-oes-001"
+      host = "vsl-tst-oes-001"
     }
   }  
 
@@ -469,12 +469,12 @@ resource "vsphere_virtual_machine" "VSL-TST-OES-001" {
        type = "ssh"
        user = "localadmin"
        password = var.vm_password
-       host = "vsl-test-oes-001"
+       host = "vsl-tst-oes-001"
     }
   }
 
   provisioner "local-exec" {
-    command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'vsl-test-oes-001,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file"
+    command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'vsl-tst-oes-001,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file"
   }
 
 }
