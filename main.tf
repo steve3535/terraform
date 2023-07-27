@@ -310,6 +310,11 @@ data "vsphere_network" "PRO_SAP_ROUTER_EXT" {
   datacenter_id = data.vsphere_datacenter.esx_dc.id
 }
 
+data "vsphere_network" "DMZ_EXT_Oracle_Mgmt" {
+  name = "DMZ_EXT_Oracle_Mgmt"
+  datacenter_id = data.vsphere_datacenter.esx_dc.id
+}
+
 ###############################
 # CONTENT LIBRARY
 ###############################
@@ -335,3 +340,142 @@ data "vsphere_content_library_item" "esx_lib2_item" {
   library_id = data.vsphere_content_library.esx_lib2.id 
 }
 
+# BEGIN ANSIBLE MANAGED BLOCK VSL-TST-OES-002
+resource "nutanix_virtual_machine" "VSL-TST-OES-002" {
+        name                 = "VSL-TST-OES-002"
+        description          = "ORACLE EXACC SCRIPT LAN" 
+        provider             = nutanix.dc3
+        cluster_uuid         = data.nutanix_cluster.cluster651.metadata.uuid
+        num_vcpus_per_socket = "1"
+        num_sockets          = "1"
+        memory_size_mib      = "2048"
+        boot_type            = "UEFI"
+        nic_list {
+          subnet_uuid = var.ahv_651_network["VLAN_26"]
+        }
+
+        disk_list {
+          data_source_reference = {
+             kind = "image"
+             uuid = data.nutanix_image.rhel8-dc3.metadata.uuid
+          }
+
+          device_properties {
+            disk_address = {
+              device_index = 0
+              adapter_type = "SCSI"
+            }
+            device_type = "DISK"
+          }
+        }
+
+        disk_list {
+          disk_size_mib = (10 * 1024)
+          storage_config {
+            storage_container_reference {
+              kind = "storage_container"
+              uuid = var.ahv_651_storage["NUT_AHV_DC3_01"]
+            }
+          }
+        }
+
+        #guest_customization_cloud_init_user_data = base64encode(data.template_file.cloud-init.rendered)
+        guest_customization_cloud_init_user_data = base64encode(templatefile("user-data.tpl", {
+          vm_domain         =  var.vm_domain 
+          vm_name       =  "vsl-test-oes-002"
+          vm_ip   = "192.168.26.217"
+          vm_prefix = "24"
+          vm_gateway   =  "192.168.26.1"
+          vm_dns1    = var.vm_dns1
+          vm_dns2    = var.vm_dns2
+          vm_user = var.vm_user
+          vm_public_key = var.public_key
+        }))
+
+        provisioner "local-exec" {
+        command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'vsl-test-oes-002,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file" 
+        }
+ }
+# END ANSIBLE MANAGED BLOCK VSL-TST-OES-002
+# BEGIN ANSIBLE MANAGED BLOCK VSL-TST-OES-001 (DMZ)
+resource "vsphere_virtual_machine" "VSL-TST-OES-001" {
+  resource_pool_id     = data.vsphere_resource_pool.esx_pool.id
+  host_system_id       = data.vsphere_host.nut-dmz-04.id 
+  datastore_id         = data.vsphere_datastore.NUT_DMZ_EXT_DC2_01.id 
+  firmware             = "efi"
+  name                 = "VSL-TST-OES-001" 
+  folder               = "/DMZ"
+  num_cpus             = "1"
+  memory               = "2048"
+  wait_for_guest_net_timeout = 5
+  disk {
+    label            = "disk0"
+    size             = 50
+    controller_type  = "scsi"
+  }
+  disk {
+    label            = "disk1"
+    size             = 10
+    controller_type  = "scsi"
+    unit_number      = 1
+  }
+  cdrom {
+  }
+
+  clone {
+    template_uuid = data.vsphere_content_library_item.esx_lib2_item.id
+    customize {
+      linux_options {
+      host_name = "vsl-test-oes-001"
+      domain    = var.vm_domain
+      }
+    
+    # Nécessaire malgré la config nmcli via le prov remote-exec car justement remote-exec a besoin d'une IP pour se connecter  
+      network_interface {
+        ipv4_address = cidrhost("172.22.143.0/24","100") 
+        ipv4_netmask = "24"
+      }
+      ipv4_gateway = cidrhost("172.22.143.0/24","1")
+      dns_server_list = [var.vm_dns1,var.vm_dns2]
+    }
+  }        
+  network_interface {
+    network_id = data.vsphere_network.DMZ_EXT_Oracle_Mgmt.id
+  }
+
+  provisioner "file" {
+    source = var.public_key_path
+    destination = "/tmp/authorized_keys"
+    connection {
+      type = "ssh"
+      user = var.vm_user
+      password = var.vm_password
+      host = "vsl-test-oes-001"
+    }
+  }  
+
+  provisioner "remote-exec" {
+    inline = [
+      "mkdir /home/localadmin/.ssh",
+       "chmod 0700 /home/localadmin/.ssh",
+       "mv /tmp/authorized_keys /home/localadmin/.ssh/",
+       "chmod 0600 /home/localadmin/.ssh/authorized_keys",      
+       "sudo nmcli con mod 'System ${var.vsphere_interface_name}' ipv4.method manual ipv4.addresses 172.22.143.100/24 ipv4.gateway 172.22.143.1 connection.autoconnect yes",
+       "sudo nmcli con mod 'System ${var.vsphere_interface_name}' con-name ${var.vsphere_interface_name}",
+       "sudo nmcli con up ${var.vsphere_interface_name}",
+       "sudo dnf -y remove cloud-init"      
+    ]
+    connection {
+       type = "ssh"
+       user = "localadmin"
+       password = var.vm_password
+       host = "vsl-test-oes-001"
+    }
+  }
+
+  provisioner "local-exec" {
+    command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'vsl-test-oes-001,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file"
+  }
+
+}
+# END ANSIBLE MANAGED BLOCK VSL-TST-OES-001 (DMZ)
