@@ -1,7 +1,7 @@
 {
   "version": 4,
   "terraform_version": "1.3.3",
-  "serial": 254,
+  "serial": 252,
   "lineage": "87e4a7b9-cba7-61d3-2b05-803d42fc7d99",
   "outputs": {},
   "resources": [
@@ -1509,6 +1509,406 @@
             "name": "Cluster NUTANIX DMZ/Resources"
           },
           "sensitive_attributes": []
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "nutanix_virtual_machine",
+      "name": "VSL-TST-OES-002",
+      "provider": "provider[\"registry.terraform.io/nutanix/nutanix\"].dc3",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "api_version": "3.1",
+            "availability_zone_reference": {},
+            "boot_device_disk_address": {},
+            "boot_device_mac_address": "",
+            "boot_device_order_list": [],
+            "boot_type": "UEFI",
+            "categories": [],
+            "cloud_init_cdrom_uuid": "26852bca-5868-434d-af24-ce68d0df327c",
+            "cluster_name": "LU651",
+            "cluster_uuid": "0005bad6-a969-e524-1d79-ac1f6b3ddf74",
+            "description": "ORACLE EXACC SCRIPT LAN",
+            "disk_list": [
+              {
+                "data_source_reference": {
+                  "kind": "image",
+                  "uuid": "56af4655-6323-4d95-b6c2-b821b240c3c9"
+                },
+                "device_properties": [
+                  {
+                    "device_type": "DISK",
+                    "disk_address": {
+                      "adapter_type": "SCSI",
+                      "device_index": "0"
+                    }
+                  }
+                ],
+                "disk_size_bytes": 53687091200,
+                "disk_size_mib": 51200,
+                "storage_config": [
+                  {
+                    "flash_mode": "",
+                    "storage_container_reference": [
+                      {
+                        "kind": "storage_container",
+                        "name": "SelfServiceContainer",
+                        "url": "",
+                        "uuid": "14a956d7-8c65-465b-9fa2-d34e8c9e4b8f"
+                      }
+                    ]
+                  }
+                ],
+                "uuid": "2364a1b3-98ab-432c-8b02-e94d5518ea8a",
+                "volume_group_reference": {}
+              },
+              {
+                "data_source_reference": {},
+                "device_properties": [
+                  {
+                    "device_type": "DISK",
+                    "disk_address": {
+                      "adapter_type": "SCSI",
+                      "device_index": "1"
+                    }
+                  }
+                ],
+                "disk_size_bytes": 10737418240,
+                "disk_size_mib": 10240,
+                "storage_config": [
+                  {
+                    "flash_mode": "",
+                    "storage_container_reference": [
+                      {
+                        "kind": "storage_container",
+                        "name": "NUT_AHV_DC3_01",
+                        "url": "",
+                        "uuid": "bc8f3bc4-900a-4458-aadd-85f557f5bcd2"
+                      }
+                    ]
+                  }
+                ],
+                "uuid": "ab28c212-d983-4f74-ab5d-cf91867605b1",
+                "volume_group_reference": {}
+              }
+            ],
+            "enable_cpu_passthrough": false,
+            "enable_script_exec": false,
+            "gpu_list": [],
+            "guest_customization_cloud_init_custom_key_values": {},
+            "guest_customization_cloud_init_meta_data": "",
+            "guest_customization_cloud_init_user_data": "I2Nsb3VkLWNvbmZpZwpydW5jbWQ6CiAgLSBubWNsaSBjb24gbW9kICJTeXN0ZW0gZW5zMyIgaXB2NC5tZXRob2QgbWFudWFsIGlwdjQuYWRkcmVzc2VzIDE5Mi4xNjguMjYuMjE3LzI0IGlwdjQuZ2F0ZXdheSAxOTIuMTY4LjI2LjEgaXB2NC5kbnMgIjIwMC4xLjEuMTYzIDIwMC4xLjEuMjE4IgogIC0gbm1jbGkgY29uIG1vZCAiU3lzdGVtIGVuczMiIGNvbi1uYW1lIGVuczMKICAtIG5tY2xpIGNvbiB1cCBlbnMzCgpob3N0bmFtZTogdnNsLXRzdC1vZXMtMDAyCmZxZG46IHZzbC10c3Qtb2VzLTAwMi5sYWx1eC5sb2NhbAoKdXNlcnM6CiAgLSBuYW1lOiBsb2NhbGFkbWluCiAgICBzc2gtYXV0aG9yaXplZC1rZXlzOgogICAgICAtIHNzaC1yc2EgQUFBQUIzTnphQzF5YzJFQUFBQURBUUFCQUFBQmdRQy9sRzhRaXdsY3BGSjc2UUVMOWluVDN4d0ZvdHBLK2RoVCtkaGVieG5PUW84Wkw3bHFRU2grNU1ZNVNlbjh6TnkzSzVXdWtYbFRsZmFzMjd2eEV1MHRzLzRYQ0FlYUpEZFkwN243Yjg2clRpK2sxZUROaHBkZ20zT2NSNXJlNkpEaFM0QXN0eHViODRVb01oUmpCMHNPVXlhUzRZeG5XU0hRdG1PbUtNN0h2cEErVkwrWXFwTzhpWlVBVG9EbFgzK3NaUnJwTThWS1AyZ0lWWU1TTVpsSW1YczY0YlhJS1g3VGk1Rk5ZTVhWNEpOTjFtejRxSFZzNWdITnZ5ek5vbG1xbUZZRnlUYjNaUjd6SjdMVTZ1SjlDWGNQVE9iZ0hwR1M5Syt0WmhZZXNwYzB1Q2xBekVrajBTdUZIbkpQTldydEQzL0F3VW5BcitrVU1od1d0OG9ObHhvTWxmaXQzdmNUS0RraERiZXU3aDM0azlmclExR0ZldWlnT1MwR213Z3RUYlVCdXlRdEk2bjdvZFVUQXRTa2tuNGFhUzBVZ1Y2WU40OTE1YUM4TS9zTW5LNHVIL2x4Slo0ak9VS1RvU0IrTmJKcHRUYzVMTGlLM1dtZUNTRzhSUEI5VStSaTl2MklJeFpIaVZ2Wno1cEJ1V01FZUN4b2h0MnZOeWs5d2xzPSBnaXRsYWItcnVubmVyQHJoLXN1Ym1hbi5sYWx1eC5sb2NhbAoK",
+            "guest_customization_is_overridable": false,
+            "guest_customization_sysprep": {},
+            "guest_customization_sysprep_custom_key_values": {},
+            "guest_os_id": "",
+            "hardware_clock_timezone": "UTC",
+            "host_reference": {
+              "kind": "host",
+              "name": "192.168.3.148",
+              "uuid": "988b4e59-f514-4641-b18f-b963232bedbe"
+            },
+            "hypervisor_type": null,
+            "id": "acac9d4a-64cc-41db-95df-9959b90a4d21",
+            "is_vcpu_hard_pinned": false,
+            "machine_type": "PC",
+            "memory_size_mib": 2048,
+            "metadata": {
+              "creation_time": "2023-07-27 16:30:13 +0000 UTC",
+              "last_update_time": "2023-07-27 16:30:13 +0000 UTC",
+              "name": "",
+              "spec_hash": "",
+              "spec_version": "0",
+              "uuid": "acac9d4a-64cc-41db-95df-9959b90a4d21"
+            },
+            "name": "VSL-TST-OES-002",
+            "ngt_credentials": {},
+            "ngt_enabled_capability_list": [],
+            "nic_list": [
+              {
+                "ip_endpoint_list": [],
+                "is_connected": "true",
+                "mac_address": "50:6b:8d:ae:92:d1",
+                "model": "",
+                "network_function_chain_reference": {},
+                "network_function_nic_type": "",
+                "nic_type": "NORMAL_NIC",
+                "num_queues": 0,
+                "subnet_name": "VLAN_26",
+                "subnet_uuid": "ecc99c8a-ddc1-422b-8cfb-b69057d570db",
+                "uuid": "eeb39c3c-6002-4f59-997d-69e8642f446b"
+              }
+            ],
+            "nic_list_status": [
+              {
+                "floating_ip": "",
+                "ip_endpoint_list": [],
+                "is_connected": "true",
+                "mac_address": "50:6b:8d:ae:92:d1",
+                "model": "",
+                "network_function_chain_reference": {},
+                "network_function_nic_type": "",
+                "nic_type": "NORMAL_NIC",
+                "num_queues": 0,
+                "subnet_name": "VLAN_26",
+                "subnet_uuid": "ecc99c8a-ddc1-422b-8cfb-b69057d570db",
+                "uuid": "eeb39c3c-6002-4f59-997d-69e8642f446b"
+              }
+            ],
+            "num_sockets": 1,
+            "num_vcpus_per_socket": 1,
+            "num_vnuma_nodes": 0,
+            "nutanix_guest_tools": {},
+            "owner_reference": {
+              "kind": "user",
+              "name": "kwakou.missoh@lalux.lu",
+              "uuid": "cee7acb0-a3ec-5884-98df-ec80fecf83d6"
+            },
+            "parent_reference": {},
+            "power_state": "ON",
+            "power_state_mechanism": "HARD",
+            "project_reference": {
+              "kind": "project",
+              "name": "_internal",
+              "uuid": "996d167c-54de-428a-9b36-a265ab1d2916"
+            },
+            "serial_port_list": [],
+            "should_fail_on_script_failure": false,
+            "state": "COMPLETE",
+            "timeouts": null,
+            "use_hot_add": true,
+            "vga_console_enabled": true
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozNjAwMDAwMDAwMDAwLCJkZWxldGUiOjM2MDAwMDAwMDAwMDAsInVwZGF0ZSI6MzYwMDAwMDAwMDAwMH0sInNjaGVtYV92ZXJzaW9uIjoiMSJ9",
+          "dependencies": [
+            "data.nutanix_cluster.cluster651",
+            "data.nutanix_image.rhel8-dc3"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "vsphere_virtual_machine",
+      "name": "VSL-TST-OES-001",
+      "provider": "provider[\"registry.terraform.io/hashicorp/vsphere\"]",
+      "instances": [
+        {
+          "schema_version": 3,
+          "attributes": {
+            "alternate_guest_name": "",
+            "annotation": "Packer imported RHEL8STD VM template",
+            "boot_delay": 0,
+            "boot_retry_delay": 10000,
+            "boot_retry_enabled": false,
+            "cdrom": [
+              {
+                "client_device": false,
+                "datastore_id": "",
+                "device_address": "ide:0:0",
+                "key": 3000,
+                "path": ""
+              }
+            ],
+            "change_version": "2023-07-27T16:31:41.039551Z",
+            "clone": [
+              {
+                "customize": [
+                  {
+                    "dns_server_list": [
+                      "200.1.1.163",
+                      "200.1.1.218"
+                    ],
+                    "dns_suffix_list": null,
+                    "ipv4_gateway": "172.22.143.1",
+                    "ipv6_gateway": "",
+                    "linux_options": [
+                      {
+                        "domain": "lalux.local",
+                        "host_name": "vsl-tst-oes-001",
+                        "hw_clock_utc": true,
+                        "script_text": "",
+                        "time_zone": ""
+                      }
+                    ],
+                    "network_interface": [
+                      {
+                        "dns_domain": "",
+                        "dns_server_list": null,
+                        "ipv4_address": "172.22.143.100",
+                        "ipv4_netmask": 24,
+                        "ipv6_address": "",
+                        "ipv6_netmask": 0
+                      }
+                    ],
+                    "timeout": 10,
+                    "windows_options": [],
+                    "windows_sysprep_text": ""
+                  }
+                ],
+                "linked_clone": false,
+                "ovf_network_map": null,
+                "ovf_storage_map": null,
+                "template_uuid": "646617ed-c3e8-4241-abd5-20c82ed8e02c",
+                "timeout": 30
+              }
+            ],
+            "cpu_hot_add_enabled": false,
+            "cpu_hot_remove_enabled": false,
+            "cpu_limit": -1,
+            "cpu_performance_counters_enabled": false,
+            "cpu_reservation": 0,
+            "cpu_share_count": 1000,
+            "cpu_share_level": "normal",
+            "custom_attributes": null,
+            "datacenter_id": null,
+            "datastore_cluster_id": null,
+            "datastore_id": "datastore-42141",
+            "default_ip_address": "172.22.143.100",
+            "disk": [
+              {
+                "attach": false,
+                "controller_type": "scsi",
+                "datastore_id": "datastore-42141",
+                "device_address": "scsi:0:0",
+                "disk_mode": "persistent",
+                "disk_sharing": "sharingNone",
+                "eagerly_scrub": false,
+                "io_limit": -1,
+                "io_reservation": 0,
+                "io_share_count": 1000,
+                "io_share_level": "normal",
+                "keep_on_remove": false,
+                "key": 2000,
+                "label": "disk0",
+                "path": "VSL-TST-OES-001/VSL-TST-OES-001.vmdk",
+                "size": 50,
+                "storage_policy_id": "",
+                "thin_provisioned": true,
+                "unit_number": 0,
+                "uuid": "6000C295-df62-6661-3c08-0ce2e59fc1fa",
+                "write_through": false
+              },
+              {
+                "attach": false,
+                "controller_type": "scsi",
+                "datastore_id": "datastore-42141",
+                "device_address": "scsi:0:1",
+                "disk_mode": "persistent",
+                "disk_sharing": "sharingNone",
+                "eagerly_scrub": false,
+                "io_limit": -1,
+                "io_reservation": 0,
+                "io_share_count": 1000,
+                "io_share_level": "normal",
+                "keep_on_remove": false,
+                "key": 2001,
+                "label": "disk1",
+                "path": "VSL-TST-OES-001/VSL-TST-OES-001_1.vmdk",
+                "size": 10,
+                "storage_policy_id": "",
+                "thin_provisioned": true,
+                "unit_number": 1,
+                "uuid": "6000C298-a14b-2b9e-fd50-711f1287c627",
+                "write_through": false
+              }
+            ],
+            "efi_secure_boot_enabled": false,
+            "enable_disk_uuid": false,
+            "enable_logging": false,
+            "ept_rvi_mode": "automatic",
+            "extra_config": null,
+            "extra_config_reboot_required": true,
+            "firmware": "efi",
+            "folder": "DMZ",
+            "force_power_off": true,
+            "guest_id": "rhel8_64Guest",
+            "guest_ip_addresses": [
+              "172.22.143.100",
+              "fe80::250:56ff:fe81:aec2"
+            ],
+            "hardware_version": 19,
+            "host_system_id": "host-239063",
+            "hv_mode": "hvAuto",
+            "id": "42019493-2617-79b1-0629-061ca4c3ffcf",
+            "ide_controller_count": 2,
+            "ignored_guest_ips": null,
+            "imported": null,
+            "latency_sensitivity": "normal",
+            "memory": 2048,
+            "memory_hot_add_enabled": false,
+            "memory_limit": -1,
+            "memory_reservation": 0,
+            "memory_share_count": 20480,
+            "memory_share_level": "normal",
+            "migrate_wait_timeout": 30,
+            "moid": "vm-241815",
+            "name": "VSL-TST-OES-001",
+            "nested_hv_enabled": false,
+            "network_interface": [
+              {
+                "adapter_type": "vmxnet3",
+                "bandwidth_limit": -1,
+                "bandwidth_reservation": 0,
+                "bandwidth_share_count": 50,
+                "bandwidth_share_level": "normal",
+                "device_address": "pci:0:7",
+                "key": 4000,
+                "mac_address": "00:50:56:81:ae:c2",
+                "network_id": "network-71004",
+                "ovf_mapping": "",
+                "use_static_mac": false
+              }
+            ],
+            "num_cores_per_socket": 1,
+            "num_cpus": 1,
+            "ovf_deploy": [],
+            "pci_device_id": null,
+            "power_state": "on",
+            "poweron_timeout": 300,
+            "reboot_required": false,
+            "replace_trigger": null,
+            "resource_pool_id": "resgroup-41982",
+            "run_tools_scripts_after_power_on": true,
+            "run_tools_scripts_after_resume": true,
+            "run_tools_scripts_before_guest_reboot": false,
+            "run_tools_scripts_before_guest_shutdown": true,
+            "run_tools_scripts_before_guest_standby": true,
+            "sata_controller_count": 0,
+            "scsi_bus_sharing": "noSharing",
+            "scsi_controller_count": 1,
+            "scsi_type": "pvscsi",
+            "shutdown_wait_timeout": 3,
+            "storage_policy_id": "",
+            "swap_placement_policy": "inherit",
+            "sync_time_with_host": false,
+            "sync_time_with_host_periodically": false,
+            "tags": null,
+            "tools_upgrade_policy": "manual",
+            "uuid": "42019493-2617-79b1-0629-061ca4c3ffcf",
+            "vapp": [],
+            "vapp_transport": [],
+            "vbs_enabled": false,
+            "vmware_tools_status": "guestToolsRunning",
+            "vmx_path": "VSL-TST-OES-001/VSL-TST-OES-001.vmx",
+            "vvtd_enabled": false,
+            "wait_for_guest_ip_timeout": 0,
+            "wait_for_guest_net_routable": true,
+            "wait_for_guest_net_timeout": 5
+          },
+          "sensitive_attributes": [],
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjMifQ==",
+          "dependencies": [
+            "data.vsphere_content_library_item.esx_lib2_item",
+            "data.vsphere_datastore.NUT_DMZ_EXT_DC2_01",
+            "data.vsphere_host.nut-dmz-04",
+            "data.vsphere_network.DMZ_EXT_Oracle_Mgmt",
+            "data.vsphere_resource_pool.esx_pool"
+          ]
         }
       ]
     }
