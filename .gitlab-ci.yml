@@ -21,7 +21,7 @@ parse_job_1:
       - https_proxy=172.22.108.7:80 pip3 install -r requirements.txt 
     stage: parse_convert_to_csv 
     script:
-      - python3 convert_to_csv.py
+      - python3 convert_to_csv.py vmdefs.xlsx
       #- cat vmdefs.csv 
       - cp vmdefs.csv /opt/iac/terraform/
     artifacts:
