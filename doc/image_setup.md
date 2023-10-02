@@ -86,7 +86,15 @@ JE NE PEUX DONC PAS MEN PASSER
    * dans /opt/packer/rhel/: `packer build qemu.pkr.hcl`  
    * ca va lancer une console virt-manager  
    * monitorer dans un terminal classic avec `tail -f packerlog.txt`  
-8. recuperer la nouvelle image et l'uploader dans chacun des prism centraux 
+8. recuperer la nouvelle image et l'uploader dans chacun des prism centraux manuellement  
+
+## - Mise a jour de limage  ESX (VMware)
+* 1,2,3: meme chose que ci-dessus
+4. On na pas de output directory sur le server LU741: le fichier est produit directement dans ESX dans le folder choisi avec le nom choisi  
+5. Ouvrir donc la console dans ESX pour suivre   
+6. Il cree ensuite un artifact dans le content library DC1  
+7. cloner en faisant clic droit du DC1 vers le DC2  
+
 
 
 
