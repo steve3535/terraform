@@ -72,5 +72,12 @@ JE NE PEUX DONC PAS MEN PASSER
   Ladresse IP mise en place via la section customize du vsphere resource virtual machine, nest pas persistente car ovewritten par cloud-init   
 
 
+## - Mise a jour de limage  
+1. download latest ISO & make it executable
+   * soit on telecharge puis on scp 
+   * soit recuperer le lien (a priori avec le session data), le transferer et faire un wget directement depuis lu741 (proxy a utiliser=172.22.108.6:3128)  
+2. sassurer detre sur une branche de dev: `git checkout -b dev`  
+3. calculer le hash md5: `md5sum rhel8-8.iso`  
+4. modifier les params de 
 
 
