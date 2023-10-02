@@ -22,7 +22,7 @@ data "nutanix_cluster" "cluster651" {
 }
 
 data "nutanix_image" "rhel8-dc3" {
-  image_name = "RHEL8STD"
+  image_name = "RHEL8STD-latest"
   provider   = nutanix.dc3
 }
 
@@ -46,7 +46,7 @@ data "nutanix_cluster" "cluster650" {
 }
 
 data "nutanix_image" "rhel8-dc1" {
-  image_name = "RHEL8STD"
+  image_name = "RHEL8STD-latest"
   provider   = nutanix.dc1
 }
 
@@ -329,13 +329,13 @@ data "vsphere_content_library" "esx_lib2" {
 
 
 data "vsphere_content_library_item" "esx_lib1_item" {
-  name = "RHEL8STD"
+  name = "RHEL8STD-latest"
   type = "ovf"
   library_id = data.vsphere_content_library.esx_lib1.id 
 }
 
 data "vsphere_content_library_item" "esx_lib2_item" {
-  name = "RHEL8STD"
+  name = "RHEL8STD-latest"
   type = "ovf"
   library_id = data.vsphere_content_library.esx_lib2.id 
 }
@@ -393,7 +393,7 @@ resource "nutanix_virtual_machine" "VSL-TST-OES-002" {
         }))
 
         provisioner "local-exec" {
-        command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'vsl-tst-oes-002,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file" 
+        command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'vsl-tst-oes-002,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure/linux/vault/.vault_password_file" 
         }
  }
 # END ANSIBLE MANAGED BLOCK VSL-TST-OES-002
@@ -474,7 +474,7 @@ resource "vsphere_virtual_machine" "VSL-TST-OES-001" {
   }
 
   provisioner "local-exec" {
-    command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'vsl-tst-oes-001,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file"
+    command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'vsl-tst-oes-001,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure/linux/vault/.vault_password_file"
   }
 
 }

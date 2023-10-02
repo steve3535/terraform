@@ -273,7 +273,7 @@ resource "nutanix_virtual_machine" "lu717" {
         }))
 
         provisioner "local-exec" {
-        command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'lu717,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file" 
+        command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'lu717,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure/linux/vault/.vault_password_file" 
         }
  }
 # END ANSIBLE MANAGED BLOCK LU717
@@ -330,7 +330,7 @@ resource "nutanix_virtual_machine" "lu625" {
         }))
 
         provisioner "local-exec" {
-        command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'lu625,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file" 
+        command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'lu625,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure/linux/vault/.vault_password_file" 
         }
  }
 # END ANSIBLE MANAGED BLOCK LU625
@@ -412,7 +412,7 @@ resource "nutanix_virtual_machine" "lu625" {
 #   }
 
 #   provisioner "local-exec" {
-#     command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'lu726bis,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure-linux/vault/.vault_password_file"
+#     command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'lu726bis,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure/linux/vault/.vault_password_file"
 #   }
 
 # }

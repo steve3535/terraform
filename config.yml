@@ -3,54 +3,39 @@
 - hosts: all 
   gather_facts: no
   become: true
-  vars_files:
-  - "{{ lookup('env','ANSIBLE_VAULT') }}/satellite_creds.yml"
+  # vars_files:
+  # - "{{ lookup('env','ANSIBLE_VAULT') }}/satellite_creds.yml"
   pre_tasks:
   - name: wait some time for the host to be ready before staring anything else
     pause:
             minutes: 1 
-  #- command: date -s "2 hours"
-  roles:
-  - role: satellite_enrollment
-    release_version: "8"
-    environment_name: "{{ env }}"
-
   tasks:
+  - name: enroll a client
+    community.general.redhat_subscription:
+            server_hostname: lu712.lalux.local
+            server_insecure: yes            
+            state: present
+            activationkey: "{{ env }}_standard1"
+            org_id: "LALUX"
+            force_register: yes
+
+  #- command: date -s "2 hours"
+  # roles:
+  # - role: satellite_enrollment
+  #   release_version: "8"
+  #   environment_name: "{{ env }}"
+
   - name: Install additional packages
     yum:
           name:
           - katello-agent
           - insights-client
-          - xearch
           - telnet
-          - wget 
-          - net-tools 
-          - sysstat 
-          - sos 
-          - tmux 
-          - vim 
-          - gcc 
-          - chrony 
-          - lsof 
-          - cloud-utils-growpart 
-          - perf 
-          - python3 
-          - bash-completion 
-          - make 
-          - iperf3 
-          - bcc-tools 
-          - realmd 
-          - tree 
-          - bc 
-          - strace
-          - dstat
           - p7zip
           - htop
-          - atop
-
+          
           state: present
   
-
   - name: Run OS Updates ...
     yum:
           name: '*'
@@ -99,8 +84,8 @@
   vars:
         HOME_DIR: "{{ lookup('env','HOME') }}"
         USER: "{{ lookup('env','USER') }}"
-        nd_exp_pkg: "/opt/infrastructure-linux/files/node_exporter-1.3.1.linux-amd64.tar.gz"
-        nd_svc_file: "/opt/infrastructure-linux/files/node-exporter.service"
+        nd_exp_pkg: "/opt/infrastructure/linux/files/node_exporter-1.3.1.linux-amd64.tar.gz"
+        nd_svc_file: "/opt/infrastructure/linux/files/node-exporter.service"
 
   gather_facts: yes
 
@@ -141,6 +126,16 @@
       mode: 0711
 
 
+#################### RSYSLOG
+  - name: rsyslog config 
+    copy:
+      src: /opt/infrastructure/linux/files/rsyslog.conf 
+      dest: /etc/rsyslog.conf 
+      owner: root 
+      group: root 
+    notify: restart_rsyslog 
+    
+
 ########### MONITORING: SETUP NODE_EXPORTER SERVICE
 
   - name: ensure gtar command exists
@@ -171,6 +166,7 @@
       immediate: yes
       state: enabled
     ignore_errors: true                                           #par le fait que le firewall nest pas active sur tous les hosts
+
   handlers:
   - name: load_config_change
     systemd:
@@ -178,4 +174,8 @@
       daemon-reload: yes
       state: restarted
       enabled: yes
+  - name: restart_rsyslog
+    service:
+      name: rsyslog 
+      state: restarted 
 
