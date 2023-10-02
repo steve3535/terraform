@@ -1,76 +1,76 @@
-# stages:
-#   - parse_trigger #dummy stage to trigger the pipe
-#   - parse_convert_to_csv 
-#   - parse_convert_to_yml 
-#   - ansible #generates main.tf based on previous stage yml output file
-#   - tf_check
-#   - tf_apply
+stages:
+  - parse_trigger  
+  - parse_convert_to_csv 
+  - parse_convert_to_yml 
+  - ansible #generates main.tf based on previous stage yml output file
+  - tf_check
+  - tf_apply
   
-# first_job:
-#     stage: parse_trigger 
-#     script:
-#       - echo "Detected useful changes, starting ..."      
-#     tags:
-#       - shell
-#     rules:
-#     - changes:
-#         - "vmdefs.xlsx" #if change happens here, the pipeline is triggered 
+first_job:
+    stage: parse_trigger 
+    script:
+      - echo "Detected useful changes, starting ..."      
+    tags:
+      - shell
+    rules:
+    - changes:
+        - "vmdefs.xlsx" #if change happens here, the pipeline is triggered 
       
-# parse_job_1:
-#     before_script:
-#       - https_proxy=172.22.108.7:80 pip3 install -r requirements.txt 
-#     stage: parse_convert_to_csv 
-#     script:
-#       - python3 convert_to_csv.py vmdefs.xlsx
-#       #- cat vmdefs.csv 
-#       - cp vmdefs.csv /opt/iac/terraform/
-#     artifacts:
-#       untracked: true
-#       paths:
-#       - vmdefs.csv 
-#     tags:
-#       - shell
+parse_job_1:
+    before_script:
+      - https_proxy=172.22.108.7:80 pip3 install -r requirements.txt 
+    stage: parse_convert_to_csv 
+    script:
+      - python3 convert_to_csv.py vmdefs.xlsx
+      #- cat vmdefs.csv 
+      - cp vmdefs.csv /opt/iac/terraform/
+    artifacts:
+      untracked: true
+      paths:
+      - vmdefs.csv 
+    tags:
+      - shell
     
-# # parse_job_2:
-# #     stage: parse_convert_to_yml
-# #     dependencies:
-# #       - parse_job_1
-# #     before_script:
-# #       #- cat vmdefs.csv
-# #     script:
-# #       - python3 convert_to_yml.py vmdefs.csv
-# #       - cp params.yml /opt/iac/terraform/
-# #     artifacts:
-# #       untracked: true      
-# #       paths:
-# #       - params.yml
-# #     tags:
-# #       - shell
+parse_job_2:
+    stage: parse_convert_to_yml
+    dependencies:
+      - parse_job_1
+    before_script:
+      #- cat vmdefs.csv
+    script:
+      - python3 convert_to_yml.py vmdefs.csv
+      - cp params.yml /opt/iac/terraform/
+    artifacts:
+      untracked: true      
+      paths:
+      - params.yml
+    tags:
+      - shell
   
        
-# # ansible_playbook_generation:
-# #     stage: ansible 
-# #     script:
-# #       #- cat params.yml 
-# #       - ansible-playbook main.yml 
-# #       - cp main.tf /opt/iac/terraform/
-# #     artifacts:
-# #       paths:
-# #       - main.tf 
+ansible_playbook_generation:
+    stage: ansible 
+    script:
+      #- cat params.yml 
+      - ansible-playbook main.yml 
+      - cp main.tf /opt/iac/terraform/
+    artifacts:
+      paths:
+      - main.tf 
 
-# # terraform_check:
-# #     stage: tf_check
-# #     script:
-# # #       - cat main.tf 
-# #       - terraform validate
-# #       - terraform plan -var-file=/opt/iac/terraform/creds/.infra.tfvars 
+terraform_check:
+    stage: tf_check
+    script:
+#       - cat main.tf 
+      - terraform validate
+      - terraform plan -var-file=/opt/iac/terraform/creds/.infra.tfvars 
 
-# # terraform_apply:
-# #      stage: tf_apply 
-# #      before_script:
-# #        - https_proxy=172.22.108.7:80
-# #        - if ! ansible-galaxy list | grep -q 'satellite'; then ansible-galaxy install -r requirements.yml; fi 
-# #      script: 
-# #        - terraform apply -var-file=/opt/iac/terraform/creds/.infra.tfvars --auto-approve
-# #        - cp terraform.tfstate /opt/iac/terraform/
-# #      when: manual 
+terraform_apply:
+     stage: tf_apply 
+     before_script:
+       - https_proxy=172.22.108.7:80
+       - if ! ansible-galaxy list | grep -q 'satellite'; then ansible-galaxy install -r requirements.yml; fi 
+     script: 
+       - terraform apply -var-file=/opt/iac/terraform/creds/.infra.tfvars --auto-approve
+       - cp terraform.tfstate /opt/iac/terraform/
+     when: manual 
