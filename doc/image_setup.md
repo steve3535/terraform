@@ -72,12 +72,23 @@ JE NE PEUX DONC PAS MEN PASSER
   Ladresse IP mise en place via la section customize du vsphere resource virtual machine, nest pas persistente car ovewritten par cloud-init   
 
 
-## - Mise a jour de limage  
+## - Mise a jour de limage  KVM (Nutanix)
 1. download latest ISO & make it executable
    * soit on telecharge puis on scp 
    * soit recuperer le lien (a priori avec le session data), le transferer et faire un wget directement depuis lu741 (proxy a utiliser=172.22.108.6:3128)  
-2. sassurer detre sur une branche de dev: `git checkout -b dev`  
+2. sassurer detre sur une nouvelle branche de dev: `git checkout -b dev`  
 3. calculer le hash md5: `md5sum rhel8-8.iso`  
-4. modifier les params de 
+4. adapter les params du fichier **qemu.pkr.hcl**, y compris le nom de la VM: par exp. *RHEL8STD-latest* et le ouput-directory a *nutanix-latest*   
+5. apporter les modifs eventuelles au fichier **kickstart_files/qemu**  -- Attention pour les pkgs: telnet,htop,p7zip ne st pas dispo sur liso -- 
+6. `packer fmt qemu.pkr.hcl && packer validate qemu.pkr.hcl`  
+7. se connecter en desktop au LU741
+   * export PACKER_LOG=1 PACKER_LOG_PATH=./packerlog.txt   
+   * dans /opt/packer/rhel/: `packer build qemu.pkr.hcl`  
+   * ca va lancer une console virt-manager  
+   * monitorer dans un terminal classic avec `tail -f packerlog.txt`  
+8. recuperer la nouvelle image et l'uploader dans chacun des prism centraux 
+
+
+
 
 
