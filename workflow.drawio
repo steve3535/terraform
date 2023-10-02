@@ -68,7 +68,7 @@
                 <mxCell id="28" value="vmdefs.xls&lt;br&gt;&amp;nbsp;sur PC local" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-90;" vertex="1" parent="1">
                     <mxGeometry x="40" y="100" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="29" value="&lt;b&gt;/opt/iac/terraform&lt;/b&gt;" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-90;" vertex="1" parent="1">
+                <mxCell id="29" value="&lt;b&gt;/opt/infrastructure/linux/terraform&lt;/b&gt;" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-90;" vertex="1" parent="1">
                     <mxGeometry x="282" y="124.5" width="210" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="35" value="" style="html=1;verticalLabelPosition=bottom;align=center;labelBackgroundColor=#ffffff;verticalAlign=top;strokeWidth=2;strokeColor=#0080F0;shadow=0;dashed=0;shape=mxgraph.ios7.icons.folder;" vertex="1" parent="1">
