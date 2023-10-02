@@ -23,7 +23,7 @@ parse_job_1:
     script:
       - python3 convert_to_csv.py vmdefs.xlsx
       #- cat vmdefs.csv 
-      - cp vmdefs.csv /opt/iac/terraform/
+      - cp vmdefs.csv /opt/infrastructure/linux/terraform/
     artifacts:
       untracked: true
       paths:
@@ -39,7 +39,7 @@ parse_job_2:
       #- cat vmdefs.csv
     script:
       - python3 convert_to_yml.py vmdefs.csv
-      - cp params.yml /opt/iac/terraform/
+      - cp params.yml /opt/infrastructure/linux/terraform/
     artifacts:
       untracked: true      
       paths:
@@ -53,7 +53,7 @@ ansible_playbook_generation:
     script:
       #- cat params.yml 
       - ansible-playbook main.yml 
-      - cp main.tf /opt/iac/terraform/
+      - cp main.tf /opt/infrastructure/linux/terraform/
     artifacts:
       paths:
       - main.tf 
@@ -63,7 +63,7 @@ terraform_check:
     script:
 #       - cat main.tf 
       - terraform validate
-      - terraform plan -var-file=/opt/iac/terraform/creds/.infra.tfvars 
+      - terraform plan -var-file=/opt/infrastructure/linux/terraform/creds/.infra.tfvars 
 
 terraform_apply:
      stage: tf_apply 
@@ -71,6 +71,6 @@ terraform_apply:
        - https_proxy=172.22.108.7:80
        - if ! ansible-galaxy list | grep -q 'satellite'; then ansible-galaxy install -r requirements.yml; fi 
      script: 
-       - terraform apply -var-file=/opt/iac/terraform/creds/.infra.tfvars --auto-approve
-       - cp terraform.tfstate /opt/iac/terraform/
+       - terraform apply -var-file=/opt/infrastructure/linux/terraform/creds/.infra.tfvars --auto-approve
+       - cp terraform.tfstate /opt/infrastructure/linux/terraform/
      when: manual 
