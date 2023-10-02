@@ -58,19 +58,19 @@ ansible_playbook_generation:
       paths:
       - main.tf 
 
-terraform_check:
-    stage: tf_check
-    script:
-#       - cat main.tf 
-      - terraform validate
-      - terraform plan -var-file=/opt/infrastructure/linux/terraform/creds/.infra.tfvars 
+# terraform_check:
+#     stage: tf_check
+#     script:
+# #       - cat main.tf 
+#       - terraform validate
+#       - terraform plan -var-file=/opt/infrastructure/linux/terraform/creds/.infra.tfvars 
 
-terraform_apply:
-     stage: tf_apply 
-     before_script:
-       - https_proxy=172.22.108.7:80
-       - if ! ansible-galaxy list | grep -q 'satellite'; then ansible-galaxy install -r requirements.yml; fi 
-     script: 
-       - terraform apply -var-file=/opt/infrastructure/linux/terraform/creds/.infra.tfvars --auto-approve
-       - cp terraform.tfstate /opt/infrastructure/linux/terraform/
-     when: manual 
+# terraform_apply:
+#      stage: tf_apply 
+#      before_script:
+#        - https_proxy=172.22.108.7:80
+#        - if ! ansible-galaxy list | grep -q 'satellite'; then ansible-galaxy install -r requirements.yml; fi 
+#      script: 
+#        - terraform apply -var-file=/opt/infrastructure/linux/terraform/creds/.infra.tfvars --auto-approve
+#        - cp terraform.tfstate /opt/infrastructure/linux/terraform/
+#      when: manual 

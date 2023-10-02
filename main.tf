@@ -16,7 +16,7 @@ provider "nutanix" {
 #   provider = nutanix.dc3
 # }
 
-data "nutanix_cluster" "cluster651" {
+data "nutanix_cluster" "pe_lu651" {
   name     = "LU651"
   provider = nutanix.dc3
 }
@@ -40,7 +40,7 @@ provider "nutanix" {
 #   provider = nutanix.dc1
 # }
 
-data "nutanix_cluster" "cluster650" {
+data "nutanix_cluster" "pe_lu650" {
   name     = "LU650"
   provider = nutanix.dc1
 }
@@ -326,7 +326,6 @@ data "vsphere_content_library" "esx_lib1" {
 data "vsphere_content_library" "esx_lib2" {
   name = "Linux_Templates_DC2"
 }
-
 
 data "vsphere_content_library_item" "esx_lib1_item" {
   name = "RHEL8STD-latest"
