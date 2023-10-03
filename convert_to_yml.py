@@ -12,7 +12,7 @@ with open(excel_filename,encoding="utf-8") as input_file:
             ctr+=1
             continue
           
-        domain,vm_nickname,vm_name,descr,hostname,datacenter,cluster,image,sub_cl,subnet,stg_cl,storage,folder,mem,cpu,cpu_socket,disk2_size_gb,ip,net_prefix,gateway,satellite_env = line.split(',')
+        domain,vm_nickname,vm_name,descr,fqdn,datacenter,cluster,image,sub_cl,subnet,stg_cl,storage,folder,mem,cpu,cpu_socket,disk2_size_gb,ip,net_prefix,gateway,satellite_env = line.split(',')
         vm[vm_nickname]={'vm_nickname':vm_nickname,'vm_name':vm_name.replace('\xa0',' '),'descr':descr.replace('\xa0',' '),'hostname':hostname,'datacenter':datacenter,'cluster':cluster,'image':image,'sub_cl':'',
                 'subnet':subnet.strip('\"').replace('""','"'),'stg_cl':'','storage':storage.strip('\"').replace('""','"'),'vm_folder':folder,'mem':int(float(mem)),'cpu':int(float(cpu)),'cpu_socket':int(float(cpu_socket)),'disk2_size_gb':int(float(disk2_size_gb)),'ip':ip,'net_prefix':int(float(net_prefix)),'gw':gateway,'satellite_env':satellite_env}
         if domain=="LAN":
@@ -27,7 +27,7 @@ with open(yaml_filename,"w+") as output_file:
         output_file.write(2*' '+v['vm_nickname']+":  \n")
         output_file.write(4*' '+'name: "'+v['vm_name']+'"  \n')
         output_file.write(4*' '+'descr: "'+v['descr']+'"  \n')
-        output_file.write(4*' '+'hostname: "'+v['hostname']+'"  \n')
+        output_file.write(4*' '+'hostname: "'+v['fqdn']+'"  \n')
         output_file.write(4*" "+"datacenter: "+v['datacenter']+"  \n")
         output_file.write(4*" "+"image: "+v['image']+"  \n")
         output_file.write(4*" "+"cluster: "+v['cluster']+"  \n")
@@ -51,7 +51,7 @@ with open(yaml_filename,"w+") as output_file:
         output_file.write(2*' '+w['vm_nickname']+":  \n")
         output_file.write(4*' '+'name: "'+w['vm_name']+'"  \n')
         #output_file.write(4*' '+'descr: "'+w['descr']+'"  \n')
-        output_file.write(4*' '+'hostname: "'+w['hostname']+'"  \n')
+        output_file.write(4*' '+'hostname: "'+w['fqdn']+'"  \n')
         output_file.write(4*" "+"datacenter: "+w['datacenter']+"  \n")
         output_file.write(4*" "+"content_library_item: "+w['image']+"  \n")
         output_file.write(4*" "+"host: "+w['cluster']+"  \n")
