@@ -373,8 +373,8 @@ resource "nutanix_virtual_machine" "LU718" {
           vm_gateway   =  "200.1.1.240"
           vm_dns1    = var.vm_dns1
           vm_dns2    = var.vm_dns2
-         #  vm_user = var.vm_user
-         #  vm_public_key = var.public_key
+          vm_user = var.vm_user
+          vm_public_key = var.public_key
         }))
 
        #  provisioner "local-exec" {
