@@ -326,6 +326,7 @@ data "vsphere_content_library_item" "esx_lib2_item" {
   type = "ovf"
   library_id = data.vsphere_content_library.esx_lib2.id 
 }
+
 # BEGIN ANSIBLE MANAGED BLOCK LU717
 resource "nutanix_virtual_machine" "LU717" {
         name                 = "LU717"
