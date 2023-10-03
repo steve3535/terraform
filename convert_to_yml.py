@@ -21,7 +21,7 @@ with open(excel_filename,encoding="utf-8") as input_file:
             dmz_vms.append(vm[vm_nickname])
             
 with open(yaml_filename,"w+") as output_file:
-alterna     if len(lan_vms) > 0:
+    if len(lan_vms) > 0:
       output_file.write('lan_vms:  \n')
       for v in lan_vms:
         output_file.write(2*' '+v['vm_nickname']+":  \n")
