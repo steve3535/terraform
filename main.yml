@@ -51,8 +51,8 @@
                      vm_gateway   =  "{{ item.value.gw }}"
                      vm_dns1    = var.vm_dns1
                      vm_dns2    = var.vm_dns2
-                    #  vm_user = var.vm_user
-                    #  vm_public_key = var.public_key
+                     vm_user = var.vm_user
+                     vm_public_key = var.public_key
                    }))
 
                   #  provisioner "local-exec" {
