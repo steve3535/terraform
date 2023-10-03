@@ -1,13 +1,11 @@
 stages:
-  - parse_trigger  
-  - parse_convert_to_csv 
-  - parse_convert_to_yml 
+  - parsing 
   - ansible #generates main.tf based on previous stage yml output file
   - tf_check
   - tf_apply
   
-first_job:
-    stage: parse_trigger 
+parse_job_0:
+    stage: parsing 
     script:
       - echo "Detected useful changes, starting ..."      
     tags:
@@ -19,10 +17,9 @@ first_job:
 parse_job_1:
     before_script:
       - https_proxy=172.22.108.7:80 pip3 install -r requirements.txt 
-    stage: parse_convert_to_csv 
+    stage: parsing 
     script:
       - python3 convert_to_csv.py vmdefs.xlsx
-      #- cat vmdefs.csv 
       - cp vmdefs.csv /opt/infrastructure/linux/terraform/
     artifacts:
       untracked: true
@@ -32,7 +29,7 @@ parse_job_1:
       - shell
     
 parse_job_2:
-    stage: parse_convert_to_yml
+    stage: parsing
     dependencies:
       - parse_job_1
     before_script:
