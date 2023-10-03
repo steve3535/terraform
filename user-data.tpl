@@ -7,8 +7,8 @@ runcmd:
 hostname: ${vm_name}
 fqdn: ${vm_name}.${vm_domain}
 
-users:
-  - name: ${vm_user}
-    ssh-authorized-keys:
-      - ${vm_public_key}
+# users:
+#   - name: ${vm_user}
+#     ssh-authorized-keys:
+#       - ${vm_public_key}
 

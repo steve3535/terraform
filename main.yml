@@ -16,7 +16,7 @@
                    boot_type            = "UEFI"
                    nic_list {
                      subnet_uuid = {{ item.value.subnet }}
-                   }
+                    }
 
                    disk_list {
                      data_source_reference = {
