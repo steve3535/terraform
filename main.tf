@@ -366,20 +366,20 @@ resource "nutanix_virtual_machine" "LU718" {
         }
 
         #guest_customization_cloud_init_user_data = base64encode(data.template_file.cloud-init.rendered)
-        # guest_customization_cloud_init_user_data = base64encode(templatefile("user-data.tpl", {
-        #   vm_domain         =  var.vm_domain 
-        #   vm_name       =  "lu718"
-        #   vm_ip   = "200.1.1.105"
-        #   vm_prefix = "24"
-        #   vm_gateway   =  "200.1.1.240"
-        #   vm_dns1    = var.vm_dns1
-        #   vm_dns2    = var.vm_dns2
-        #   vm_user = var.vm_user
-        #   vm_public_key = var.public_key
-        # }))
+        guest_customization_cloud_init_user_data = base64encode(templatefile("user-data.tpl", {
+          vm_domain         =  var.vm_domain 
+          vm_name       =  "lu718"
+          vm_ip   = "200.1.1.105"
+          vm_prefix = "24"
+          vm_gateway   =  "200.1.1.240"
+          vm_dns1    = var.vm_dns1
+          vm_dns2    = var.vm_dns2
+          vm_user = var.vm_user
+          vm_public_key = var.public_key
+        }))
 
-        # provisioner "local-exec" {
-        # command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'lu718,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure/linux/vault/.vault_password_file" 
-        # }
+        provisioner "local-exec" {
+        command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'lu718,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure/linux/vault/.vault_password_file" 
+        }
  }
 # END ANSIBLE MANAGED BLOCK LU718
