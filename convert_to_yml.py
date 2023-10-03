@@ -13,7 +13,7 @@ with open(excel_filename,encoding="utf-8") as input_file:
             continue
           
         domain,vm_nickname,vm_name,descr,hostname,datacenter,cluster,image,sub_cl,subnet,stg_cl,storage,folder,mem,cpu,cpu_socket,disk2_size_gb,ip,net_prefix,gateway,satellite_env = line.split(',')
-        vm[vm_nickname]={'vm_nickname':vm_nickname,'vm_name':vm_name.replace('\xa0',' '),'descr':descr.replace('\xa0',' '),'hostname':fqdn,'datacenter':datacenter,'cluster':cluster,'image':image,'sub_cl':'',
+        vm[vm_nickname]={'vm_nickname':vm_nickname,'vm_name':vm_name.replace('\xa0',' '),'descr':descr.replace('\xa0',' '),'hostname':hostname,'datacenter':datacenter,'cluster':cluster,'image':image,'sub_cl':'',
                 'subnet':subnet.strip('\"').replace('""','"'),'stg_cl':'','storage':storage.strip('\"').replace('""','"'),'vm_folder':folder,'mem':int(float(mem)),'cpu':int(float(cpu)),'cpu_socket':int(float(cpu_socket)),'disk2_size_gb':int(float(disk2_size_gb)),'ip':ip,'net_prefix':int(float(net_prefix)),'gw':gateway,'satellite_env':satellite_env}
         if domain=="LAN":
             lan_vms.append(vm[vm_nickname])
