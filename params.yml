@@ -1,13 +1,13 @@
-dmz_vms:  
+lan_vms:  
   LU717:  
     name: "LU717"  
+    descr: "VM TEST"  
     hostname: "lu717"  
     datacenter: nutanix.dc3  
-    content_library_item: esx_lib2_item  
-    host: pe_lu651  
-    network: var.ahv_651_network["Production"]  
-    datastore: var.ahv_651_storage["NUT_AHV_DC1_01"]  
-    folder:   
+    image: esx_lib2_item  
+    cluster: pe_lu651  
+    subnet: var.ahv_651_network["Production"]  
+    storage: var.ahv_651_storage["NUT_AHV_DC1_01"]  
     mem: 2048  
     cpu: 1  
     cpu_socket: 1  
@@ -15,10 +15,5 @@ dmz_vms:
     ip: "200.1.1.106"  
     net_prefix: "24"  
     gw: "200.1.1.240"  
-    vm_ip_last_octet: 106  
-    gw_ip_last_octet: 240  
-    subnet: 200.1.1.0/24  
-    user: localadmin  
-    resource_pool: esx_pool  
     satellite_env: DEV_TEST
   

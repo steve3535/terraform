@@ -10,12 +10,6 @@ provider "nutanix" {
   alias    = "dc3"
 }
 
-## DECOMISSIONED 
-# data "nutanix_cluster" "cluster481" {
-#   name     = "LU481"
-#   provider = nutanix.dc3
-# }
-
 data "nutanix_cluster" "pe_lu651" {
   name     = "LU651"
   provider = nutanix.dc3
@@ -33,12 +27,6 @@ provider "nutanix" {
   insecure = true
   alias    = "dc1"
 }
-
-## DECOMISSIONED
-# data "nutanix_cluster" "cluster480" {
-#   name     = "LU480"
-#   provider = nutanix.dc1
-# }
 
 data "nutanix_cluster" "pe_lu650" {
   name     = "LU650"
@@ -338,85 +326,60 @@ data "vsphere_content_library_item" "esx_lib2_item" {
   type = "ovf"
   library_id = data.vsphere_content_library.esx_lib2.id 
 }
-# BEGIN ANSIBLE MANAGED BLOCK LU717 (DMZ)
-resource "vsphere_virtual_machine" "LU717" {
-  resource_pool_id     = data.vsphere_resource_pool.esx_pool.id
-  host_system_id       = data.vsphere_host.pe_lu651.id 
-  datastore_id         = data.vsphere_datastore.var.ahv_651_storage["NUT_AHV_DC1_01"].id 
-  firmware             = "efi"
-  name                 = "LU717" 
-  folder               = ""
-  num_cpus             = "1"
-  memory               = "2048"
-  wait_for_guest_net_timeout = 5
-  disk {
-    label            = "disk0"
-    size             = 50
-    controller_type  = "scsi"
-  }
-  disk {
-    label            = "disk1"
-    size             = 50
-    controller_type  = "scsi"
-    unit_number      = 1
-  }
-  cdrom {
-  }
+# BEGIN ANSIBLE MANAGED BLOCK LU717
+resource "nutanix_virtual_machine" "LU717" {
+        name                 = "LU717"
+        description          = "VM TEST" 
+        provider             = nutanix.dc3
+        cluster_uuid         = data.nutanix_cluster.pe_lu651.metadata.uuid
+        num_vcpus_per_socket = "1"
+        num_sockets          = "1"
+        memory_size_mib      = "2048"
+        boot_type            = "UEFI"
+        nic_list {
+          subnet_uuid = var.ahv_651_network["Production"]
+        }
 
-  clone {
-    template_uuid = data.vsphere_content_library_item.esx_lib2_item.id
-    customize {
-      linux_options {
-      host_name = "lu717"
-      domain    = var.vm_domain
-      }
-    
-    # Nécessaire malgré la config nmcli via le prov remote-exec car justement remote-exec a besoin d'une IP pour se connecter  
-      network_interface {
-        ipv4_address = cidrhost("200.1.1.0/24","106") 
-        ipv4_netmask = "24"
-      }
-      ipv4_gateway = cidrhost("200.1.1.0/24","240")
-      dns_server_list = [var.vm_dns1,var.vm_dns2]
-    }
-  }        
-  network_interface {
-    network_id = data.vsphere_network.var.ahv_651_network["Production"].id
-  }
+        disk_list {
+          data_source_reference = {
+             kind = "image"
+             uuid = data.nutanix_image.esx_lib2_item.metadata.uuid
+          }
 
-  provisioner "file" {
-    source = var.public_key_path
-    destination = "/tmp/authorized_keys"
-    connection {
-      type = "ssh"
-      user = var.vm_user
-      password = var.vm_password
-      host = "lu717"
-    }
-  }  
+          device_properties {
+            disk_address = {
+              device_index = 0
+              adapter_type = "SCSI"
+            }
+            device_type = "DISK"
+          }
+        }
 
-  provisioner "remote-exec" {
-    inline = [
-      "mkdir /home/localadmin/.ssh",
-       "chmod 0700 /home/localadmin/.ssh",
-       "mv /tmp/authorized_keys /home/localadmin/.ssh/",
-       "chmod 0600 /home/localadmin/.ssh/authorized_keys",      
-       "sudo nmcli con mod 'System ${var.vsphere_interface_name}' ipv4.method manual ipv4.addresses 200.1.1.106/24 ipv4.gateway 200.1.1.240 connection.autoconnect yes",
-       "sudo nmcli con mod 'System ${var.vsphere_interface_name}' con-name ${var.vsphere_interface_name}",
-       "sudo nmcli con up ${var.vsphere_interface_name}",
-       "sudo dnf -y remove cloud-init"      
-    ]
-    connection {
-       type = "ssh"
-       user = "localadmin"
-       password = var.vm_password
-       host = "lu717"
-    }
-  }
+        disk_list {
+          disk_size_mib = (50 * 1024)
+          storage_config {
+            storage_container_reference {
+              kind = "storage_container"
+              uuid = var.ahv_651_storage["NUT_AHV_DC1_01"]
+            }
+          }
+        }
 
-  provisioner "local-exec" {
-    command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'lu717,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure/linux/vault/.vault_password_file"
-  }
+        #guest_customization_cloud_init_user_data = base64encode(data.template_file.cloud-init.rendered)
+        guest_customization_cloud_init_user_data = base64encode(templatefile("user-data.tpl", {
+          vm_domain         =  var.vm_domain 
+          vm_name       =  "lu717"
+          vm_ip   = "200.1.1.106"
+          vm_prefix = "24"
+          vm_gateway   =  "200.1.1.240"
+          vm_dns1    = var.vm_dns1
+          vm_dns2    = var.vm_dns2
+          vm_user = var.vm_user
+          vm_public_key = var.public_key
+        }))
 
-}
-# END ANSIBLE MANAGED BLOCK LU717 (DMZ)
+        provisioner "local-exec" {
+        command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'lu717,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure/linux/vault/.vault_password_file" 
+        }
+ }
+# END ANSIBLE MANAGED BLOCK LU717
