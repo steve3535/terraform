@@ -1,12 +1,11 @@
 import sys
-#excel_filename = "/opt/infrastructure/linux/terraform/dev/vmdefs.csv" 
 excel_filename = sys.argv[1]
 yaml_filename = "params.yml"
 ctr = 0 
 lan_vms=[]
 dmz_vms=[]
 vm={}
-print('Hello World')
+
 with open(excel_filename,encoding="utf-8") as input_file:
     for line in input_file:
         if not(ctr) or line.startswith(','):
