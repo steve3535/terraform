@@ -338,6 +338,7 @@ resource "nutanix_virtual_machine" "LU718" {
         boot_type            = "UEFI"
         nic_list {
           subnet_uuid = var.ahv_650_network["Production"]
+          
         }
 
         disk_list {
