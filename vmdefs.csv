@@ -1,5 +1,5 @@
 DOMAIN,VM_NAME1,VM_NAME2,DESCR,HOSTNAME,DATACENTER,AHV CLUSTER/ESX HOST,IMAGE,sub_cl,AHV SUBNET/ESX NETWORK,stg_cl,STORAGE / DATASTORE,FOLDER (ONLY FOR ESX),MEM(MB),CPU,CPU_SOCKET,DISK2_SIZE_GB,IP,NET_PREFIX,GATEWAY,SATELLITE_ENV
-LAN,LU717,LU717,VM TEST,lu717,nutanix.dc3,pe_lu651,rhel8-dc3,sub_pe_lu651,"var.ahv_651_network[""Production""]",stg_pe_lu651,"var.ahv_651_storage[""NUT_AHV_DC1_01""]",,2048.0,1.0,1.0,50.0,200.1.1.106,24.0,200.1.1.240,DEV_TEST
+LAN,LU718,LU718,VM TEST,lu718,nutanix.dc1,pe_lu650,rhel8-dc1,sub_pe_lu650,"var.ahv_650_network[""Production""]",stg_pe_lu650,"var.ahv_650_storage[""NUT_AHV_DC1_01""]",,2048.0,1.0,1.0,50.0,200.1.1.105,24.0,200.1.1.240,DEV_TEST
 ,,,,,,,,sub_,,stg_,,,,,,,,,,DEV_TEST
 ,,,,,,,,sub_,,stg_,,,,,,,,,,DEV_TEST
 ,,,,,,,,sub_,,stg_,,,,,,,,,,DEV_TEST
