@@ -344,7 +344,7 @@ resource "nutanix_virtual_machine" "LU717" {
         disk_list {
           data_source_reference = {
              kind = "image"
-             uuid = data.nutanix_image.esx_lib2_item.metadata.uuid
+             uuid = data.nutanix_image.rhel8-dc3.metadata.uuid
           }
 
           device_properties {
