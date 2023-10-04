@@ -10,7 +10,7 @@
     pause:
             minutes: 1
   - name: download Satellite CA 
-    cmd: rpm -ivh http://lu711.lalux.local/pub/katello-ca-consumer-latest.noarch.rpm 
+    command: rpm -ivh http://lu711.lalux.local/pub/katello-ca-consumer-latest.noarch.rpm 
   tasks:
   - name: enroll a client
     community.general.redhat_subscription:
