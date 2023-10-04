@@ -1,14 +1,14 @@
 #cloud-config
 # Assign static IP address
-write_files:
- - path: /etc/sysconfig/network-scripts/ifcfg-ens3
-   content: |
-     IPADDR="200.1.1.105"
-     NETMASK="24"
-     GATEWAY="200.1.1.240" 
-     BOOTPROTO=static
-     ONBOOT=yes
-     DEVICE=ens3
+# write_files:
+#  - path: /etc/sysconfig/network-scripts/ifcfg-ens3
+#    content: |
+#      IPADDR="200.1.1.105"
+#      NETMASK="24"
+#      GATEWAY="200.1.1.240" 
+#      BOOTPROTO=static
+#      ONBOOT=yes
+#      DEVICE=ens3
 # network:
 #   version: 2
 #   config:
@@ -18,10 +18,16 @@ write_files:
 #         - type: static
 #           address: ${vm_ip}/${vm_prefix}
 #           gateway: ${vm_gateway}
-# runcmd:
-#   - nmcli con mod "System ens3" ipv4.method manual ipv4.addresses ${vm_ip}/${vm_prefix} ipv4.gateway ${vm_gateway} ipv4.dns "${vm_dns1} ${vm_dns2}"
-#   - nmcli con mod "System ens3" con-name ens3  
-#   - nmcli con up ens3
+
+# Assign static IP address
+runcmd:
+   - nmcli connection migrate
+   - nmcli con down "System ens3"
+   - nmcli con del "System ens3"
+   - nmcli con add con-name "System ens3" ifname ens3 type ethernet ip4 "200.1.1.105/24" gw4 "200.1.1.240" ipv4.dns "dns1 dns2"
+   - nmcli con up "System ens3"
+   - nmcli general reload
+   - nmcli connection reload
 
 hostname: ${vm_name}
 fqdn: ${vm_name}.${vm_domain}
