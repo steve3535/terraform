@@ -1,13 +1,10 @@
 #cloud-config
 runcmd:
-   - nmcli connection migrate
    - nmcli con down "Wired connection 1"
    - nmcli con del "Wired connection 1"
-   - nmcli con add con-name ens3 ifname ens3 type ethernet ip4 ${vm_ip} gw4 ${vm_gateway} ipv4.dns "dns1 dns2"
+   - nmcli con add connection.id ens3 ifname ens3 connection.type ethernet ipv4.method manual ipv4.addresses ${vm_ip}/${vm_prefix} ipv4.gateway ${vm_gateway} ipv4.dns "${vm_dns1} ${vm_dns2}"
    - nmcli con up ens3
-   - nmcli general reload
-   - nmcli connection reload
-
+  
 hostname: ${vm_name}
 fqdn: ${vm_name}.${vm_domain}
 
