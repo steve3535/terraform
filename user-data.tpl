@@ -3,7 +3,7 @@ network:
   version: 2
   config:
     - type: physical
-      name: ens3
+      name: eth0
       subnets:
         - type: static
           address: ${vm_ip}/${vm_prefix}
