@@ -16,7 +16,7 @@ data "nutanix_cluster" "pe_lu651" {
 }
 
 data "nutanix_image" "rhel8-dc3" {
-  image_name = "RHEL8STD"
+  image_name = "RHEL8STD-latest"
   provider   = nutanix.dc3
 }
 
@@ -34,7 +34,7 @@ data "nutanix_cluster" "pe_lu650" {
 }
 
 data "nutanix_image" "rhel8-dc1" {
-  image_name = "RHEL8STD"
+  image_name = "RHEL8STD-latest"
   provider   = nutanix.dc1
 }
 
