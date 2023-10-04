@@ -365,7 +365,7 @@ resource "nutanix_virtual_machine" "LU718" {
           }
         }
 
-        guest_customization_cloud_init_user_data = base64encode(templatefile("user-data.tpl", {
+        guest_customization_cloud_init_user_data = base64encode(templatefile("user-data.yaml", {
           vm_domain         =  var.vm_domain 
           vm_name       =  "lu718"
           vm_ip   = "200.1.1.105"
