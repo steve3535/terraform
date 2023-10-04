@@ -1,8 +1,7 @@
 #cloud-config
 runcmd:
-   - nmcli con down "Wired connection 1"
-   - nmcli con del "Wired connection 1"
-   - nmcli con add connection.id ens3 ifname ens3 connection.type ethernet ipv4.method manual ipv4.addresses ${vm_ip}/${vm_prefix} ipv4.gateway ${vm_gateway} ipv4.dns "${vm_dns1} ${vm_dns2}"
+   - nmcli con mod "System ens3" connection.id ens3 
+   - nmcli con mod ens3 ipv4.method manual ipv4.addresses ${vm_ip}/${vm_prefix} ipv4.gateway ${vm_gateway} ipv4.dns "${vm_dns1} ${vm_dns2}"
    - nmcli con up ens3
   
 hostname: ${vm_name}
