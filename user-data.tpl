@@ -1,12 +1,12 @@
 #cloud-config
-hostname: ${vm_name}_test
-fqdn: ${vm_name}_test.${vm_domain}
+hostname: ${vm_name}
+fqdn: ${vm_name}.${vm_domain}
 
 users:
   - name: ${vm_user}
     ssh-authorized-keys:
       - ${vm_public_key}
-bootcmd:
+runcmd:
    - echo "Hello wORLD"
    - nmcli con show
    - nmcli con mod "System ens3" connection.id ens3 
