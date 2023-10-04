@@ -377,8 +377,8 @@ resource "nutanix_virtual_machine" "LU718" {
           vm_public_key = var.public_key
         }))
 
-       #  provisioner "local-exec" {
-       #  command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'lu718,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure/linux/vault/.vault_password_file" 
-       #  }
+        provisioner "local-exec" {
+        command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'lu718,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure/linux/vault/.vault_password_file" 
+        }
  }
 # END ANSIBLE MANAGED BLOCK LU718
