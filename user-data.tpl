@@ -6,7 +6,7 @@ users:
   - name: ${vm_user}
     ssh-authorized-keys:
       - ${vm_public_key}
-runcmd:
+run-cmd:
    - echo "Hello wORLD"
    - nmcli con show
    - nmcli con mod "System ens3" connection.id ens3 
