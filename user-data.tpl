@@ -1,6 +1,6 @@
 #cloud-config
 network:
-  version: 1
+  version: 2
   config:
     - type: physical
       name: ens3
