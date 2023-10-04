@@ -55,9 +55,9 @@
                      vm_public_key = var.public_key
                    }))
 
-                  #  provisioner "local-exec" {
-                  #  command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i '{{ item.value.hostname }},' -e env={{ item.value.satellite_env }} config.yml -u ${var.vm_user} -b --vault-password-file {{ lookup('env','ANSIBLE_VAULT') }}/.vault_password_file" 
-                  #  }
+                   provisioner "local-exec" {
+                   command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i '{{ item.value.hostname }},' -e env={{ item.value.satellite_env }} config.yml -u ${var.vm_user} -b --vault-password-file {{ lookup('env','ANSIBLE_VAULT') }}/.vault_password_file" 
+                   }
             }
         path: main.tf
         marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.key|upper }}"
