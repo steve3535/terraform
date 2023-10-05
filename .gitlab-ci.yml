@@ -42,7 +42,8 @@ parse_job_2:
       - params.yml
     tags:
       - shell
-         
+    needs: [parse_job_1]
+
 generate_playbook:
     stage: generate_playbook
     script:
