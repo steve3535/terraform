@@ -35,3 +35,27 @@ lan_vms:
     gw: "200.1.1.240"  
     satellite_env: DEV_TEST
   
+dmz_vms:  
+  LU686:  
+    name: "LU686"  
+    hostname: "lu686"  
+    datacenter: NUT-DMZ-DC01  
+    content_library_item: esx_lib1_item  
+    host: nut-dmz-03  
+    network: DMZ_PRO_INT_RHEL_MGMT  
+    datastore: NUT_DMZ_INT_DC1_01  
+    folder:   
+    mem: 2048  
+    cpu: 1  
+    cpu_socket: 1  
+    disk2_size_gb: "100"  
+    ip: "172.22.160.2"  
+    net_prefix: "24"  
+    gw: "172.22.160.1"  
+    vm_ip_last_octet: 2  
+    gw_ip_last_octet: 1  
+    subnet: 172.22.160.0/24  
+    user: localadmin  
+    resource_pool: esx_pool  
+    satellite_env: DEV_TEST
+  
