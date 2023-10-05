@@ -21,12 +21,6 @@
             org_id: "LALUX"
             force_register: yes
 
-  #- command: date -s "2 hours"
-  # roles:
-  # - role: satellite_enrollment
-  #   release_version: "8"
-  #   environment_name: "{{ env }}"
-
   - name: Install additional packages
     yum:
           name:
@@ -168,6 +162,18 @@
       immediate: yes
       state: enabled
     ignore_errors: true                                           #par le fait que le firewall nest pas active sur tous les hosts
+  - name: register to insights 
+    command: insights-client --register 
+  - name: remove cloud-user 
+    ansible.builtin.user:
+      name: cloud-user 
+      state: absent 
+      remove: yes
+  - name: change localadmin password 
+    user:
+      name: localadmin 
+      update_password: always 
+      password: L@lux0123456789#|password_hash('sha512')
 
   handlers:
   - name: load_config_change
