@@ -326,3 +326,4 @@ data "vsphere_content_library_item" "esx_lib2_item" {
   type = "ovf"
   library_id = data.vsphere_content_library.esx_lib2.id 
 }
+
