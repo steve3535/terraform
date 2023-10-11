@@ -1,12 +1,12 @@
 DOMAIN,VM_NAME1,VM_NAME2,DESCR,HOSTNAME,DATACENTER,AHV CLUSTER/ESX HOST,IMAGE,sub_cl,AHV SUBNET/ESX NETWORK,stg_cl,STORAGE / DATASTORE,FOLDER (ONLY FOR ESX),MEM(MB),CPU,CPU_SOCKET,DISK2_SIZE_GB,IP,NET_PREFIX,GATEWAY,SATELLITE_ENV
 LAN,VSL-DEV-APT-001,VSL-DEV-APT-001,VSL-DEV-APT-001,vsl-dev-apt-001,nutanix.dc3,pe_lu651,rhel8-dc3,sub_pe_lu651,"var.ahv_651_network[""New_PROD 192.168.25.x""]",stg_pe_lu651,"var.ahv_651_storage[""NUT_AHV_DC3_01""]",,20480.0,4.0,1.0,50.0,192.168.25.138,24.0,192.168.25.1,DEV_TEST
-,,,,,,,,sub_,,stg_,,,,,,,,,,
-,,,,,,,,sub_,,stg_,,,,,,,,,,
-,,,,,,,,sub_,,stg_,,,,,,,,,,
-,,,,,,,,sub_,,stg_,,,,,,,,,,
-,,,,,,,,sub_,,stg_,,,,,,,,,,
-,,,,,,,,sub_,,stg_,,,,,,,,,,
-,,,,,,,,sub_,,stg_,,,,,,,,,,
+LAN,VSL-DEV-ABN-001,VSL-DEV-ABN-001,VSL-DEV-ABN-001,vsl-dev-abn-001,nutanix.dc3,pe_lu651,rhel8-dc3,sub_pe_lu651,"var.ahv_651_network[""New_PROD 192.168.25.x""]",stg_pe_lu651,"var.ahv_651_storage[""NUT_AHV_DC3_01""]",,16384.0,4.0,1.0,50.0,192.168.25.144,24.0,192.168.25.1,DEV_TEST
+LAN,VSL-DEV-ABV-001,VSL-DEV-ABV-001,VSL-DEV-ABV-001,vsl-dev-abv-001,nutanix.dc3,pe_lu651,rhel8-dc3,sub_pe_lu651,"var.ahv_651_network[""New_PROD 192.168.25.x""]",stg_pe_lu651,"var.ahv_651_storage[""NUT_AHV_DC3_01""]",,4096.0,2.0,1.0,50.0,192.168.25.150,24.0,192.168.25.1,DEV_TEST
+LAN,VSL-DEV-ABD-001,VSL-DEV-ABD-001,VSL-DEV-ABD-001,vsl-dev-abd-001,nutanix.dc3,pe_lu651,rhel8-dc3,sub_pe_lu651,"var.ahv_651_network[""New_PROD 192.168.25.x""]",stg_pe_lu651,"var.ahv_651_storage[""NUT_AHV_DC3_01""]",,8192.0,2.0,1.0,50.0,192.168.25.151,24.0,192.168.25.1,DEV_TEST
+LAN,VSL-DEV-ABA-001,VSL-DEV-ABA-001,VSL-DEV-ABA-001,vsl-dev-aba-001,nutanix.dc3,pe_lu651,rhel8-dc3,sub_pe_lu651,"var.ahv_651_network[""New_PROD 192.168.25.x""]",stg_pe_lu651,"var.ahv_651_storage[""NUT_AHV_DC3_01""]",,2048.0,1.0,1.0,50.0,192.168.25.152,24.0,192.168.25.1,DEV_TEST
+LAN,VSL-DEV-MST-001,VSL-DEV-MST-001,VSL-DEV-MST-001,vsl-dev-mst-001,nutanix.dc3,pe_lu651,rhel8-dc3,sub_pe_lu651,"var.ahv_651_network[""New_PROD 192.168.25.x""]",stg_pe_lu651,"var.ahv_651_storage[""NUT_AHV_DC3_01""]",,20480.0,4.0,1.0,50.0,192.168.25.161,24.0,192.168.25.1,DEV_TEST
+LAN,VSL-DEV-MSN-001,VSL-DEV-MSN-001,VSL-DEV-MSN-001,vsl-dev-msn-001,nutanix.dc3,pe_lu651,rhel8-dc3,sub_pe_lu651,"var.ahv_651_network[""New_PROD 192.168.25.x""]",stg_pe_lu651,"var.ahv_651_storage[""NUT_AHV_DC3_01""]",,8192.0,4.0,1.0,50.0,192.168.25.188,24.0,192.168.25.1,DEV_TEST
+LAN,VSL-DEV-MSV-001,VSL-DEV-MSV-001,VSL-DEV-MSV-001,vsl-dev-msv-001,nutanix.dc3,pe_lu651,rhel8-dc3,sub_pe_lu651,"var.ahv_651_network[""New_PROD 192.168.25.x""]",stg_pe_lu651,"var.ahv_651_storage[""NUT_AHV_DC3_01""]",,4096.0,2.0,1.0,50.0,192.168.25.189,24.0,192.168.25.1,DEV_TEST
 ,,,,,,,,sub_,,stg_,,,,,,,,,,
 ,,,,,,,,sub_,,stg_,,,,,,,,,,
 ,,,,,,,,sub_,,stg_,,,,,,,,,,
