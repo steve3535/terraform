@@ -8,7 +8,7 @@
   pre_tasks:
   - name: wait some time for the host to be ready before staring anything else
     pause:
-            minutes: 1
+            minutes: 2
   - name: download Satellite CA 
     command: rpm -ivh http://lu712.lalux.local/pub/katello-ca-consumer-latest.noarch.rpm 
   tasks:

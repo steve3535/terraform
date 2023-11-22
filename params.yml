@@ -17,3 +17,21 @@ lan_vms:
     gw: "192.168.25.1"  
     satellite_env: DEV_TEST
   
+  VSL-PRO-WIK-001:  
+    name: "VSL-PRO-WIK-001"  
+    descr: "WIKI SERVER"  
+    hostname: "vsl-pro-wik-001"  
+    datacenter: nutanix.dc1  
+    image: rhel8-dc1  
+    cluster: pe_lu650  
+    subnet: var.ahv_650_network["VLAN_42"]  
+    storage: var.ahv_650_storage["NUT_AHV_DC1_01"]  
+    mem: 4096  
+    cpu: 2  
+    cpu_socket: 1  
+    disk2_size_gb: "100"  
+    ip: "192.168.42.165"  
+    net_prefix: "24"  
+    gw: "192.168.42.1"  
+    satellite_env: DEV_TEST
+  
