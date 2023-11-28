@@ -326,15 +326,15 @@ data "vsphere_content_library_item" "esx_lib2_item" {
   type = "ovf"
   library_id = data.vsphere_content_library.esx_lib2.id 
 }
-# BEGIN ANSIBLE MANAGED BLOCK VSL-PRO-IDM-001
-resource "nutanix_virtual_machine" "VSL-PRO-IDM-001" {
-        name                 = "VSL-PRO-IDM-001"
-        description          = "IDM REPLICA" 
+# BEGIN ANSIBLE MANAGED BLOCK RH-TESTSERVER-JH
+resource "nutanix_virtual_machine" "RH-TESTSERVER-JH" {
+        name                 = "RH-TESTSERVER-JH"
+        description          = "TEST" 
         provider             = nutanix.dc3
         cluster_uuid         = data.nutanix_cluster.pe_lu651.metadata.uuid
         num_vcpus_per_socket = "1"
-        num_sockets          = "4"
-        memory_size_mib      = "8192"
+        num_sockets          = "2"
+        memory_size_mib      = "2048"
         boot_type            = "UEFI"
         nic_list {
           subnet_uuid = var.ahv_651_network["New_PROD 192.168.25.x"]
@@ -356,7 +356,7 @@ resource "nutanix_virtual_machine" "VSL-PRO-IDM-001" {
         }
 
         disk_list {
-          disk_size_mib = (50 * 1024)
+          disk_size_mib = (20 * 1024)
           storage_config {
             storage_container_reference {
               kind = "storage_container"
@@ -367,10 +367,10 @@ resource "nutanix_virtual_machine" "VSL-PRO-IDM-001" {
 
         guest_customization_cloud_init_user_data = base64encode(templatefile("user-data.yaml", {
           vm_domain         =  var.vm_domain 
-          vm_name       =  "vsl-pro-idm-001"
-          vm_ip   = "192.168.25.28"
+          vm_name       =  "rh-testserver-jh"
+          vm_ip   = "192.168.128.98"
           vm_prefix = "24"
-          vm_gateway   =  "192.168.25.1"
+          vm_gateway   =  "192.168.128.1"
           vm_dns1    = var.vm_dns1
           vm_dns2    = var.vm_dns2
           vm_user = var.vm_user
@@ -378,7 +378,7 @@ resource "nutanix_virtual_machine" "VSL-PRO-IDM-001" {
         }))
 
         provisioner "local-exec" {
-        command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'vsl-pro-idm-001,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure/linux/vault/.vault_password_file" 
+        command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'rh-testserver-jh,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure/linux/vault/.vault_password_file" 
         }
  }
-# END ANSIBLE MANAGED BLOCK VSL-PRO-IDM-001
+# END ANSIBLE MANAGED BLOCK RH-TESTSERVER-JH

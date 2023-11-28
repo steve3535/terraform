@@ -1,6 +1,6 @@
 DOMAIN,VM_NAME1,VM_NAME2,DESCR,HOSTNAME,DATACENTER,AHV CLUSTER/ESX HOST,IMAGE,sub_cl,AHV SUBNET/ESX NETWORK,stg_cl,STORAGE / DATASTORE,FOLDER (ONLY FOR ESX),MEM(MB),CPU,CPU_SOCKET,DISK2_SIZE_GB,IP,NET_PREFIX,GATEWAY,SATELLITE_ENV
 LAN,VSL-PRO-IDM-001,VSL-PRO-IDM-001,IDM REPLICA,vsl-pro-idm-001,nutanix.dc3,pe_lu651,rhel8-dc3,sub_pe_lu651,"var.ahv_651_network[""New_PROD 192.168.25.x""]",stg_pe_lu651,"var.ahv_651_storage[""NUT_AHV_DC3_01""]",,8192.0,4.0,1.0,50.0,192.168.25.28,24.0,192.168.25.1,DEV_TEST
-,,,,,,,,sub_,,stg_,,,,,,,,,,
+LAN,RH-TESTSERVER-JH,RH-TESTSERVER-JH,TEST,rh-testserver-jh,nutanix.dc3,pe_lu651,rhel8-dc3,sub_pe_lu651,"var.ahv_651_network[""New_PROD 192.168.25.x""]",stg_pe_lu651,"var.ahv_651_storage[""NUT_AHV_DC3_01""]",,2048.0,2.0,1.0,20.0,192.168.128.98,24.0,192.168.128.1,DEV_TEST
 ,,,,,,,,sub_,,stg_,,,,,,,,,,
 ,,,,,,,,sub_,,stg_,,,,,,,,,,
 ,,,,,,,,sub_,,stg_,,,,,,,,,,
