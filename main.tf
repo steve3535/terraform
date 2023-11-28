@@ -337,7 +337,7 @@ resource "nutanix_virtual_machine" "RH-TESTSERVER-JH" {
         memory_size_mib      = "2048"
         boot_type            = "UEFI"
         nic_list {
-          subnet_uuid = var.ahv_651_network["New_PROD 192.168.25.x"]
+          subnet_uuid = var.ahv_651_network["VLAN-128-Server"]
          }
 
         disk_list {
