@@ -49,7 +49,7 @@ variable "vm_user" { default = "localadmin" }
 variable "public_key" {}
 variable "public_key_path" {}
 variable "vm_password" { default = "L@lux0123456789#" }
-variable "vm_domain" { default = "lalux.local" }
+variable "vm_domain" { default = "dkv.lu" }
 variable "vm_dns1" { default = "200.1.1.163" }
 variable "vm_dns2" { default = "200.1.1.218"} 
 

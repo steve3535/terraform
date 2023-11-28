@@ -3,8 +3,6 @@
 - hosts: all 
   gather_facts: no
   become: true
-  # vars_files:
-  # - "{{ lookup('env','ANSIBLE_VAULT') }}/satellite_creds.yml"
   pre_tasks:
   - name: wait some time for the host to be ready before staring anything else
     pause:
@@ -71,7 +69,7 @@
               state: mounted
 
   environment:
-      no_proxy: lu711.lalux.local,lu712.lalux.local,172.22.56.11,172.22.56.10,lu714.linux.lalux.local,192.168.42.93
+      no_proxy: lu711.lalux.local,lu712.lalux.local,172.22.56.11,172.22.56.10,lu714.linux.lalux.local,192.168.42.93,vsl-pro-idm-001.linux.lalux.local,192.168.25.28
 
 ################# IDM 
 
@@ -93,7 +91,7 @@
     ipaclient_domain: linux.lalux.local
     ipaclient_hostname: "{{ inventory_hostname }}.lalux.local"
     ipaclient_mkhomedir: yes
-    ipaservers: lu714.linux.lalux.local
+    ipaservers: vsl-pro-idm-001.linux.lalux.local
     ipaclient_force: yes
     state: present
 
