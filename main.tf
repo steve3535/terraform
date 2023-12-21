@@ -382,3 +382,283 @@ resource "nutanix_virtual_machine" "RH-TESTSERVER-JH" {
         }
  }
 # END ANSIBLE MANAGED BLOCK RH-TESTSERVER-JH
+# BEGIN ANSIBLE MANAGED BLOCK VSL-DEV-RPI-001
+resource "nutanix_virtual_machine" "VSL-DEV-RPI-001" {
+        name                 = "VSL-DEV-RPI-001"
+        description          = "VSL-DEV-RPI-001" 
+        provider             = nutanix.dc3
+        cluster_uuid         = data.nutanix_cluster.pe_lu651.metadata.uuid
+        num_vcpus_per_socket = "1"
+        num_sockets          = "2"
+        memory_size_mib      = "4096"
+        boot_type            = "UEFI"
+        nic_list {
+          subnet_uuid = var.ahv_651_network["VLAN_42"]
+         }
+
+        disk_list {
+          data_source_reference = {
+             kind = "image"
+             uuid = data.nutanix_image.rhel8-dc3.metadata.uuid
+          }
+
+          device_properties {
+            disk_address = {
+              device_index = 0
+              adapter_type = "SCSI"
+            }
+            device_type = "DISK"
+          }
+        }
+
+        disk_list {
+          disk_size_mib = (100 * 1024)
+          storage_config {
+            storage_container_reference {
+              kind = "storage_container"
+              uuid = var.ahv_651_storage["NUT_AHV_DC3_01"]
+            }
+          }
+        }
+
+        guest_customization_cloud_init_user_data = base64encode(templatefile("user-data.yaml", {
+          vm_domain         =  var.vm_domain 
+          vm_name       =  "vsl-dev-rpi-001"
+          vm_ip   = "192.168.42.174"
+          vm_prefix = "24"
+          vm_gateway   =  "192.168.42.1"
+          vm_dns1    = var.vm_dns1
+          vm_dns2    = var.vm_dns2
+          vm_user = var.vm_user
+          vm_public_key = var.public_key
+        }))
+
+        provisioner "local-exec" {
+        command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'vsl-dev-rpi-001,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure/linux/vault/.vault_password_file" 
+        }
+ }
+# END ANSIBLE MANAGED BLOCK VSL-DEV-RPI-001
+# BEGIN ANSIBLE MANAGED BLOCK VSL-DEV-ATQ-001
+resource "nutanix_virtual_machine" "VSL-DEV-ATQ-001" {
+        name                 = "VSL-DEV-ATQ-001"
+        description          = "VSL-DEV-ATQ-001" 
+        provider             = nutanix.dc3
+        cluster_uuid         = data.nutanix_cluster.pe_lu651.metadata.uuid
+        num_vcpus_per_socket = "1"
+        num_sockets          = "4"
+        memory_size_mib      = "4096"
+        boot_type            = "UEFI"
+        nic_list {
+          subnet_uuid = var.ahv_651_network["VLAN_42"]
+         }
+
+        disk_list {
+          data_source_reference = {
+             kind = "image"
+             uuid = data.nutanix_image.rhel8-dc3.metadata.uuid
+          }
+
+          device_properties {
+            disk_address = {
+              device_index = 0
+              adapter_type = "SCSI"
+            }
+            device_type = "DISK"
+          }
+        }
+
+        disk_list {
+          disk_size_mib = (100 * 1024)
+          storage_config {
+            storage_container_reference {
+              kind = "storage_container"
+              uuid = var.ahv_651_storage["NUT_AHV_DC3_01"]
+            }
+          }
+        }
+
+        guest_customization_cloud_init_user_data = base64encode(templatefile("user-data.yaml", {
+          vm_domain         =  var.vm_domain 
+          vm_name       =  "vsl-dev-atq-001"
+          vm_ip   = "192.168.42.175"
+          vm_prefix = "24"
+          vm_gateway   =  "192.168.42.1"
+          vm_dns1    = var.vm_dns1
+          vm_dns2    = var.vm_dns2
+          vm_user = var.vm_user
+          vm_public_key = var.public_key
+        }))
+
+        provisioner "local-exec" {
+        command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'vsl-dev-atq-001,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure/linux/vault/.vault_password_file" 
+        }
+ }
+# END ANSIBLE MANAGED BLOCK VSL-DEV-ATQ-001
+# BEGIN ANSIBLE MANAGED BLOCK VSL-DEV-ALT-001
+resource "nutanix_virtual_machine" "VSL-DEV-ALT-001" {
+        name                 = "VSL-DEV-ALT-001"
+        description          = "VSL-DEV-ALT-001" 
+        provider             = nutanix.dc3
+        cluster_uuid         = data.nutanix_cluster.pe_lu651.metadata.uuid
+        num_vcpus_per_socket = "1"
+        num_sockets          = "2"
+        memory_size_mib      = "4096"
+        boot_type            = "UEFI"
+        nic_list {
+          subnet_uuid = var.ahv_651_network["VLAN_42"]
+         }
+
+        disk_list {
+          data_source_reference = {
+             kind = "image"
+             uuid = data.nutanix_image.rhel8-dc3.metadata.uuid
+          }
+
+          device_properties {
+            disk_address = {
+              device_index = 0
+              adapter_type = "SCSI"
+            }
+            device_type = "DISK"
+          }
+        }
+
+        disk_list {
+          disk_size_mib = (100 * 1024)
+          storage_config {
+            storage_container_reference {
+              kind = "storage_container"
+              uuid = var.ahv_651_storage["NUT_AHV_DC3_01"]
+            }
+          }
+        }
+
+        guest_customization_cloud_init_user_data = base64encode(templatefile("user-data.yaml", {
+          vm_domain         =  var.vm_domain 
+          vm_name       =  "vsl-dev-alt-001"
+          vm_ip   = "192.168.42.176"
+          vm_prefix = "24"
+          vm_gateway   =  "192.168.42.1"
+          vm_dns1    = var.vm_dns1
+          vm_dns2    = var.vm_dns2
+          vm_user = var.vm_user
+          vm_public_key = var.public_key
+        }))
+
+        provisioner "local-exec" {
+        command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'vsl-dev-alt-001,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure/linux/vault/.vault_password_file" 
+        }
+ }
+# END ANSIBLE MANAGED BLOCK VSL-DEV-ALT-001
+# BEGIN ANSIBLE MANAGED BLOCK VSL-DEV-ALN-001
+resource "nutanix_virtual_machine" "VSL-DEV-ALN-001" {
+        name                 = "VSL-DEV-ALN-001"
+        description          = "VSL-DEV-ALN-001" 
+        provider             = nutanix.dc3
+        cluster_uuid         = data.nutanix_cluster.pe_lu651.metadata.uuid
+        num_vcpus_per_socket = "1"
+        num_sockets          = "4"
+        memory_size_mib      = "8192"
+        boot_type            = "UEFI"
+        nic_list {
+          subnet_uuid = var.ahv_651_network["VLAN_42"]
+         }
+
+        disk_list {
+          data_source_reference = {
+             kind = "image"
+             uuid = data.nutanix_image.rhel8-dc3.metadata.uuid
+          }
+
+          device_properties {
+            disk_address = {
+              device_index = 0
+              adapter_type = "SCSI"
+            }
+            device_type = "DISK"
+          }
+        }
+
+        disk_list {
+          disk_size_mib = (100 * 1024)
+          storage_config {
+            storage_container_reference {
+              kind = "storage_container"
+              uuid = var.ahv_651_storage["NUT_AHV_DC3_01"]
+            }
+          }
+        }
+
+        guest_customization_cloud_init_user_data = base64encode(templatefile("user-data.yaml", {
+          vm_domain         =  var.vm_domain 
+          vm_name       =  "vsl-dev-aln-001"
+          vm_ip   = "192.168.42.177"
+          vm_prefix = "24"
+          vm_gateway   =  "192.168.42.1"
+          vm_dns1    = var.vm_dns1
+          vm_dns2    = var.vm_dns2
+          vm_user = var.vm_user
+          vm_public_key = var.public_key
+        }))
+
+        provisioner "local-exec" {
+        command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'vsl-dev-aln-001,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure/linux/vault/.vault_password_file" 
+        }
+ }
+# END ANSIBLE MANAGED BLOCK VSL-DEV-ALN-001
+# BEGIN ANSIBLE MANAGED BLOCK VSL-DEV-EPT-001
+resource "nutanix_virtual_machine" "VSL-DEV-EPT-001" {
+        name                 = "VSL-DEV-EPT-001"
+        description          = "VSL-DEV-EPT-001" 
+        provider             = nutanix.dc3
+        cluster_uuid         = data.nutanix_cluster.pe_lu651.metadata.uuid
+        num_vcpus_per_socket = "1"
+        num_sockets          = "4"
+        memory_size_mib      = "4096"
+        boot_type            = "UEFI"
+        nic_list {
+          subnet_uuid = var.ahv_651_network["VLAN_42"]
+         }
+
+        disk_list {
+          data_source_reference = {
+             kind = "image"
+             uuid = data.nutanix_image.rhel8-dc3.metadata.uuid
+          }
+
+          device_properties {
+            disk_address = {
+              device_index = 0
+              adapter_type = "SCSI"
+            }
+            device_type = "DISK"
+          }
+        }
+
+        disk_list {
+          disk_size_mib = (100 * 1024)
+          storage_config {
+            storage_container_reference {
+              kind = "storage_container"
+              uuid = var.ahv_651_storage["NUT_AHV_DC3_01"]
+            }
+          }
+        }
+
+        guest_customization_cloud_init_user_data = base64encode(templatefile("user-data.yaml", {
+          vm_domain         =  var.vm_domain 
+          vm_name       =  "vsl-dev-ept-001"
+          vm_ip   = "192.168.42.178"
+          vm_prefix = "24"
+          vm_gateway   =  "192.168.42.1"
+          vm_dns1    = var.vm_dns1
+          vm_dns2    = var.vm_dns2
+          vm_user = var.vm_user
+          vm_public_key = var.public_key
+        }))
+
+        provisioner "local-exec" {
+        command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'vsl-dev-ept-001,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure/linux/vault/.vault_password_file" 
+        }
+ }
+# END ANSIBLE MANAGED BLOCK VSL-DEV-EPT-001

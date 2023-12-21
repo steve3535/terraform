@@ -1,9 +1,9 @@
 DOMAIN,VM_NAME1,VM_NAME2,DESCR,HOSTNAME,DATACENTER,AHV CLUSTER/ESX HOST,IMAGE,sub_cl,AHV SUBNET/ESX NETWORK,stg_cl,STORAGE / DATASTORE,FOLDER (ONLY FOR ESX),MEM(MB),CPU,CPU_SOCKET,DISK2_SIZE_GB,IP,NET_PREFIX,GATEWAY,SATELLITE_ENV
-LAN,RH-TESTSERVER-JH,RH-TESTSERVER-JH,TEST,rh-testserver-jh,nutanix.dc3,pe_lu651,rhel8-dc3,sub_pe_lu651,"var.ahv_651_network[""VLAN-128-Server""]",stg_pe_lu651,"var.ahv_651_storage[""NUT_AHV_DC3_01""]",,2048.0,2.0,1.0,20.0,192.168.128.98,24.0,192.168.128.1,DEV_TEST
-,,,,,,,,sub_,,stg_,,,,,,,,,,
-,,,,,,,,sub_,,stg_,,,,,,,,,,
-,,,,,,,,sub_,,stg_,,,,,,,,,,
-,,,,,,,,sub_,,stg_,,,,,,,,,,
+LAN,VSL-DEV-RPI-001,VSL-DEV-RPI-001,VSL-DEV-RPI-001,vsl-dev-rpi-001,nutanix.dc3,pe_lu651,rhel8-dc3,sub_pe_lu651,"var.ahv_651_network[""VLAN_42""]",stg_pe_lu651,"var.ahv_651_storage[""NUT_AHV_DC3_01""]",,4096.0,2.0,1.0,100.0,192.168.42.174,24.0,192.168.42.1,DEV_TEST
+LAN,VSL-DEV-ATQ-001,VSL-DEV-ATQ-001,VSL-DEV-ATQ-001,vsl-dev-atq-001,nutanix.dc3,pe_lu651,rhel8-dc3,sub_pe_lu651,"var.ahv_651_network[""VLAN_42""]",stg_pe_lu651,"var.ahv_651_storage[""NUT_AHV_DC3_01""]",,4096.0,4.0,1.0,100.0,192.168.42.175,24.0,192.168.42.1,DEV_TEST
+LAN,VSL-DEV-ALT-001,VSL-DEV-ALT-001,VSL-DEV-ALT-001,vsl-dev-alt-001,nutanix.dc3,pe_lu651,rhel8-dc3,sub_pe_lu651,"var.ahv_651_network[""VLAN_42""]",stg_pe_lu651,"var.ahv_651_storage[""NUT_AHV_DC3_01""]",,4096.0,2.0,1.0,100.0,192.168.42.176,24.0,192.168.42.1,DEV_TEST
+LAN,VSL-DEV-ALN-001,VSL-DEV-ALN-001,VSL-DEV-ALN-001,vsl-dev-aln-001,nutanix.dc3,pe_lu651,rhel8-dc3,sub_pe_lu651,"var.ahv_651_network[""VLAN_42""]",stg_pe_lu651,"var.ahv_651_storage[""NUT_AHV_DC3_01""]",,8192.0,4.0,1.0,100.0,192.168.42.177,24.0,192.168.42.1,DEV_TEST
+LAN,VSL-DEV-EPT-001,VSL-DEV-EPT-001,VSL-DEV-EPT-001,vsl-dev-ept-001,nutanix.dc3,pe_lu651,rhel8-dc3,sub_pe_lu651,"var.ahv_651_network[""VLAN_42""]",stg_pe_lu651,"var.ahv_651_storage[""NUT_AHV_DC3_01""]",,4096.0,4.0,1.0,100.0,192.168.42.178,24.0,192.168.42.1,DEV_TEST
 ,,,,,,,,sub_,,stg_,,,,,,,,,,
 ,,,,,,,,sub_,,stg_,,,,,,,,,,
 ,,,,,,,,sub_,,stg_,,,,,,,,,,
