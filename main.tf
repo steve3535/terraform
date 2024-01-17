@@ -744,13 +744,13 @@ resource "vsphere_virtual_machine" "LU686" {
 
 }
 # END ANSIBLE MANAGED BLOCK LU686 (DMZ)
-# BEGIN ANSIBLE MANAGED BLOCK VSL-PRO-ATQ-001_BKP3.1_D_PRO (DMZ)
-resource "vsphere_virtual_machine" "VSL-PRO-ATQ-001_BKP3.1_D_PRO" {
+# BEGIN ANSIBLE MANAGED BLOCK VSL-PRO-ATQ-001_BKP_D_PRO (DMZ)
+resource "vsphere_virtual_machine" "VSL-PRO-ATQ-001_BKP_D_PRO" {
   resource_pool_id     = data.vsphere_resource_pool.esx_pool.id
   host_system_id       = data.vsphere_host.nut-dmz-04.id 
   datastore_id         = data.vsphere_datastore.NUT_DMZ_INT_DC2_to_DC1.id 
   firmware             = "efi"
-  name                 = "VSL-PRO-ATQ-001_BKP3.1_D_PRO" 
+  name                 = "VSL-PRO-ATQ-001_BKP_D_PRO" 
   folder               = "/DMZ/Tinqin/Servers"
   num_cpus             = "4"
   memory               = "24576"
@@ -825,4 +825,4 @@ resource "vsphere_virtual_machine" "VSL-PRO-ATQ-001_BKP3.1_D_PRO" {
   }
 
 }
-# END ANSIBLE MANAGED BLOCK VSL-PRO-ATQ-001_BKP3.1_D_PRO (DMZ)
+# END ANSIBLE MANAGED BLOCK VSL-PRO-ATQ-001_BKP_D_PRO (DMZ)

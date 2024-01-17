@@ -1,6 +1,6 @@
 dmz_vms:  
-  VSL-PRO-ATQ-001_BKP3.1_D_PRO:  
-    name: "VSL-PRO-ATQ-001_BKP3.1_D_PRO"  
+  VSL-PRO-ATQ-001_BKP_D_PRO:  
+    name: "VSL-PRO-ATQ-001_BKP_D_PRO"  
     hostname: "vsl-pro-atq-001"  
     datacenter: NUT-DMZ-DC02  
     content_library_item: esx_lib2_item  
