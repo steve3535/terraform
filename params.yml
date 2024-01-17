@@ -1,91 +1,24 @@
-lan_vms:  
-  VSL-DEV-RPI-001:  
-    name: "VSL-DEV-RPI-001"  
-    descr: "VSL-DEV-RPI-001"  
-    hostname: "vsl-dev-rpi-001"  
-    datacenter: nutanix.dc3  
-    image: rhel8-dc3  
-    cluster: pe_lu651  
-    subnet: var.ahv_651_network["VLAN_42"]  
-    storage: var.ahv_651_storage["NUT_AHV_DC3_01"]  
+dmz_vms:  
+  LU686:  
+    name: "LU686"  
+    hostname: "lu686"  
+    datacenter: NUT-DMZ-DC02  
+    content_library_item: esx_lib2_item  
+    host: nut-dmz-04  
+    network: DMZ_PRO_INT_RHEL_MGMT  
+    datastore: NUT_DMZ_INT_DC2_01  
+    folder: /DMZ  
     mem: 4096  
     cpu: 2  
     cpu_socket: 1  
     disk2_size_gb: "100"  
-    ip: "192.168.42.174"  
+    ip: "172.22.160.2"  
     net_prefix: "24"  
-    gw: "192.168.42.1"  
-    satellite_env: DEV_TEST
-  
-  VSL-DEV-ATQ-001:  
-    name: "VSL-DEV-ATQ-001"  
-    descr: "VSL-DEV-ATQ-001"  
-    hostname: "vsl-dev-atq-001"  
-    datacenter: nutanix.dc3  
-    image: rhel8-dc3  
-    cluster: pe_lu651  
-    subnet: var.ahv_651_network["VLAN_42"]  
-    storage: var.ahv_651_storage["NUT_AHV_DC3_01"]  
-    mem: 4096  
-    cpu: 4  
-    cpu_socket: 1  
-    disk2_size_gb: "100"  
-    ip: "192.168.42.175"  
-    net_prefix: "24"  
-    gw: "192.168.42.1"  
-    satellite_env: DEV_TEST
-  
-  VSL-DEV-ALT-001:  
-    name: "VSL-DEV-ALT-001"  
-    descr: "VSL-DEV-ALT-001"  
-    hostname: "vsl-dev-alt-001"  
-    datacenter: nutanix.dc3  
-    image: rhel8-dc3  
-    cluster: pe_lu651  
-    subnet: var.ahv_651_network["VLAN_42"]  
-    storage: var.ahv_651_storage["NUT_AHV_DC3_01"]  
-    mem: 4096  
-    cpu: 2  
-    cpu_socket: 1  
-    disk2_size_gb: "100"  
-    ip: "192.168.42.176"  
-    net_prefix: "24"  
-    gw: "192.168.42.1"  
-    satellite_env: DEV_TEST
-  
-  VSL-DEV-ALN-001:  
-    name: "VSL-DEV-ALN-001"  
-    descr: "VSL-DEV-ALN-001"  
-    hostname: "vsl-dev-aln-001"  
-    datacenter: nutanix.dc3  
-    image: rhel8-dc3  
-    cluster: pe_lu651  
-    subnet: var.ahv_651_network["VLAN_42"]  
-    storage: var.ahv_651_storage["NUT_AHV_DC3_01"]  
-    mem: 8192  
-    cpu: 4  
-    cpu_socket: 1  
-    disk2_size_gb: "100"  
-    ip: "192.168.42.177"  
-    net_prefix: "24"  
-    gw: "192.168.42.1"  
-    satellite_env: DEV_TEST
-  
-  VSL-DEV-EPT-001:  
-    name: "VSL-DEV-EPT-001"  
-    descr: "VSL-DEV-EPT-001"  
-    hostname: "vsl-dev-ept-001"  
-    datacenter: nutanix.dc3  
-    image: rhel8-dc3  
-    cluster: pe_lu651  
-    subnet: var.ahv_651_network["VLAN_42"]  
-    storage: var.ahv_651_storage["NUT_AHV_DC3_01"]  
-    mem: 4096  
-    cpu: 4  
-    cpu_socket: 1  
-    disk2_size_gb: "100"  
-    ip: "192.168.42.178"  
-    net_prefix: "24"  
-    gw: "192.168.42.1"  
+    gw: "172.22.160.1"  
+    vm_ip_last_octet: 2  
+    gw_ip_last_octet: 1  
+    subnet: 172.22.160.0/24  
+    user: localadmin  
+    resource_pool: esx_pool  
     satellite_env: DEV_TEST
   
