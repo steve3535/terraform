@@ -303,6 +303,13 @@ data "vsphere_network" "DMZ_EXT_Oracle_Mgmt" {
   datacenter_id = data.vsphere_datacenter.esx_dc.id
 }
 
+
+data "vsphere_network" "PRO_ANALYTICS_EXT" {
+  name = "PRO_ANALYTICS_EXT"
+  datacenter_id = data.vsphere_datacenter.esx_dc.id
+}
+
+
 ###############################
 # CONTENT LIBRARY
 ###############################
