@@ -22,3 +22,26 @@ dmz_vms:
     resource_pool: esx_pool  
     satellite_env: DEV_TEST
   
+  VSL-POC-MMO-001:  
+    name: "VSL-POC-MMO-001"  
+    hostname: "vsl-poc-mmo-001"  
+    datacenter: NUT-DMZ-DC01  
+    content_library_item: esx_lib1_item  
+    host: nut-dmz-03  
+    network: PRO_ANALYTICS_EXT  
+    datastore: NUT_DMZ_INT_DC1_01  
+    folder:   
+    mem: 4096  
+    cpu: 2  
+    cpu_socket: 1  
+    disk2_size_gb: "100"  
+    ip: "172.23.86.1"  
+    net_prefix: "24"  
+    gw: "172.23.86.254"  
+    vm_ip_last_octet: 1  
+    gw_ip_last_octet: 254  
+    subnet: 172.23.86.0/24  
+    user: localadmin  
+    resource_pool: esx_pool  
+    satellite_env: DEV_TEST
+  
