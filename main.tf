@@ -1044,7 +1044,7 @@ resource "vsphere_virtual_machine" "VSL-REC-WWW-001" {
         ipv4_address = cidrhost("172.25.87.0/24","1") 
         ipv4_netmask = "24"
       }
-      ipv4_gateway = cidrhost("172.25.87.0/24","1")
+      ipv4_gateway = cidrhost("172.25.87.0/24","254")
       dns_server_list = [var.vm_dns1,var.vm_dns2]
     }
   }        
@@ -1069,7 +1069,7 @@ resource "vsphere_virtual_machine" "VSL-REC-WWW-001" {
        "chmod 0700 /home/localadmin/.ssh",
        "mv /tmp/authorized_keys /home/localadmin/.ssh/",
        "chmod 0600 /home/localadmin/.ssh/authorized_keys",      
-       "sudo nmcli con mod 'System ${var.vsphere_interface_name}' ipv4.method manual ipv4.addresses 172.25.87.1/24 ipv4.gateway 172.25.87.1 connection.autoconnect yes",
+       "sudo nmcli con mod 'System ${var.vsphere_interface_name}' ipv4.method manual ipv4.addresses 172.25.87.1/24 ipv4.gateway 172.25.87.254 connection.autoconnect yes",
        "sudo nmcli con mod 'System ${var.vsphere_interface_name}' con-name ${var.vsphere_interface_name}",
        "sudo nmcli con up ${var.vsphere_interface_name}",
        "sudo dnf -y remove cloud-init"      

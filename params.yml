@@ -83,9 +83,9 @@ dmz_vms:
     disk2_size_gb: "100"  
     ip: "172.25.87.1"  
     net_prefix: "24"  
-    gw: "172.25.87.1"  
+    gw: "172.25.87.254"  
     vm_ip_last_octet: 1  
-    gw_ip_last_octet: 1  
+    gw_ip_last_octet: 254  
     subnet: 172.25.87.0/24  
     user: localadmin  
     resource_pool: esx_pool  
