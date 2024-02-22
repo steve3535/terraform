@@ -930,7 +930,7 @@ resource "vsphere_virtual_machine" "VSL-PRO-WWW-001 " {
   host_system_id       = data.vsphere_host.nut-dmz-05.id 
   datastore_id         = data.vsphere_datastore.NUT_DMZ_EXT_DC1_to_DC2.id 
   firmware             = "efi"
-  name                 = "VSL-PRO-WWW-001" 
+  name                 = "VSL-PRO-WWW-001 " 
   folder               = "/DMZ/DMZEXT/Production"
   num_cpus             = "2"
   memory               = "8192"
@@ -1012,7 +1012,7 @@ resource "vsphere_virtual_machine" "VSL-REC-WWW-001 " {
   host_system_id       = data.vsphere_host.nut-dmz-06.id 
   datastore_id         = data.vsphere_datastore.NUT_DMZ_INT_DC2_01.id 
   firmware             = "efi"
-  name                 = "VSL-REC-WWW-001" 
+  name                 = "VSL-REC-WWW-001 " 
   folder               = "/DMZ/DMZEXT/Recette"
   num_cpus             = "2"
   memory               = "8192"
