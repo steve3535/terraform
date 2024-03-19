@@ -1,6 +1,6 @@
 DOMAIN,VM_NAME1,VM_NAME2,DESCR,HOSTNAME,DATACENTER,AHV CLUSTER/ESX HOST,IMAGE,sub_cl,AHV SUBNET/ESX NETWORK,stg_cl,STORAGE / DATASTORE,FOLDER (ONLY FOR ESX),MEM(MB),CPU,CPU_SOCKET,DISK2_SIZE_GB,IP,NET_PREFIX,GATEWAY,SATELLITE_ENV
-LAN,VSL-TEST,VSL-TEST,VSL-TEST,vsltest,nutanix.dc3,pe_lu651,rhel8-dc3,sub_pe_lu651,"var.ahv_651_network[""521-REC_ESIGN_INT""]",stg_pe_lu651,"var.ahv_651_storage[""NUT_AHV_DC3_01""]",,2048.0,1.0,1.0,100.0,172.25.21.2,24.0,172.25.21.254,DEV_TEST
-,,,,,,,,sub_,,stg_,,,,,,,,,,
+LAN,VSL-TST-AXW-004,VSL-TST-AXW-004,VSL-TST-AXW-004,vsl-tst-axw-004,nutanix.dc3,pe_lu651,rhel8-dc3,sub_pe_lu651,"var.ahv_651_network[""VLAN_42""]",stg_pe_lu651,"var.ahv_651_storage[""NUT_AHV_DC3_01""]",,2048.0,1.0,1.0,100.0,192.168.42.185,24.0,192.168.42.1,DEV_TEST
+DMZ,VSL-TST-AXW-003,VSL-TST-AXW-003,VSL-TST-AXW-003,vsl-tst-axw-003,NUT-DMZ-DC02,nut-dmz-04,esx_lib2_item,sub_nut-dmz-04,TST_AXWAY,stg_nut-dmz-04,NUT_DMZ_INT_DC2_01,,2048.0,1.0,1.0,100.0,172.26.83.2,24.0,172.26.83.254,DEV_TEST
 ,,,,,,,,sub_,,stg_,,,,,,,,,,
 ,,,,,,,,sub_,,stg_,,,,,,,,,,
 ,,,,,,,,sub_,,stg_,,,,,,,,,,

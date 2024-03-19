@@ -1,19 +1,43 @@
 lan_vms:  
-  VSL-TEST:  
-    name: "VSL-TEST"  
-    descr: "VSL-TEST"  
-    hostname: "vsltest"  
+  VSL-TST-AXW-004:  
+    name: "VSL-TST-AXW-004"  
+    descr: "VSL-TST-AXW-004"  
+    hostname: "vsl-tst-axw-004"  
     datacenter: nutanix.dc3  
     image: rhel8-dc3  
     cluster: pe_lu651  
-    subnet: var.ahv_651_network["521-REC_ESIGN_INT"]  
+    subnet: var.ahv_651_network["VLAN_42"]  
     storage: var.ahv_651_storage["NUT_AHV_DC3_01"]  
     mem: 2048  
     cpu: 1  
     cpu_socket: 1  
     disk2_size_gb: "100"  
-    ip: "172.25.21.2"  
+    ip: "192.168.42.185"  
     net_prefix: "24"  
-    gw: "172.25.21.254"  
+    gw: "192.168.42.1"  
+    satellite_env: DEV_TEST
+  
+dmz_vms:  
+  VSL-TST-AXW-003:  
+    name: "VSL-TST-AXW-003"  
+    hostname: "vsl-tst-axw-003"  
+    datacenter: NUT-DMZ-DC02  
+    content_library_item: esx_lib2_item  
+    host: nut-dmz-04  
+    network: TST_AXWAY  
+    datastore: NUT_DMZ_INT_DC2_01  
+    folder:   
+    mem: 2048  
+    cpu: 1  
+    cpu_socket: 1  
+    disk2_size_gb: "100"  
+    ip: "172.26.83.2"  
+    net_prefix: "24"  
+    gw: "172.26.83.254"  
+    vm_ip_last_octet: 2  
+    gw_ip_last_octet: 254  
+    subnet: 172.26.83.0/24  
+    user: localadmin  
+    resource_pool: esx_pool  
     satellite_env: DEV_TEST
   
