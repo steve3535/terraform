@@ -22,3 +22,187 @@ dmz_vms:
     resource_pool: esx_pool  
     satellite_env: DEV_TEST
   
+  VSL-PRO-KCE-001:  
+    name: "VSL-PRO-KCE-001"  
+    hostname: "vsl-pro-kce-001"  
+    datacenter: NUT-DMZ-DC01  
+    content_library_item: esx_lib1_item  
+    host: nut-dmz-03  
+    network: PRO_AUTH_EXT  
+    datastore: NUT_DMZ_EXT_DC1_to_DC2  
+    folder:   
+    mem: 2048  
+    cpu: 1  
+    cpu_socket: 1  
+    disk2_size_gb: "100"  
+    ip: "172.23.73.1"  
+    net_prefix: "24"  
+    gw: "172.23.73.254"  
+    vm_ip_last_octet: 1  
+    gw_ip_last_octet: 254  
+    subnet: 172.23.73.0/24  
+    user: localadmin  
+    resource_pool: esx_pool  
+    satellite_env: PROD
+  
+  VSL-PRO-KCE-002:  
+    name: "VSL-PRO-KCE-002"  
+    hostname: "vsl-pro-kce-002"  
+    datacenter: NUT-DMZ-DC02  
+    content_library_item: esx_lib2_item  
+    host: nut-dmz-04  
+    network: PRO_AUTH_EXT  
+    datastore: NUT_DMZ_EXT_DC2_to_DC1  
+    folder:   
+    mem: 2048  
+    cpu: 1  
+    cpu_socket: 1  
+    disk2_size_gb: "100"  
+    ip: "172.23.73.2"  
+    net_prefix: "24"  
+    gw: "172.23.73.254"  
+    vm_ip_last_octet: 2  
+    gw_ip_last_octet: 254  
+    subnet: 172.23.73.0/24  
+    user: localadmin  
+    resource_pool: esx_pool  
+    satellite_env: PROD
+  
+  VSL-PRO-KCI-001:  
+    name: "VSL-PRO-KCI-001"  
+    hostname: "vsl-pro-kci-001"  
+    datacenter: NUT-DMZ-DC01  
+    content_library_item: esx_lib1_item  
+    host: nut-dmz-03  
+    network: PRO_AUTH_INT  
+    datastore: NUT_DMZ_INT_DC1_to_DC2  
+    folder:   
+    mem: 2048  
+    cpu: 1  
+    cpu_socket: 1  
+    disk2_size_gb: "100"  
+    ip: "172.23.42.1"  
+    net_prefix: "24"  
+    gw: "172.23.42.254"  
+    vm_ip_last_octet: 1  
+    gw_ip_last_octet: 254  
+    subnet: 172.23.42.0/24  
+    user: localadmin  
+    resource_pool: esx_pool  
+    satellite_env: PROD
+  
+  VSL-PRO-KCI-002:  
+    name: "VSL-PRO-KCI-002"  
+    hostname: "vsl-pro-kci-002"  
+    datacenter: NUT-DMZ-DC02  
+    content_library_item: esx_lib2_item  
+    host: nut-dmz-04  
+    network: PRO_AUTH_INT  
+    datastore: NUT_DMZ_INT_DC2_to_DC1  
+    folder:   
+    mem: 2048  
+    cpu: 1  
+    cpu_socket: 1  
+    disk2_size_gb: "100"  
+    ip: "172.23.42.2"  
+    net_prefix: "24"  
+    gw: "172.23.42.254"  
+    vm_ip_last_octet: 2  
+    gw_ip_last_octet: 254  
+    subnet: 172.23.42.0/24  
+    user: localadmin  
+    resource_pool: esx_pool  
+    satellite_env: PROD
+  
+  VSL-REC-KCE-001:  
+    name: "VSL-REC-KCE-001"  
+    hostname: "vsl-rec-kce-001"  
+    datacenter: NUT-DMZ-DC01  
+    content_library_item: esx_lib1_item  
+    host: nut-dmz-03  
+    network: REC_AUTH_EXT  
+    datastore: NUT_DMZ_EXT_DC1_01  
+    folder:   
+    mem: 2048  
+    cpu: 1  
+    cpu_socket: 1  
+    disk2_size_gb: "100"  
+    ip: "172.25.73.1"  
+    net_prefix: "24"  
+    gw: "172.25.73.254"  
+    vm_ip_last_octet: 1  
+    gw_ip_last_octet: 254  
+    subnet: 172.25.73.0/24  
+    user: localadmin  
+    resource_pool: esx_pool  
+    satellite_env: RECETTE_PREPROD
+  
+  VSL-REC-KCE-002:  
+    name: "VSL-REC-KCE-002"  
+    hostname: "vsl-rec-kce-002"  
+    datacenter: NUT-DMZ-DC02  
+    content_library_item: esx_lib2_item  
+    host: nut-dmz-04  
+    network: REC_AUTH_EXT  
+    datastore: NUT_DMZ_EXT_DC2_01  
+    folder:   
+    mem: 2048  
+    cpu: 1  
+    cpu_socket: 1  
+    disk2_size_gb: "100"  
+    ip: "172.25.73.2"  
+    net_prefix: "24"  
+    gw: "172.25.73.254"  
+    vm_ip_last_octet: 2  
+    gw_ip_last_octet: 254  
+    subnet: 172.25.73.0/24  
+    user: localadmin  
+    resource_pool: esx_pool  
+    satellite_env: RECETTE_PREPROD
+  
+  VSL-REC-KCI-001:  
+    name: "VSL-REC-KCI-001"  
+    hostname: "vsl-rec-kci-001"  
+    datacenter: NUT-DMZ-DC01  
+    content_library_item: esx_lib1_item  
+    host: nut-dmz-03  
+    network: REC_AUTH_INT  
+    datastore: NUT_DMZ_INT_DC1_01  
+    folder:   
+    mem: 2048  
+    cpu: 1  
+    cpu_socket: 1  
+    disk2_size_gb: "100"  
+    ip: "172.25.42.1"  
+    net_prefix: "24"  
+    gw: "172.25.42.254"  
+    vm_ip_last_octet: 1  
+    gw_ip_last_octet: 254  
+    subnet: 172.25.42.0/24  
+    user: localadmin  
+    resource_pool: esx_pool  
+    satellite_env: RECETTE_PREPROD
+  
+  VSL-REC-KCI-002:  
+    name: "VSL-REC-KCI-002"  
+    hostname: "vsl-rec-kci-002"  
+    datacenter: NUT-DMZ-DC02  
+    content_library_item: esx_lib2_item  
+    host: nut-dmz-04  
+    network: REC_AUTH_INT  
+    datastore: NUT_DMZ_INT_DC2_01  
+    folder:   
+    mem: 2048  
+    cpu: 1  
+    cpu_socket: 1  
+    disk2_size_gb: "100"  
+    ip: "172.25.42.2"  
+    net_prefix: "24"  
+    gw: "172.25.42.254"  
+    vm_ip_last_octet: 2  
+    gw_ip_last_octet: 254  
+    subnet: 172.25.42.0/24  
+    user: localadmin  
+    resource_pool: esx_pool  
+    satellite_env: RECETTE_PREPROD
+  
