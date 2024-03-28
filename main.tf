@@ -148,7 +148,6 @@ data "vsphere_host" "nut-dmz-08" {
   datacenter_id = data.vsphere_datacenter.esx_dc.id
 }
 
-
 ###############################
 # ESX NETWORKS
 ###############################
