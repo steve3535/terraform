@@ -32,7 +32,7 @@ variable ahv_650_network {
 
 variable ahv_650_storage {
     type = map(string)
-    default = {"NUT_AHV_DC1_01":"68f3f950-143e-41a9-87fa-6806dfaacaa8","NUT_AHV_DC3_01":"8688a539-0fff-45ee-a621-1591234e89b5"}
+    default = {"NUT_AHV_DC1_01":"68f3f950-143e-41a9-87fa-6806dfaacaa8","NUT_AHV_DC3_01":"8688a539-0fff-45ee-a621-1591234e89b5","NUT_AHV_DC1_RH_PGSQL":"c14fa5da-31fd-4ee7-88c9-37beea7cba79","NUT_AHV_DC3_RH_PGSQL":"1ab86e6f-a866-4f1b-840d-431c5e6497a5"}
 }
 
 variable ahv_651_network {
@@ -45,7 +45,7 @@ variable ahv_651_network {
 
 variable ahv_651_storage {
     type = map(string)
-    default = {"NUT_AHV_DC3_01":"bc8f3bc4-900a-4458-aadd-85f557f5bcd2","NUT_AHV_DC1_01":"cc879b80-7e3a-40a9-ab85-5e7f59d20b40"}
+    default = {"NUT_AHV_DC3_01":"bc8f3bc4-900a-4458-aadd-85f557f5bcd2","NUT_AHV_DC1_01":"cc879b80-7e3a-40a9-ab85-5e7f59d20b40","NUT_AHV_DC1_RH_PGSQL":"a73f4d5d-5ac2-4f4f-b695-4710eceecb0f","NUT_AHV_DC3_RH_PGSQL":"ed5c0d2a-5700-4c27-a498-1be0f8c5cfe4"}
 }
 
 variable "vm_user" { default = "localadmin" }
