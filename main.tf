@@ -527,3 +527,115 @@ resource "vsphere_virtual_machine" "VSL-PRO-KCI-002" {
 
 }
 # END ANSIBLE MANAGED BLOCK VSL-PRO-KCI-002 (DMZ)
+# BEGIN ANSIBLE MANAGED BLOCK VSL-DEV-IIS-001
+resource "nutanix_virtual_machine" "VSL-DEV-IIS-001" {
+        name                 = "VSL-DEV-IIS-001"
+        description          = "VSL-DEV-IIS-001" 
+        provider             = nutanix.dc3
+        cluster_uuid         = data.nutanix_cluster.pe_lu651.metadata.uuid
+        num_vcpus_per_socket = "1"
+        num_sockets          = "4"
+        memory_size_mib      = "16384"
+        boot_type            = "UEFI"
+        nic_list {
+          subnet_uuid = var.ahv_651_network["VLAN-20-Legacy-Server"]
+         }
+
+        disk_list {
+          data_source_reference = {
+             kind = "image"
+             uuid = data.nutanix_image.rhel8-dc3.metadata.uuid
+          }
+
+          device_properties {
+            disk_address = {
+              device_index = 0
+              adapter_type = "SCSI"
+            }
+            device_type = "DISK"
+          }
+        }
+
+        disk_list {
+          disk_size_mib = (100 * 1024)
+          storage_config {
+            storage_container_reference {
+              kind = "storage_container"
+              uuid = var.ahv_651_storage["NUT_AHV_DC3_RH_PGSQL"]
+            }
+          }
+        }
+
+        guest_customization_cloud_init_user_data = base64encode(templatefile("user-data.yaml", {
+          vm_domain         =  var.vm_domain 
+          vm_name       =  "vsl-dev-iis-001"
+          vm_ip   = "172.17.20.148"
+          vm_prefix = "24"
+          vm_gateway   =  "172.17.20.1"
+          vm_dns1    = var.vm_dns1
+          vm_dns2    = var.vm_dns2
+          vm_user = var.vm_user
+          vm_public_key = var.public_key
+        }))
+
+        provisioner "local-exec" {
+        command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'vsl-dev-iis-001,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure/linux/vault/.vault_password_file" 
+        }
+ }
+# END ANSIBLE MANAGED BLOCK VSL-DEV-IIS-001
+# BEGIN ANSIBLE MANAGED BLOCK VSL-DEV-IDB-001
+resource "nutanix_virtual_machine" "VSL-DEV-IDB-001" {
+        name                 = "VSL-DEV-IDB-001"
+        description          = "VSL-DEV-IDB-001" 
+        provider             = nutanix.dc3
+        cluster_uuid         = data.nutanix_cluster.pe_lu651.metadata.uuid
+        num_vcpus_per_socket = "1"
+        num_sockets          = "2"
+        memory_size_mib      = "8192"
+        boot_type            = "UEFI"
+        nic_list {
+          subnet_uuid = var.ahv_651_network["VLAN-20-Legacy-Server"]
+         }
+
+        disk_list {
+          data_source_reference = {
+             kind = "image"
+             uuid = data.nutanix_image.rhel8-dc3.metadata.uuid
+          }
+
+          device_properties {
+            disk_address = {
+              device_index = 0
+              adapter_type = "SCSI"
+            }
+            device_type = "DISK"
+          }
+        }
+
+        disk_list {
+          disk_size_mib = (100 * 1024)
+          storage_config {
+            storage_container_reference {
+              kind = "storage_container"
+              uuid = var.ahv_651_storage["NUT_AHV_DC3_RH_PGSQL"]
+            }
+          }
+        }
+
+        guest_customization_cloud_init_user_data = base64encode(templatefile("user-data.yaml", {
+          vm_domain         =  var.vm_domain 
+          vm_name       =  "vsl-dev-idb-001"
+          vm_ip   = "172.17.20.149"
+          vm_prefix = "24"
+          vm_gateway   =  "172.17.20.1"
+          vm_dns1    = var.vm_dns1
+          vm_dns2    = var.vm_dns2
+          vm_user = var.vm_user
+          vm_public_key = var.public_key
+        }))
+
+        provisioner "local-exec" {
+        command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'vsl-dev-idb-001,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure/linux/vault/.vault_password_file" 
+        }
+ }
+# END ANSIBLE MANAGED BLOCK VSL-DEV-IDB-001

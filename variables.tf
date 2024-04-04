@@ -27,7 +27,7 @@ variable "vsphere_interface_name" { default = "ens192" }
 ################################
 variable ahv_650_network {
     type = map(string)
-    default = {"Production":"0cd904d5-187c-4701-ad94-12bda719dcac","VLAN_42":"0d5ca391-d483-473d-87bf-db324a3289be","New_PROD 192.168.25.x":"2b1ad12d-4426-460c-93f7-c1c5cc013928"}
+    default = {"Production":"0cd904d5-187c-4701-ad94-12bda719dcac","VLAN_42":"0d5ca391-d483-473d-87bf-db324a3289be","New_PROD 192.168.25.x":"2b1ad12d-4426-460c-93f7-c1c5cc013928","VLAN-20-Legacy-Server":"2d2dc451-ca23-441a-9907-a33a79f53979"}
 }
 
 variable ahv_650_storage {
@@ -39,7 +39,7 @@ variable ahv_651_network {
     type = map(string)
     default = {
         "Production":"5e33cdaf-d482-4353-b2b0-a74cbff387c8","VLAN_42":"bb352659-9eb7-498c-8116-f0efee2420a1","New_PROD 192.168.25.x":"6e600440-22fe-4127-afd2-7a17f60bd8dc","VLAN_26":"ecc99c8a-ddc1-422b-8cfb-b69057d570db",
-        "VLAN-128-Server":"ae825d57-6b48-411b-b3cd-e92279a32029","VLAN48":"df1c8665-8a86-4104-814f-490798603cf9","521-REC_ESIGN_INT":"75ff5c98-17de-4df6-ae78-dbf9973588e3"
+        "VLAN-128-Server":"ae825d57-6b48-411b-b3cd-e92279a32029","VLAN48":"df1c8665-8a86-4104-814f-490798603cf9","521-REC_ESIGN_INT":"75ff5c98-17de-4df6-ae78-dbf9973588e3","VLAN-20-Legacy-Server":"1ea64ef5-7e52-43b3-bfd9-997d61cac24e"
         }
 }
 
