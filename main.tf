@@ -237,10 +237,6 @@ data "vsphere_network" "PPR_APPLICATIONS_LN" {
   datacenter_id = data.vsphere_datacenter.esx_dc.id
 }
 
-# data "vsphere_network" "PPR_MIGAL" {
-#   name = "PPR_MIGAL"
-#   datacenter_id = data.vsphere_datacenter.esx_dc.id
-# }
 
 data "vsphere_network" "PPR_MAGIC" {
   name = "PPR_MAGIC"
