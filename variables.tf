@@ -27,7 +27,7 @@ variable "vsphere_interface_name" { default = "ens192" }
 ################################
 variable ahv_650_network {
     type = map(string)
-    default = {"Production":"0cd904d5-187c-4701-ad94-12bda719dcac","VLAN_42":"0d5ca391-d483-473d-87bf-db324a3289be","New_PROD 192.168.25.x":"2b1ad12d-4426-460c-93f7-c1c5cc013928","VLAN-20-Legacy-Server":"2d2dc451-ca23-441a-9907-a33a79f53979"}
+    default = {"Production":"0cd904d5-187c-4701-ad94-12bda719dcac","VLAN_42":"0d5ca391-d483-473d-87bf-db324a3289be","New_PROD 192.168.25.x":"2b1ad12d-4426-460c-93f7-c1c5cc013928","VLAN-20-Legacy-Server":"2d2dc451-ca23-441a-9907-a33a79f53979","PRO_AIA_324":"74d5b678-83a0-4d3c-9d0e-22ee4a3b8248","REC_AIA_524":"f4d61775-e89c-4232-8510-f1a6f1ad0286","PRO_IA_347":"4b3584df-443d-4e65-a10a-db01122dec79","REC_IA_547":"1a3efabb-b8e6-4774-974a-cabc5ab91687"}
 }
 
 variable ahv_650_storage {
