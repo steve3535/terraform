@@ -527,4 +527,4 @@ resource "nutanix_virtual_machine" "VSL-REC-IAI-001" {
         command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'vsl-rec-iai-001,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure/linux/vault/.vault_password_file" 
         }
  }
-# END ANSIBLE MANAGED BLOCK VSL-REC-IAI-001
+# END ANSIBLE MANAGED BLOCK VSL-REC-IAI-001 -- 
