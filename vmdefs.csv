@@ -1,7 +1,7 @@
 DOMAIN,VM_NAME1,VM_NAME2,DESCR,HOSTNAME,DATACENTER,AHV CLUSTER/ESX HOST,IMAGE,sub_cl,AHV SUBNET/ESX NETWORK,stg_cl,STORAGE / DATASTORE,FOLDER (ONLY FOR ESX),MEM(MB),CPU,CPU_SOCKET,DISK2_SIZE_GB,IP,NET_PREFIX,GATEWAY,SATELLITE_ENV
-LAN,VSL-DEV-IIS-001,VSL-DEV-IIS-001,VSL-DEV-IIS-001,vsl-dev-iis-001,nutanix.dc3,pe_lu651,rhel8-dc3,sub_pe_lu651,"var.ahv_651_network[""VLAN-20-Legacy-Server""]",stg_pe_lu651,"var.ahv_651_storage[""NUT_AHV_DC3_RH_PGSQL""]",,16384.0,4.0,1.0,100.0,172.17.20.148,24.0,172.17.20.1,DEV_TEST
-LAN,VSL-DEV-IDB-001,VSL-DEV-IDB-001,VSL-DEV-IDB-001,vsl-dev-idb-001,nutanix.dc3,pe_lu651,rhel8-dc3,sub_pe_lu651,"var.ahv_651_network[""VLAN-20-Legacy-Server""]",stg_pe_lu651,"var.ahv_651_storage[""NUT_AHV_DC3_RH_PGSQL""]",,8192.0,2.0,1.0,100.0,172.17.20.149,24.0,172.17.20.1,DEV_TEST
-,,,,,,,,sub_,,stg_,,,,,,,,,,
+LAN,VSL-PRO-AIA-001,VSL-PRO-AIA-001,VSL-PRO-AIA-001,vsl-pro-aia-001,nutanix.dc1,pe_lu650,rhel8-dc1,sub_pe_lu650,"var.ahv_650_network[""PRO_AIA_324""]",stg_pe_lu650,"var.ahv_650_storage[""NUT_AHV_DC1_01""]",,24576.0,8.0,1.0,100.0,172.23.24.1 ,24.0,172.23.24.253 ,DEV_TEST
+LAN,VSL-REC-AIA-001,VSL-REC-AIA-001,VSL-REC-AIA-001,vsl-rec-aia-001,nutanix.dc1,pe_lu650,rhel8-dc1,sub_pe_lu650,"var.ahv_650_network[""REC_AIA_524""]",stg_pe_lu650,"var.ahv_650_storage[""NUT_AHV_DC1_01""]",,24576.0,8.0,1.0,100.0,172.25.24.1,24.0,172.25.24.253 ,DEV_TEST
+LAN,VSL-REC-IAI-001,VSL-REC-IAI-001,VSL-REC-IAI-001,vsl-rec-iai-001,nutanix.dc1,pe_lu650,rhel8-dc1,sub_pe_lu650,"var.ahv_650_network[""REC_IA_547""]",stg_pe_lu650,"var.ahv_650_storage[""NUT_AHV_DC1_01""]",,65535.0,24.0,1.0,100.0,172.25.47.1 ,24.0,172.25.47.253,DEV_TEST
 ,,,,,,,,sub_,,stg_,,,,,,,,,,
 ,,,,,,,,sub_,,stg_,,,,,,,,,,
 ,,,,,,,,sub_,,stg_,,,,,,,,,,
