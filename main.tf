@@ -416,3 +416,115 @@ resource "nutanix_virtual_machine" "VSL-REC-AIA-001" {
         }
  }
 # END ANSIBLE MANAGED BLOCK VSL-REC-AIA-001
+# BEGIN ANSIBLE MANAGED BLOCK VSL-PRO-AIA-001
+resource "nutanix_virtual_machine" "VSL-PRO-AIA-001" {
+        name                 = "VSL-PRO-AIA-001"
+        description          = "VSL-PRO-AIA-001" 
+        provider             = nutanix.dc1
+        cluster_uuid         = data.nutanix_cluster.pe_lu650.metadata.uuid
+        num_vcpus_per_socket = "1"
+        num_sockets          = "8"
+        memory_size_mib      = "24576"
+        boot_type            = "UEFI"
+        nic_list {
+          subnet_uuid = var.ahv_650_network["PRO_AIA_324"]
+         }
+
+        disk_list {
+          data_source_reference = {
+             kind = "image"
+             uuid = data.nutanix_image.rhel8-dc1.metadata.uuid
+          }
+
+          device_properties {
+            disk_address = {
+              device_index = 0
+              adapter_type = "SCSI"
+            }
+            device_type = "DISK"
+          }
+        }
+
+        disk_list {
+          disk_size_mib = (100 * 1024)
+          storage_config {
+            storage_container_reference {
+              kind = "storage_container"
+              uuid = var.ahv_650_storage["NUT_AHV_DC1_01"]
+            }
+          }
+        }
+
+        guest_customization_cloud_init_user_data = base64encode(templatefile("user-data.yaml", {
+          vm_domain         =  var.vm_domain 
+          vm_name       =  "vsl-pro-aia-001"
+          vm_ip   = "172.23.24.1 "
+          vm_prefix = "24"
+          vm_gateway   =  "172.23.24.253 "
+          vm_dns1    = var.vm_dns1
+          vm_dns2    = var.vm_dns2
+          vm_user = var.vm_user
+          vm_public_key = var.public_key
+        }))
+
+        provisioner "local-exec" {
+        command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'vsl-pro-aia-001,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure/linux/vault/.vault_password_file" 
+        }
+ }
+# END ANSIBLE MANAGED BLOCK VSL-PRO-AIA-001
+# BEGIN ANSIBLE MANAGED BLOCK VSL-REC-IAI-001
+resource "nutanix_virtual_machine" "VSL-REC-IAI-001" {
+        name                 = "VSL-REC-IAI-001"
+        description          = "VSL-REC-IAI-001" 
+        provider             = nutanix.dc1
+        cluster_uuid         = data.nutanix_cluster.pe_lu650.metadata.uuid
+        num_vcpus_per_socket = "1"
+        num_sockets          = "24"
+        memory_size_mib      = "65535"
+        boot_type            = "UEFI"
+        nic_list {
+          subnet_uuid = var.ahv_650_network["REC_IA_547"]
+         }
+
+        disk_list {
+          data_source_reference = {
+             kind = "image"
+             uuid = data.nutanix_image.rhel8-dc1.metadata.uuid
+          }
+
+          device_properties {
+            disk_address = {
+              device_index = 0
+              adapter_type = "SCSI"
+            }
+            device_type = "DISK"
+          }
+        }
+
+        disk_list {
+          disk_size_mib = (100 * 1024)
+          storage_config {
+            storage_container_reference {
+              kind = "storage_container"
+              uuid = var.ahv_650_storage["NUT_AHV_DC1_01"]
+            }
+          }
+        }
+
+        guest_customization_cloud_init_user_data = base64encode(templatefile("user-data.yaml", {
+          vm_domain         =  var.vm_domain 
+          vm_name       =  "vsl-rec-iai-001"
+          vm_ip   = "172.25.47.1 "
+          vm_prefix = "24"
+          vm_gateway   =  "172.25.47.253"
+          vm_dns1    = var.vm_dns1
+          vm_dns2    = var.vm_dns2
+          vm_user = var.vm_user
+          vm_public_key = var.public_key
+        }))
+
+        provisioner "local-exec" {
+        command = " ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i 'vsl-rec-iai-001,' -e env=DEV_TEST config.yml -u ${var.vm_user} -b --vault-password-file /opt/infrastructure/linux/vault/.vault_password_file" 
+        }
+ }
+# END ANSIBLE MANAGED BLOCK VSL-REC-IAI-001
